@@ -1,12 +1,23 @@
+import { NgModule      } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
+// Rutas
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
+// Componentes
+import { AppComponent     } from './app.component';
+import { NgStyleComponent } from './componentes/ng-style/ng-style.component';
+import { AmbitoComponent } from './componentes/ambito/ambito.component';
+import { ClasesComponent } from './componentes/clases/clases.component';
+import { ResaltadoDirective } from './directivas/resaltado.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NgStyleComponent,
+    AmbitoComponent,
+    ClasesComponent,
+    ResaltadoDirective
   ],
   imports: [
     BrowserModule,
