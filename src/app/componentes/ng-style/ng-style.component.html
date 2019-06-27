@@ -1,31 +1,36 @@
-<button class="btn btn-success" (click)="tamano1 = tamano1 + 1" style="margin-right: 10px">
-  <i class="fa fa-plus"></i>
-</button>
+<div class="animated fadeIn">
+  <h2>Directivas ngStyle</h2>
+  <hr>
 
-<button class="btn btn-danger" (click)="reducirFuente()">
-  <i class="fa fa-minus"></i>
-</button>
+  <button class="btn btn-success" (click)="tamano1 = tamano1 + 1" style="margin-right: 10px">
+    <i class="fa fa-plus"></i>
+  </button>
 
-<hr>
+  <button class="btn btn-danger" (click)="reducirFuente()">
+    <i class="fa fa-minus"></i>
+  </button>
 
-<p [ngStyle]="{ 'font-size': '15px' }">
-  Forma 1 de trabajar con la directiva ngStyle
-</p>
-<p [ngStyle]="{ 'font-size': tamano1 + 'px' }">
-  Forma 2 de trabajar con la directiva ngStyle (no es muy elegante...)
-</p>
-<p [ngStyle]="{ 'color': 'red', 'font-size': '30px' }">
-  Modificar varios estilos CSS utilizando la directiva ngStyle
-</p>
-<p [style.fontSize]="'35px'">
-  Esto es una mejor forma de modificar los estilos con Angular, en este caso sería el tamaño de fuente
-</p>
-<p [style.fontSize]="tamano1 + 'px'">
-  Hola, mundo
-</p>
-<p [style.fontSize]="tamano2">
-  Hola, mundo
-</p>
-<p [style.fontSize.px]="tamano1">
-  Hola, mundo
-</p>
+  <hr>
+
+  <p [ngStyle]="{ 'font-size': '15px' }">
+    Forma 1 de trabajar con la directiva ngStyle
+  </p>
+  <p [ngStyle]="{ 'font-size': tamano1 + 'px' }">
+    Forma 2 de trabajar con la directiva ngStyle (no es muy elegante...)
+  </p>
+  <p [ngStyle]="{ 'color': 'red', 'font-size': '30px' }">
+    Modificar varios estilos CSS utilizando la directiva ngStyle
+  </p>
+  <p [style.fontSize]="'35px'">
+    Esto es una mejor forma de modificar los estilos con Angular, en este caso sería el tamaño de fuente
+  </p>
+  <p [style.fontSize]="tamano1 + 'px'">
+    Hola, mundo
+  </p>
+  <p [style.fontSize]="tamano2">
+    Hola, mundo
+  </p>
+  <p [style.fontSize.px]="tamano1">
+    Hola, mundo
+  </p>
+</div>

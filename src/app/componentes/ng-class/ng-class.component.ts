@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-clases',
-  templateUrl: './clases.component.html'
+  templateUrl: './ng-class.component.html'
 })
-export class ClasesComponent {
+export class NgClassComponent {
 
   alerta = 'alert-danger';
   // tslint:disable-next-line:ban-types

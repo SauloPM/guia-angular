@@ -1,29 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="main-container container">
+<div class="animated fadeIn">
+
+  <div style="display: flex; align-items: flex-start; justify-content: space-between">
+    <div><app-menu></app-menu></div>
+    <div style="padding: 0 50px; width: 100%"><router-outlet></router-outlet></div>
+  </div>
   
-  <h1>Demo <small>Angular</small></h1>
-  <hr>
-
-  <!-- <app-ng-style></app-ng-style> -->
-  
-  <!-- <app-ambito></app-ambito> -->
-
-  <!-- <app-clases></app-clases> -->
-
-  <p appResaltado>
-    Hazme hover!
-  </p>
-
-  <p [appResaltado]="'rgb(200,100,50)'">
-    Hazme hover a mí también!
-  </p>
-
-  <p [appResaltado]="'red'">
-    Hazme hover a mí también!
-  </p>
-
-  <p [appResaltado]="'#000000'">
-    Hazme hover a mí también!
-  </p>
-
 </div>

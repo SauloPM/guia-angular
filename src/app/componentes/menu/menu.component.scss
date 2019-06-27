@@ -1,0 +1,36 @@
+#sidebar {
+    background: rgb(50,55,65);
+    border-radius: 2px;
+    width: 350px;
+    min-height: 100vh;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            border-top: 1px solid rgba(245,245,255,.05);
+            padding: 14px 40px;
+
+            a {
+                color: rgb(170,175,185);
+                font-weight: 200;
+                text-decoration: none;
+                white-space: nowrap;
+                margin: 0;
+                transition: .5s ease-in-out;
+            }
+
+            &:last-child {
+                border-bottom: none;
+                margin: 0;
+            }
+
+            &:hover a,
+            &.active a {
+                color: white;
+            }
+        }
+    }
+}
