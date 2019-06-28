@@ -3,6 +3,39 @@
   <h2>Directiva ngSwitch</h2>
   <hr>
 
+  <p>
+    Esta directiva estructural permite evaluar una expresión no binaria que admite múltiples posibilidades, al contrario que la directiva ngIf, que solo permitía evaluar una expresión binaria que devolvía únicamente verdadero o falso, pero no más.
+  </p>
 
+  <div [ngSwitch]="tipoAlerta">
+    <div *ngSwitchCase="'info'" class="alert alert-info" role="alert">
+      A simple info alert—check it out!
+    </div>
+    <div *ngSwitchCase="'primary'" class="alert alert-primary" role="alert">
+      A simple primary alert—check it out!
+    </div>
+    <div *ngSwitchCase="'secondary'" class="alert alert-secondary" role="alert">
+      A simple secondary alert—check it out!
+    </div>
+    <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+      A simple success alert—check it out!
+    </div>
+    <div *ngSwitchCase="'danger'" class="alert alert-danger" role="alert">
+      A simple danger alert—check it out!
+    </div>
+    <div *ngSwitchDefault class="alert alert-warning" role="alert">
+      A simple warning alert—check it out!
+    </div>
+  </div>
+
+  <p>Utiliza el siguiente selector para cambiar tipo de alerta</p>
+  <select #selector (change)="cambiarAlerta(selector.value)" class="form-control" style="width: 300px">
+    <option value="1">Info</option>
+    <option value="2">Primary</option>
+    <option value="3">Secondary</option>
+    <option value="4">Success</option>
+    <option value="5">Danger</option>
+    <option value="6">Warning</option>
+  </select>
 
 </div>
