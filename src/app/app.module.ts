@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent       } from './app.component';
 import { InicioComponent    } from './componentes/inicio/inicio.component';
 import { MenuComponent      } from './componentes/menu/menu.component';
-import { NgStyleComponent   } from './componentes/ng-style/ng-style.component';
-import { NgClassComponent   } from './componentes/ng-class/ng-class.component';
+import { NgStyleComponent   } from './componentes/directivas/ng-style/ng-style.component';
+import { NgClassComponent   } from './componentes/directivas/ng-class/ng-class.component';
+import { NgswitchComponent  } from './componentes/directivas/ngswitch/ngswitch.component';
 
 // Cambiar nombre
 import { AmbitoComponent    } from './componentes/ambito/ambito.component';
 import { ResaltadoDirective } from './directivas/resaltado.directive';
-import { DirectivaPropiaComponent } from './componentes/directiva-propia/directiva-propia.component';
+import { DirectivaPropiaComponent } from './componentes/directivas/directiva-propia/directiva-propia.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DirectivaPropiaComponent } from './componentes/directiva-propia/directi
     ResaltadoDirective,
     MenuComponent,
     InicioComponent,
-    DirectivaPropiaComponent
+    DirectivaPropiaComponent,
+    NgswitchComponent
   ],
   imports: [
     BrowserModule,

@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Componentes
 import { InicioComponent          } from './componentes/inicio/inicio.component';
-import { NgStyleComponent         } from './componentes/ng-style/ng-style.component';
-import { NgClassComponent         } from './componentes/ng-class/ng-class.component';
-import { DirectivaPropiaComponent } from './componentes/directiva-propia/directiva-propia.component';
+import { NgStyleComponent         } from './componentes/directivas/ng-style/ng-style.component';
+import { NgClassComponent         } from './componentes/directivas/ng-class/ng-class.component';
+import { DirectivaPropiaComponent } from './componentes/directivas/directiva-propia/directiva-propia.component';
+import { NgswitchComponent        } from './componentes/directivas/ngswitch/ngswitch.component';
 
 const routes: Routes = [
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'directivapropia', component: DirectivaPropiaComponent },
   { path: 'ngstyle'        , component: NgStyleComponent         },
   { path: 'ngclass'        , component: NgClassComponent         },
+  { path: 'ngswitch'       , component: NgswitchComponent        },
   // { path: 'artist/:id', component: ArtistComponent},
 
   // Mapeo » Ruta vacía - Componente Home
