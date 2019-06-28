@@ -16,6 +16,8 @@ import { NgswitchComponent  } from './componentes/directivas/ngswitch/ngswitch.c
 import { AmbitoComponent    } from './componentes/ambito/ambito.component';
 import { ResaltadoDirective } from './directivas/resaltado.directive';
 import { DirectivaPropiaComponent } from './componentes/directivas/directiva-propia/directiva-propia.component';
+import { RutasComponent } from './componentes/rutas/rutas/rutas.component';
+import { RutaHijaComponent } from './componentes/rutas/ruta-hija/ruta-hija.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { DirectivaPropiaComponent } from './componentes/directivas/directiva-pro
     MenuComponent,
     InicioComponent,
     DirectivaPropiaComponent,
-    NgswitchComponent
+    NgswitchComponent,
+    RutasComponent,
+    RutaHijaComponent
   ],
   imports: [
     BrowserModule,
