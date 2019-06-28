@@ -1,0 +1,44 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>Ciclos de vida de un componente</h2>
+  <hr>
+
+  <h3>Rutas hijas</h3>
+  <hr>
+
+  <ul>
+    <li>Consular <a href="https://angular.io/guide/lifecycle-hooks" target="_blank">enlace</a></li>
+  </ul>
+
+  <span class="tarea-pendiente">Probar que se ejecuta cada hook cuando debe, forzar la ejecución de cada uno</span>
+  <span class="tarea-pendiente">La explicación de Fernando es bastante pobre, de modo que busca en YouTube</span>
+  <span class="tarea-pendiente">Crear un span para notas resaltadas, como consultar enlaces en la documentación oficial, entre otros</span>
+
+  <ul>
+    <li>Existen diferentes ciclos de vida o hooks a lo largo de la vida de un componente</li>
+    <li>El hook ngOnChanges se dispara cuando los datos vinculados a un componente cambian de alguna forma</li>
+    <li>El hook ngOnInit se dispara cuando el componente está inicializándose o después del primer ngOnChanges</li>
+    <li>El hook ngDoCheck se dispara cuando se realiza una revisión del ciclo de detección de cambios, es decir, lo mismo que el anterior, pero aplicado a todo el contenido de la pantalla, no solo referente a un componente</li>
+    <li>El hook ngAfterContentInit se dispara después de insertar contenido</li>
+    <li>El hook ngAfterContentChecked se dispara después revisar el contenido insertado (supongo que después del ngAfterContentInit)</li>
+    <li>El hook ngAfterViewInit se dispara después de inicializar el componente o los componentes hijos</li>
+    <li>El hook ngAfterViewChecked se dispara después de revisar cada uno de los componentes hijos</li>
+    <li>El hook ngOnDestroy se dispara cuando el componente se destruye, bien cuando cambiamos de página o bien cuando se ejecuta la directiva ngIf si esta afecta al componente en cuestión (supongo que por ese mismo motivo ngSwitch debiera generar este hook, ya que es un ngIf más potente), entre otros</li>
+  </ul>
+
+  <img src="assets/ciclos-de-vida.png" alt="">
+
+  <ul>
+    <li>En el TS de este componente se encuentra implementado cada hook con un console log</li>
+    <li>Si abrimos la consola de JS podremos ver el orden de ejecución</li>
+    <li>Aunque cambiemos el orden dentro del código en el que aparecen las funciones que implementan los hooks, el orden de impresión por consola no variará</li>
+    <li>¿Por qué? Porque cada hook tiene su momento de ejecución</li>
+    <li>Curiosamente el hook ngOnDestroy no se imprime por consola, dado que el componente no se ha destruido todavía</li>
+    <li>Para que este aparezca, debemos destruir el componente, por ejemplo cambiando de página</li>
+  </ul>
+
+  <ul>
+    <li>Si creas un botón que modifique el renderizado de un componente, se ejecutarán, en este orden, los hooks ngDoCheck, ngAfterContentChecked y ngAfterViewChecked</li>
+  </ul>
+
+</div>

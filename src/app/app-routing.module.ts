@@ -16,6 +16,9 @@ import { UsuarioEditarComponent   } from './componentes/usuario/usuario-editar.c
 import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar.component';
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
+// Componentes » Ciclos de vida
+import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
+
 const routes: Routes = [
 
   { path: 'inicio'         , component: InicioComponent          },
@@ -37,6 +40,9 @@ const routes: Routes = [
     { path: 'ver-perfil', component: UsuarioPerfilComponent  },
     { path: '**', pathMatch: 'full', redirectTo: 'crear'}
   ]},
+
+  // Ciclos de via
+  { path: 'ciclos-de-vida', component: CiclosVidaComponent},
 
   // { path: 'artist/:id', component: ArtistComponent},
 
