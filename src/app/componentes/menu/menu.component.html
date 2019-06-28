@@ -1,8 +1,20 @@
 <div id="sidebar">
   <ul>
-    <li routerLinkActive="active"><a [routerLink]="['inicio']">Home</a></li>
-    <li routerLinkActive="active"><a [routerLink]="['directivapropia']">Directivas personalizadas</a></li>
-    <li routerLinkActive="active"><a [routerLink]="['ngstyle']">ngStyle</a></li>
-    <li routerLinkActive="active"><a [routerLink]="['ngclass']">ngClass</a></li>
+    <li routerLinkActive="active">
+      <i class="icon fa fa-fw fa-home" aria-hidden="true"></i>
+      <a [routerLink]="['inicio']">Inicio</a>
+    </li>
+    <li routerLinkActive="active">
+      <i class="icon fa fa-fw fa-key" aria-hidden="true"></i>
+      <a [routerLink]="['directivapropia']">Directivas personalizadas</a>
+    </li>
+    <li routerLinkActive="active">
+      <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
+      <a [routerLink]="['ngstyle']">ngStyle</a>
+    </li>
+    <li routerLinkActive="active">
+      <i class="icon fa fa-fw fa-life-ring" aria-hidden="true"></i>
+      <a [routerLink]="['ngclass']">ngClass</a>
+    </li>
   </ul>
 </div>

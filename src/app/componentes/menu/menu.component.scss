@@ -1,6 +1,7 @@
 #sidebar {
-    background: rgb(50,55,65);
+    background: rgb(50,55,70);
     border-radius: 2px;
+    padding-top: 150px;
     width: 350px;
     min-height: 100vh;
 
@@ -12,6 +13,12 @@
         li {
             border-top: 1px solid rgba(245,245,255,.05);
             padding: 14px 40px;
+
+            .icon {
+                color: rgb(170,175,185);
+                font-size: 15px;
+                margin-right: 8px;
+            }
 
             a {
                 color: rgb(170,175,185);
