@@ -19,6 +19,9 @@ import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.c
 // Componentes » Ciclos de vida
 import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
 
+// Componentes » Despliegue
+import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
+
 const routes: Routes = [
 
   { path: 'inicio'         , component: InicioComponent          },
@@ -43,6 +46,9 @@ const routes: Routes = [
 
   // Ciclos de via
   { path: 'ciclos-de-vida', component: CiclosVidaComponent},
+
+  // Despliegue
+  { path: 'despliegue', component: DespliegueComponent},
 
   // { path: 'artist/:id', component: ArtistComponent},
 

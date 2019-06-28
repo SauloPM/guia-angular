@@ -29,6 +29,7 @@ import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.c
 import { AmbitoComponent    } from './componentes/ambito/ambito.component';
 import { ResaltadoDirective } from './directivas/resaltado.directive';
 import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
+import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.compo
     UsuarioCrearComponent,
     UsuarioEditarComponent,
     UsuarioEliminarComponent,
-    CiclosVidaComponent
+    CiclosVidaComponent,
+    DespliegueComponent
   ],
   imports: [
     BrowserModule,

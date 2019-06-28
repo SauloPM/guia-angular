@@ -1,0 +1,51 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>Despliegue</h2>
+  <hr>
+
+  <h3>Despliegue de prueba</h3>
+  <hr>
+
+  <ul>
+    <li>Detenemos la ejecución de nuestra app y ejecutamos el comando $ ng build</li>
+    <li>Este comando generará un directorio llamado dist (de distribución) con nuestro proyecto compilado a una versión más compacta y ligera</li>
+    <li>Ojo, no está preparado para un ambiente de producción, ya que algunos de los ficheros son demasiado pesados para procurar una óptima eficiencia en un ambiente de producción</li>
+    <li>Esto no es para desplegar nuestra app per se, sino para generar un paso previo al verdadero despliegue para detectar nuevos fallos</li>
+    <li>Veremos muchos ficheros .map, dado que son ficheros de compilación intermedia, lo que tiene sentido con lo que dijimos antes, ya que esto no es la versión final</li>
+    <li>¿Podemos subir este directorio a producción? Sí, pero no es conveniente porque no es la versión final más ligera y totalmente compilada</li>
+    <li>Además, el nombre puede dar problemas con la caché del navegador al ser muy común (dist)</li>
+    <li>En resumen, este comando es para fines de prueba, ya que seguimos contando con notificación de errores, lo que pudiera ser útil</li>
+    <li>Cuando se despliegue en su versión final se optimizará, eliminand ficheros innecesarios y que la app tenga solo lo necesario para que la app se ejecute en producción</li>
+    <li>Vale, acabo de entender para qué sirve esto... xD</li>
+    <li>Si tú subes este proyecto, en la consola de JS en producción te aparecerá un mensaje diciendo que el proyecto ha sido desplegado en modo producción</li>
+    <li>No obstante, si hubiera errores, en la consola de JS te los mostraría para que no pasen inadvertidos</li>
+    <li>Cuando compruebes que no se produce ningún error y que todo fluye con normalidad, entonces lo subes como se indica en el siguiente apartado</li>
+    <li>Nótese que en el siguiente apartado subes la versión final, en la que no dispondrás de ninguna documentación adicional ni notificaciones de errores en caso de producirse</li>
+    <li>Es por ello que es aconsejable primero subir esta versión, verificar que todo funcione, y luego subir la final, porque a veces pueden darse errores en producción que no se producen en local y gracias a esto es posible darse cuenta</li>
+  </ul>
+
+  <h3>Despliegue final</h3>
+  <hr>
+
+  <ul>
+    <li>Detenemos la ejecución de nuestra app</li>
+    <li>Dentro del fichero src/environments/environment.ts, cambiamos el valor del campo production a true</li>
+    <li>Desde el directorio de nuestro proyecto ejecutamos el comando $ ng build --prod</li>
+    <li>Angular CLI generará un directorio con la versión de nuestra app optimizada y lista para producción</li>
+    <li>Nótese que los nombres de algunos ficheros son bastante extraños</li>
+    <li>Esto lo hace Angular CLI para evitar que el navegador web cachee</li>
+    <li>Es decir, supón que te das cuenta de que has cometido un fallo pequeño y lo corriges, subiendo el proyecto actualizado a producción</li>
+    <li>Dado que el peso del fichero afectado difiere poco entre la versión anterior y la actual, el navegador podría dar por sentado que se trata del mismo fichero y cachearlo, obteniendo el mismo resultado que antes, a pesar de haber subido una versión actualizada</li>
+    <li>Esto no es tan problemático de cara a nosotros, pero pudiera serlo de cara a un cliente que se frustra por no poder observar los cambios</li>
+    <li>Pues bien, gracias a estos nombres extraños generados por Angular CLI, esto no es un problema engañando al navegador al cambiar el nombre del fichero, de modo que aunque pese lo mismo, al llamarse diferente el navegador web no lo cacehará, lo cual es estupendo</li>
+    <li>Lo normal es que el fichero vendor sea el más pesado, ya que contiene el software de terceros con el que contábamos en nuestra app</li>
+  </ul>
+
+  <h3>Despliegue en un servidor Apache</h3>
+  <hr>
+
+  <ul>
+    <li>Pendiente</li>
+  </ul>
+
+</div>
