@@ -1,0 +1,50 @@
+<div class="animated fadeIn">
+
+  <h2>Rutas</h2>
+  <hr>
+
+  <span class="tarea-pendiente">Explicar el fichero de rutas</span>
+  <span class="tarea-pendiente">Explicar las modificaciones necesarias en el módulo principal</span>
+  <span class="tarea-pendiente">Explicar la asociación entre rutas y componentes</span>
+  <span class="tarea-pendiente">Explicar la asociación entre rutas vacías o desconocidas y componentes</span>
+  <span class="tarea-pendiente">Explicar el paso de parámetros por URL, así como su captación dentro de un componente</span>
+  <span class="tarea-pendiente">Explicar cómo redireccionar, si por HTML o utilizando TS</span>
+  <span class="tarea-pendiente">Explicar router-outlet, routerLink y routerLinkActive</span>
+
+  <h3>Rutas hijas</h3>
+  <hr>
+
+  <p>
+    Deseamos poder escribir una URL de la forma www.miaplicacion.com/usuario/10/ver-perfil.<br>
+    Como podemos ver, deseamos acceder al perfil del usuario cuyo ID es 10.<br>
+    Dado que estamos añadiendo un nuevo nivel de profundidad en la URL al escribir "ver-perfil" después del ID, esta se considera una subruta.
+  </p>
+
+  <ul>
+    <li>Creamos un componente llamado usuario que será el principal y cuatro más que serán secundarios, accesibles desde rutas hijas</li>
+    <li>Para acceder al componente principal de usuario, debemos hacer clic en <a [routerLink]="['/usuario/10']">este enlace</a></li>
+    <li>Ojo, en el fichero de rutas hemos establecido que el componente de usuario acepte un parémtro, de modo que en el enlace de abajo, dentro del código HTML, acoplamos un ID a la ruta</li>
+    <li>Le hemos puesto el ID 10 como ejemplo, pero hubiera valido cualquier otro</li>
+    <li>Dentro del fichero de rutas establecemos que el componente usuario recibirá un parámetro dentro de la URL (figura 1)</li>
+    <li>Además, tendrá un vector de rutas hijas con el mapeo entre ruta y componente que hemos visto siempre (figura 1)</li>
+    <li>Igualmente podemos ponerle un mapeo entre una ruta que no corresponda a nada y un componente hijo (figura 1)</li>
+  </ul>
+
+  <img src="assets/rutas-hijas1.png" alt="">
+
+  <ul>
+    <li>Dentro de este link encontraremos varios botones que nos redirigirán a las subrutas correspondientes según el caso (crear usuario, editar usuario...).</li>
+    <li>Para cada botón asignamos también una ruta (figura 2)</li>
+    <li>¿Por qué no hemos escrito / delante del nombre de la ruta para cada botón? Porque son rutas hijas del componente actual</li>
+    <li>Si quitásemos el router-outlet, al cargar este componente principal de usuarios solo se verían los botones, dado que no se estaría renderizando el contenido de ninguno de sus componentes hijos al estarse cargando la ruta del componente padre en el navegador web</li>
+    <li>No solo eso, sino que el routeroutlet es necesario para que se renderice el contenido de los componentes asociados a las rutas hijas, dado que así funciona Angular</li>
+    <li>¿Te sorprende este comportamiento? Es el mismo que sigue Angular de cara al menú de navegación y el HTML del componente principal, pero en un ámbito más específico</li>
+    <li>Es decir, cuando trabajamos con rutas hijas, podemos tener más de un routeroutlet para cada ámbito y el comportamiento esperado sería el mismo que siempre, de modo que no hay por qué tener miedo</li>
+    <li>Grosso modo, routeroutlet en este caso es necesario para poder visualizar los componentes asociados a las rutas hijas</li>
+    <li>¿Cómo podemos hacer para que nada más cargar el componente padre se cargue por defecto el contenido de uno de sus componentes hijos? Ojo, con componentes hijos hacemos referencias a los componentes asociados a las URLs hijas, independientemente de la ubicación del componente correspondiente en cuestión</li>
+    <li>Esta tarea ya la hemos completado sin darnos cuenta, en la figura 1 vimos que ante una ruta no reconocida, cargue por defecto la URL del componente que crea un usuario, de modo que al acceder al componente de usuario no hace falta seleccionar un componente hijo para ver algo más que el grupo de botones</li>
+  </ul>
+
+  <img src="assets/rutas-hijas2.png" alt="">
+
+</div>

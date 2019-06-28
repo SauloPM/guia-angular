@@ -1,0 +1,19 @@
+<div class="animated fadeIn">
+
+  <h2>Usuarios (rutas hijas)</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-info" routerLinkActive="active" [routerLink]="['crear']">Crear usuario</button>
+        <button type="button" class="btn btn-info" routerLinkActive="active" [routerLink]="['editar']">Editar usuario</button>
+        <button type="button" class="btn btn-info" routerLinkActive="active" [routerLink]="['eliminar']">Eliminar usuario</button>
+        <button type="button" class="btn btn-info" routerLinkActive="active" [routerLink]="['ver-perfil']">Ver perfil de usuario</button>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>

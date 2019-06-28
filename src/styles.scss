@@ -2,6 +2,7 @@ body {
     color: rgb(50,50,50);
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
+    background: rgb(50,55,70);
 }
 
 h2 {
@@ -37,7 +38,8 @@ ul {
 
     li {
         font-weight: 300;
-        margin: 0 0 10px;
+        margin: 0 0 10px 15px;
+        position: relative;
 
         &:before {
             content: '';
@@ -45,8 +47,9 @@ ul {
             border: 1px solid rgba(50,55,65,.5);
             border-radius: 50%;
             margin-right: 15px;
-            position: relative;
-            bottom: 3px;
+            position: absolute;
+            top: 8px;
+            left: -15px;
             width: 4px;
             height: 4px;
         }
@@ -56,6 +59,11 @@ ul {
 p {
     font-weight: 300;
     margin: 0 0 25px;
+}
+
+img {
+    display: block;
+    margin: 25px 0 25px 50px;
 }
 
 .tarea-pendiente {
