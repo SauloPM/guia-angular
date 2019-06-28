@@ -1,4 +1,4 @@
-<div class="animated fadeIn">
+<div id="notas" class="animated fadeIn">
 
   <h2>Rutas</h2>
   <hr>
@@ -10,17 +10,15 @@
   <span class="tarea-pendiente">Explicar el paso de parámetros por URL, así como su captación dentro de un componente</span>
   <span class="tarea-pendiente">Explicar cómo redireccionar, si por HTML o utilizando TS</span>
   <span class="tarea-pendiente">Explicar router-outlet, routerLink y routerLinkActive</span>
+  <span class="tarea-pendiente">Pasar esta nota a limpio</span>
 
   <h3>Rutas hijas</h3>
   <hr>
 
-  <p>
-    Deseamos poder escribir una URL de la forma www.miaplicacion.com/usuario/10/ver-perfil.<br>
-    Como podemos ver, deseamos acceder al perfil del usuario cuyo ID es 10.<br>
-    Dado que estamos añadiendo un nuevo nivel de profundidad en la URL al escribir "ver-perfil" después del ID, esta se considera una subruta.
-  </p>
-
   <ul>
+    <li>Deseamos poder escribir una URL de la forma www.miaplicacion.com/usuario/10/ver-perfil.</li>
+    <li>Como podemos ver, deseamos acceder al perfil del usuario cuyo ID es 10.</li>
+    <li>Dado que estamos añadiendo un nuevo nivel de profundidad en la URL al escribir "ver-perfil" después del ID, esta se considera una subruta.</li>
     <li>Creamos un componente llamado usuario que será el principal y cuatro más que serán secundarios, accesibles desde rutas hijas</li>
     <li>Para acceder al componente principal de usuario, debemos hacer clic en <a [routerLink]="['/usuario/10']">este enlace</a></li>
     <li>Ojo, en el fichero de rutas hemos establecido que el componente de usuario acepte un parémtro, de modo que en el enlace de abajo, dentro del código HTML, acoplamos un ID a la ruta</li>
@@ -46,5 +44,59 @@
   </ul>
 
   <img src="assets/rutas-hijas2.png" alt="">
+
+  <h3>Dividir el fichero de rutas en varios ficheros de rutas</h3>
+  <hr>
+
+  <ul>
+    <li>Es una buena práctica fragmentar el fichero de rutas en varios ficheros si este contiene varios componentes con rutas hijas con el objetivo de evitar quedar demasiado extenso</li>
+    <li>Para ello, nos creamos un nuevo fichero dentro del directorio del componente padre (siguiendo con el ejemplo, sería usuario.routes.ts)</li>
+    <li>Dentro de este fichero copiamos el contenido del fichero de rutas principal, pero sin los mapeos innecesarios, dado que solo nos interesan el componente padre y los componentes hijos</li>
+    <li>También podemos eliminar la importación del módulo RouterModule y la exportación de la constante app_routing</li>
+    <li>Es decir, solo nos quedaría la importación del módulo Route más la constante que albergará el mapeo que nos interesa</li>
+    <li>Ojo, debemos cambiar el nombre de la constante de los mapeos, no se debe llamar igual que </li>
+  </ul>
+
+  <img src="assets/rutas-hijas3.png" alt="">
+
+  <ul>
+    <li>Vale... esto se explica mejor con una imagen. En la captura de arriba aparece el contenido del fichero de rutas DE USUARIOS</li>
+    <li>Como vemos, solo hemos hecho el mapeo de los hijos, el padre no lo hemos considerado</li>
+    <li>Debemos, obviamente, importar estos componentes como hacíamos en el fichero de rutas normal de toda la vida</li>
+    <li>Ojo, las rutas de estos componentes en la importación son diferentes ahora porque este nuevo fichero de rutas se encuentra en un sitio distinto</li>
+    <li>Debemos escribir export delante de la constante</li>
+  </ul>
+
+  <img src="assets/rutas-hijas4.png" alt="">
+
+  <ul>
+    <li>En la captura de arriba está el fichero de rutas principal</li>
+    <li>Quitamos las importaciones de los componentes hijos del componente usuario, dado que se tratan en el fichero de rutas particular</li>
+    <li>importamos la constante (USUARIO_ROUTES) y la ruta será la del fichero de rutas particular de los usuaros</li>
+    <li>Embebemos la constante en el camp ochildren del mapeo del componente usuario padre</li>
+    <li>Es interesante ver cómo se exportan las constantes</li>
+  </ul>
+
+  <h3>Obtener parámetros del padre desde una ruta hija</h3>
+  <hr>
+
+  <ul>
+    <li>¿Recuerdas que el padre usuario tenía el parámetro 10 en el ejemplo que correspondía con su ID?, ¿cómo podemos capturarlo desde los componentes asociados a las rutas hijas?</li>
+    <li>Captar el ID que se encuentra en la URL desde el componente usuario padre es igual que siempre, importando el módulo ActivatedRoute, inyectándolo en el constructor y suscribiéndonos al observable para almacenarlo dentro de un atributo de clase, pero con los hijos no es igual</li>
+    <li>Claro, ten en cuenta que si lo hiciera igual en alguna de las rutas hijas, el parámetro que pillaríamos tendría que ir DESPUÉS del nombre de la ruta asociado al componente hijo, por ejemplo www.ejemplo.com/usuario/10/crear/parametro-de-la-ruta-hija</li>
+    <li>En este ejemplo, siguiendo el mismo procedimiento, lo que pillaríamos como parémtro en el componente hijo no sería 10, sino parametro-de-la-ruta-hija, dado que va después</li>
+    <li>Por supuesto, de hacerlo así tendríamos que incluir el parámetro 'crear/:parametro en el fichero de rutas del componente padre</li>
+  </ul>
+
+  <img src="assets/rutas-hijas5.png" alt="">
+
+  <ul>
+    <li>El problema es que estamos intentando acceder al parámetro del componente PADRE, no del hijo, por eso no se hace igual</li>
+    <li>Pues la solución es súpe rsencilla, solo tenemos que poner .parent delante del método .params y listo</li>
+    <li>De hecho, no recibiríamos un solo paraámetro del padre, sino todos, de haber más (en este ejemplo solo había uno)</li>
+    <li>Cuando se hace un console log de los parámetros, el JSON que se imprime en la consola de JS tiene un objeto con campos. Como sabe el nombre de eso scampos? porque los definimos en el fihceor de rutas a modo de parametros de la url hola/:id pues el json seria id: algo</li>
+  </ul>
+
+  <img src="assets/rutas-hijas6.png" alt="">
 
 </div>
