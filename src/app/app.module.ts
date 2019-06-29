@@ -44,7 +44,6 @@ import { DespliegueComponent } from './componentes/despliegue/despliegue.compone
     NgswitchComponent,
     RutasComponent,
     UsuarioComponent,
-    UsuarioComponent,
     UsuarioPerfilComponent,
     UsuarioCrearComponent,
     UsuarioEditarComponent,
