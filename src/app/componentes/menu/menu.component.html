@@ -1,36 +1,41 @@
 <div id="sidebar">
+  <img class="logo" src="assets/logo1.svg" alt="">
   <ul>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-home" aria-hidden="true"></i>
-      <a [routerLink]="['inicio']">Inicio</a>
+      <a routerLink="inicio">      
+        <i class="icon fa fa-fw fa-home" aria-hidden="true"></i>
+        Inicio
+      </a>
     </li>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
-      <a [routerLink]="['ngstyle']">ngStyle</a>
+      <a routerLink="ngstyle">
+        <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
+        Directivas
+      </a>
     </li>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-life-ring" aria-hidden="true"></i>
-      <a [routerLink]="['ngclass']">ngClass</a>
+      <a routerLink="pipes">
+        <i class="icon fa fa-fw fa-life-ring" aria-hidden="true"></i>
+        Pipes
+      </a>
     </li>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-star-o" aria-hidden="true"></i>
-      <a [routerLink]="['ngswitch']">ngSwitch</a>
+      <a routerLink="rutas">
+        <i class="icon fa fa-fw fa-link" aria-hidden="true"></i>
+        Rutas
+      </a>
     </li>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-key" aria-hidden="true"></i>
-      <a [routerLink]="['directivapropia']">Directivas personalizadas</a>
+      <a routerLink="ciclos-de-vida">
+        <i class="icon fa fa-fw fa-leaf" aria-hidden="true"></i>
+        Ciclos de vida
+      </a>
     </li>
     <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-link" aria-hidden="true"></i>
-      <a [routerLink]="['rutas']">Rutas</a>
-    </li>
-    <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-leaf" aria-hidden="true"></i>
-      <a [routerLink]="['ciclos-de-vida']">Ciclos de vida</a>
-    </li>
-    <li routerLinkActive="active">
-      <i class="icon fa fa-fw fa-rocket" aria-hidden="true"></i>
-      <a [routerLink]="['despliegue']">Despliegue</a>
+      <a routerLink="despliegue">
+        <i class="icon fa fa-fw fa-star-o" aria-hidden="true"></i>
+        Despliegue
+      </a>
     </li>
   </ul>
 </div>
