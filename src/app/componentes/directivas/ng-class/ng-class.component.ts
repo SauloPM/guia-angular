@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
 })
 export class NgClassComponent {
 
+  // Descomenta el html, que lo comenté porque me daba error ese código cuando intentaba generar la versión de producción...
+  // El mensaej de error era Property 'danger' does not exist on type 'Object'.
+
   alerta = 'alert-danger';
   // tslint:disable-next-line:ban-types
   propiedades: Object = {

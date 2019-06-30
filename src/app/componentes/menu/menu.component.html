@@ -7,11 +7,17 @@
         Inicio
       </a>
     </li>
-    <li routerLinkActive="active">
+    <li routerLinkActive="active" (click)="abrirSubmenu('directivas')">
       <a routerLink="ngstyle">
         <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
         Directivas
+        <i class="caret fa fa-fw fa-angle-right"></i>
       </a>
+      <ul class="submenu" *ngIf="abrirDirectivas">
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+      </ul>
     </li>
     <li routerLinkActive="active">
       <a routerLink="pipes">
@@ -19,11 +25,17 @@
         Pipes
       </a>
     </li>
-    <li routerLinkActive="active">
+    <li routerLinkActive="active" (click)="abrirSubmenu('rutas')">
       <a routerLink="rutas">
         <i class="icon fa fa-fw fa-link" aria-hidden="true"></i>
         Rutas
+        <i class="caret fa fa-fw fa-angle-right"></i>
       </a>
+      <ul class="submenu" *ngIf="abrirRutas">
+        <li>Item</li>
+        <li>Item</li>
+        <li>Item</li>
+      </ul>
     </li>
     <li routerLinkActive="active">
       <a routerLink="ciclos-de-vida">

@@ -29,6 +29,7 @@
                 color: rgb(170,175,185);
                 font-size: 15px;
                 margin-right: 8px;
+                transition: .5s ease-in-out;
             }
 
             a {
@@ -38,7 +39,21 @@
                 white-space: nowrap;
                 padding: 14px 40px;
                 margin: 0;
+                position: relative;
                 transition: .5s ease-in-out;
+            }
+
+            .caret {
+                color: rgb(170,175,185);
+                font-size: 18px;
+                position: absolute;
+                top: 50%;
+                right: 32px;
+                transform: translateY(-50%);
+            }
+
+            .submenu {
+                transition: 1s;
             }
 
             &:last-child {
@@ -46,8 +61,12 @@
                 margin: 0;
             }
 
-            &:hover a,
-            &.active a {
+            &.active {
+                background: rgba(255,255,255,.1);
+            }
+
+            &:hover  a, &:hover  .icon,
+            &.active a, &.active .icon {
                 color: white;
             }
         }

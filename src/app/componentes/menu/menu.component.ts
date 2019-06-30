@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  abrirRutas     : boolean = false;
+  abrirDirectivas: boolean = false;
+
   constructor() { }
 
+  abrirSubmenu( item: string ) {
+
+    if ( item === 'rutas' ) {
+      this.abrirRutas = !this.abrirRutas;
+    } else {
+      this.abrirDirectivas = !this.abrirDirectivas;
+    }
+  }
 }
