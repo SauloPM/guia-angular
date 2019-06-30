@@ -1,59 +1,40 @@
+$text        : rgb(50,50,50);
+$primary     : rgb(50,55,65);
+$lightprimary: rgba(50,55,65,.25);
+
+::-webkit-scrollbar { width: 0 }
+
+::selection { color: white; background: $primary }
+
+// ─────────────── //
+//     GENERAL     //
+// ─────────────── //
+
 body {
-    color: rgb(50,50,50);
+    color: $text;
     font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    background: rgb(50,55,70);
+    font-family: 'Roboto', sans-serif;
+    background: $primary;
 }
 
 h2 {
-    color: rgb(50,55,65);
     font-size: 25px;
-    font-weight: 200;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 10px;
-    margin: 0;
-}
-
-h2 + hr {
-    background: rgba(245,245,255,.25);
-    margin: 15px 0 40px;
+    margin: 0 0 50px;
 }
 
 h3 {
-    color: rgb(50,55,65);
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     margin: 50px 0 0;
 }
 
-h3 + hr {
-    background: rgba(245,245,255,.25);
-    margin: 15px 0 40px;
-}
-
-#notas ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-        font-weight: 300;
-        margin: 0 0 10px 15px;
-        position: relative;
-
-        &:before {
-            content: '';
-            display: inline-block;
-            border: 1px solid rgba(50,55,65,.5);
-            border-radius: 50%;
-            margin-right: 15px;
-            position: absolute;
-            top: 8px;
-            left: -15px;
-            width: 4px;
-            height: 4px;
-        }
-    }
+h4 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 30px 0;
 }
 
 p {
@@ -61,17 +42,90 @@ p {
     margin: 0 0 25px;
 }
 
-img {
-    display: block;
-    margin: 50px 0 50px 50px;
+u {
+    text-decoration: none;
+    border-bottom: 1px solid $lightprimary;
+    padding-bottom: 1px;
+}
+
+i {
+    color: rgb(140,0,255);
+    font-style: normal;
+}
+
+b {
+    color: rgb(0,130,255);
+    font-weight: 400;
+}
+
+hr {
+    background: $lightprimary;
+    margin: 15px 0 40px;
+}
+
+// ───────────── //
+//     NOTAS     //
+// ───────────── //
+
+#notas {
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    
+        li {
+            font-weight: 400;
+            margin: 0 0 10px 15px;
+            position: relative;
+    
+            &:before {
+                content: '';
+                display: inline-block;
+                border: 1px solid $lightprimary;
+                border-radius: 50%;
+                margin-right: 15px;
+                position: absolute;
+                top: 8px;
+                left: -15px;
+                width: 4px;
+                height: 4px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    
+    img {
+        display: block;
+        margin: 50px 0 0 50px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    caption {
+        display: block;
+        color: $text;
+        font-size: 11px;
+        font-weight: 400;
+        padding: 0;
+        margin: 5px 0 50px 50px;
+    
+        strong {
+            display: inline;
+        }
+    }
 }
 
 .tarea-pendiente {
     display: block;
     color: red;
-    background: rgba(255,0,0,.25);
-    border: 1px solid rgb(255,0,0);
-    border-radius: 2px;
-    padding: 5px 10px;
-    margin: 5px;
+    background: rgba(255,0,0,.35);
+    box-shadow: 0 0 -1px 1px red;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px 0;
+    width: fit-content;
 }
