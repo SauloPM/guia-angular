@@ -5,6 +5,8 @@
   <span class="tarea-pendiente">Modificaciones en subida a producción</span>
   <span class="tarea-pendiente">Rutas absolutas y rutas relativas en el atributo <b>routerLink</b></span>
   <span class="tarea-pendiente">Hacer una pequeña introducción para explicar el esquema general de las explicaciones</span>
+  <span class="tarea-pendiente">Cuando se envían parámetros en la URL con un botón, se puede hacer de forma estática, repitiendo los ítems del grid, con un *ngFor o con un #identificador de Angular. Explicar las tres formas</span>
+  <span class="tarea-pendiente">Recuerda hablar del servicio web para obtener la información asociada al elemento seleccionado según el id recibido por parámetro</span>
 
   <h3>1. Fichero de rutas</h3>
   <hr>
@@ -141,55 +143,68 @@
   <hr>
 
   <ul>
-    <li>¿Por qué iba a interesarnos el envío de parámetros a través de la URL? Es una operación mucho más útil de lo que parece a simple vista</li>
-    <li>Por ejemplo, en una página de WordPress convencional resulta muy típico ver un listado de noticias, hacer clic en una de ellas y acceder a su ficha con toda su información en una nueva pestaña</li>
-    <li>Nosotros podemos hacer lo mismo en Angular fácilmente, mostrando un grid de tarjetas (cada tarjeta podría implementarse con un componente) utilizando la directiva <b>*ngFor</b></li>
-    <li>Si quisiéramos que al hacer clic en alguna de ellas se desplegara la noticia completa con todos sus datos en una página independiente sin refrescar el navegador web, ¿cómo lo haríamos?</li>
-    <li>Si dotáramos a cada noticia de un identificador, solo tendríamos que inyectarlo en la URL</li>
-    <li>De esta forma, al cargar la URL junto con el identificador, Angular cargaría el componente vinculado a dicha dirección y lo rellenaría con todos sus datos específicos gracias al identificador pasado por parámetro en la URL</li>
-    <li>Esto evita que tengamos que crear una página para cada noticia individual si todas siguen la misma estructura: podemos definir un único componente y saber cómo tendríamos que rellenarlo cuando se cargue gracias al identificador de la URL</li>
-    <li>Esto es solo un ejemplo, pero el paso de parámetros a través de la URL se puede utilizar enviando algo más que identificadores, incluso podemos enviar más de un parámetro, como vimos en apartados anteriores (figura 4)</li>
+    <li>¿Por qué iba a interesarnos el envío de parámetros a través de la URL? Es una operación bastante útil y utilizada en otros frameworks (Laravel, por ejemplo)</li>
+    <li>Supón que en nuestra aplicación deseamos mostrar un grid de notificas con el fin de que cuando el usuario haga clic en una de ellas, acceda a su ficha completa en otra página</li>
+    <li>¿Cómo sabe el navegador web qué ficha renderizar si no sabe qué noticia ha seleccionado el usuario? Antaño se debía crear una página para cada una de las noticias, pero con Angular no es necesario</li>
+    <li>Si cada noticia estuviera provista de un identificador, solo tendríamos que inyectarlo en la URL, tal que dentro de la ficha, se pudiera leer dicho URL y cargar la información correspondiente</li>
+    <li>En el siguiente apartado veremos cómo es posible que un componente lea <u>uno o más parámetros</u> de la URL, pero en este caso nos vamos a centrar solo en el envío de parámetros</li> 
     <li>Hay varias formas de conseguir este objetivo, según el elemento HTML desde el que deseemos cargar el componente que vaya a recibir el parámetro en cuestión, esto es a través de un enlace o un botón</li>
   </ul>
 
-  <h4>Envío de parámetros utilizando un enlace</h4>
+  <h4>6.1 Mapeo del fichero de rutas ante el envío de parámetros</h4>
 
   <ul>
     <li>Dentro del fichero de rutas importamos el componente que vaya a recibir el parámetro desde la URL y establecemos el mapeo entre este y una ruta como vimos en el apartado 1</li>
     <li>No obstante, la ruta en este mapeo tendrá que incluir uno o más sufijos por cada parámetro que se desee enviar (figura 6)</li>
-    <li>Es importante asignarle un identificador descriptivo a cada parámetro dentro de este mapeo dado que cuando el componente receptor los reciba, accederemos a uno u otro a través de dichos identificadores</li>
   </ul>
-<!-- 
-	• Continuando con el ejemplo de la figura 1, podríamos poner 'heroe/:id', donde heroe es el nombre de la ruta e id es el identificador del parámetro
-	• Dentro del fichero HTML del componente HeroesComponent, creamos un elemento HTML <a> y le inyectamos el atributo [routerLink], cuyo valor será el vector "['heroe', i]", donde i es una variable que almacena el parámetro
-	• Esto debemos hacerlo para cada tarjeta de cada héroe
-	• La variable i viene de la directiva *ngFor que utilizamos para renderizar tantas tarjetas como héroes proporcionase el servicio
-	• En esta directiva almacenábamos el valor del contador de iteraciones del bucle (variable index)
-	• El problema de hacerlo así, es que al estar dentro del <router-outlet> y estar poniendo el enlace desde el fichero HTML del componente de héroes, nos va a redirigir a la URL heroes/heroe/i
-	• Al no corresponder dicha URL con ningún componente, redirigirá al componente HomeComponent (figura 1), que es el que se carga cuando la URL no se asocia a nada (path: '**')
-	• Dado que el componente Héroe (individual) se encuentra al mismo nivel que el de Héroes  dentro de nuestro proyecto, la ruta a la que deseamos que nos redirija es en realidad heroe/i, sin el prefijo heroes/
-	• Para solucionar este problema, dentro del fichero de rutas podemos modificar la ruta que carga el componente del héroe (individual) de 'heroe/:id' a 'heroes/heroe/:id'
-	• Ahora, cuando carguemos un héroe desde el componente de héroes, como se hace un append a la URL, al dirigirnos a la dirección heroes/heroe/i, esta vez sí acertaría el mapping del fichero de rutas
-	• ¿Pero qué ocurre si lo que deseamos es que la URL no cuente con el prefijo heroes/? Esto ya depende de cómo quieras tú que se represente la URL al cargar el componente en cuestión
-	• Si te interesa que en la URL se refleje que el componente Héroe se carga a partir del componente Héroes, entonces ya has logrado tu objetivo
-	• Pero si te interesa que no quede constancia en la URL del componente Héroes y que el componente Héroe se cargue independientemente sin prefijos en la URL, tendríamos que efectuar una serie de cambios
-	• De esta forma, el componente Héroes no constaría como una subpágina del componente Héroes y su URL se cargaría siempre desde el directorio raíz
-	• Para ello, dentro del fichero de rutas, cambia el path de 'heroes/heroe/:id' a 'heroe/:id', dejándolo todo como estaba al principio
-	• No obstante, en el vector del atributo [routerLink], en lugar de escribir "['heroe', i]", escribe "['/heroe', i]" y listo
-	• Esta barra / le indica a Angular que deseamos cargar el componente en cuestión desde el directorio raíz
-	• Habría que probar qué pasaría si el componente individual estuviera contenido (su directorio) dentro del componente padre, si en tal caso se podría omitir el prefijo en el path del fichero de rutas -->
 
+  <img src="assets/img/rutas/figura6.png" alt="">
+  <caption><strong>Figura 6.</strong> Mapeo dentro del fichero de rutas ante el envío de parámetros</caption>
 
   <ul>
-    <li>Tener en cuenta que cuando se pase más de un parámetro, hay que ponerlos todos en el fichero de rutas</li>
-    <li>En el resultado captado en la suscripción tenemos un objeto para todos los parámetros, donde el lado izquierdo tiene el mismo nombre que en el fichero de rutas (poner captura de cobnsola de js)</li>
+    <li>Es importante asignarle un identificador descriptivo a cada parámetro dentro de este mapeo dado que cuando el componente receptor los reciba, accederemos a uno u otro a través de dichos identificadores</li>
+    <li>En la figura 7 se observa la estructura de datos cuando se reciben varios parámetros a partir de la URL</li>
+    <li>Nótese que los nombres de los campos coinciden con el nombre que nosotros les asignamos dentro del fichero de rutas (figura 6)</li>
   </ul>
+
+  <img src="assets/img/rutas/figura7.png" alt="">
+  <caption><strong>Figura 7.</strong> Estructura de los parámetros recibidos a partir de la URL en la consola de JavaScript</caption>
+
+  <h4>6.2 Envío de parámetros a través de un enlace</h4>
+
+  <ul>
+    <li>Dentro del código HTML del componente afectado, hacemos uso del elemento <b>&lt;a&gt;</b> con el atributo <b>routerLink</b> entre corchetes, dado que para el envío de parámetros es necesario hacer uso del vector</li>
+    <li>Dicho vector contendrá el fragmento del ruta asociado al componente destino más los parámetros entre comillas simples en caso de tratarse de literales o sin comillas simples en caso de tratarse de expresiones TS</li>
+    <li>Siguiendo con el ejemplo visto al comienzo de este apartado, dentro del grid de noticias para cada una tendríamos que escribir <b>[routerLink]=['ficha-noticia', id]</b></li>
+    <li>Tenemos que el fragmento de ruta vendría a ser <i>ficha-noticia</i> y el parámetro <b>id</b> bien podría ser una variable TS declarada como atributo de clase en el fichero TS del componente</li>
+    <li>Recuerda que este fragmento de ruta debe estar asociado al componente que renderice la ficha de una noticia dentro del fichero de rutas</li>
+  </ul>  
+
+  <h4>6.3 Envío de parámetros a través de un botón</h4>
+
+  <ul>
+    <li>¿Cómo nos las apañaríamos si en lugar de un enlace tuviéramos que hacer uso de un botón?</li>
+    <li>La opción más simple es maquetar el enlace con CSS para darle apariencia de botón, pero de no tener esa posibilidad, podemos establecer una redirección mediante TS</li>
+    <li>Al tratarse de un botón no podremos hacer uso del atributo <b>routerLink</b>, pero podemos asociarle un manejador de evento, similar a como hacíamos en JavaScript</li>
+    <li>Para ello, siguiendo con el ejemplo, escribimos <b>(click)="abrirNoticia(id)</b> dentro del cuerpo HTML del botón de cada noticia del grid, tal que al hacer click sobre una de ellas, se invoque a la función <b>abrirNoticia</b> junto con el identificador</li>
+  </ul>
+
+  <!-- 
+	• Pues al botón le pones (click)="verHeroe(i)", donde verHeroe es un método cuya definición estará en el fichero TS principal del componente Héroes y la i esa es el número de la iteración, que será una suerte de identificador (nos vale para tal propósito)
+	• Dentro del fichero TS importamos el componente Router de la ruta @angular/router
+	• Lo inyectamos en el constructor con private router:Router (recuerda que el identificador router se lo pusimos porque nos dio la gana, hubiéramos podido haberle puesto otro)
+	• Creamos esa función en el fichero TS y escribimos this.router.navigate( ['/heroes', idx] )
+	• Es muy similar a lo que hicimos antes, ya que estamos trabajando con el vector del atributo [routerLink], pero desde TS, si te fijas
+
+	• En realidad no es obligatorio hacer esto con un botón, lo podemos (creo) hacer con cualquier elemento HTML al que podamos vincular el evento (click)
+   -->
 
   <h3>Recibir parámetros a través de la URL</h3>
   <hr>
 
   <ul>
-    <li></li>
+    <li>Tener en cuenta que cuando se pase más de un parámetro, hay que ponerlos todos en el fichero de rutas</li>
+    <li>En el resultado captado en la suscripción tenemos un objeto para todos los parámetros, donde el lado izquierdo tiene el mismo nombre que en el fichero de rutas (poner captura de cobnsola de js)</li>
   </ul>
   
   <h3>Rutas hijas</h3>
