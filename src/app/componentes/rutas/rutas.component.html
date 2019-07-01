@@ -2,6 +2,7 @@
 
   <h2>Rutas</h2>
 
+  <span class="tarea-pendiente">Modificaciones en subida a producción</span>
   <span class="tarea-pendiente">Rutas absolutas y rutas relativas en el atributo <b>routerLink</b></span>
   <span class="tarea-pendiente">Hacer una pequeña introducción para explicar el esquema general de las explicaciones</span>
 
@@ -11,9 +12,10 @@
   <ul>
     <li>Llamamos fichero de rutas al fichero <i>app-routing.module.ts</i></li>
     <li>Este fichero nos permite establecer una correspondencia o mapping entre un componente y una ruta o URL (figura 1)</li>
-    <li>Esta correspondencia no es más que un array de objetos almacenado en una constante</li>
-    <li>Las rutas en Angular nos permiten navegar de forma suavizada (esto es, sin refrescar la página) entre las diferentes páginas (componentes) de nuestra app</li>
-    <li>Es más, utilizando el plugin Animate.css, podemos dar efectos a las transiciones entre una y otra fácilmente para enfatizar el suavizado y mejorar la experiencia de usuario</li>
+    <li>Esta correspondencia no es más que un array de objetos almacenado en una constante (en la figura 1, dicha constante se llama <b>Routes</b>)</li>
+    <li>Este sistema de rutas nos permite navegar entre las distintas páginas (componentes) que componen nuestra aplicación sin que dé la impresión de que la página se esté refrescando</li>
+    <li>Solamente se actualizan aquellos contenidos que varían de una página a otra, lo mejora enormamente la experiencia de usuario</li>
+    <li>Es más, utilizando el plugin <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, podemos dar efectos a las transiciones entre una página y otra fácilmente para mejorar todavía más la experiencia de usuario</li>
     <li>El comportamiento de este fichero es ciertamente similar al fichero de rutas de Laravel, solo que Laravel vincula una ruta a un controlador y Angular vincula una ruta a un componente</li>
   </ul>
 
@@ -22,9 +24,9 @@
 
   <ul>
     <li>Como se observa en la figura 1, existe un mapeo especial en caso de que la URL escrita no coincida con ninguno de los mapeos (<b>path: '**'</b>)</li>
-    <li>En estos casos se redirecciona al componente que queramos (en el ejemplo ilustrado en la figura 1 se redirige al componente de inicio)</li>
-    <li>También existe un mapeo especial en caso de no escribir nada (<b>path: '&nbsp;'</b>), en cuyo caso también se redirecciona al componente que queramos</li>
-    <li>Nuevamente, en el ejemplo también se redirige al componente de inicio, pero no tiene por qué ser así, hubiéramos podido establecer un mapeo distinto en caso de haberlo deseaso sin ningún problema</li>
+    <li>En estos casos se redirecciona al componente que queramos (en el ejemplo ilustrado en la figura 1 se redirige al componente <i>Inicio</i>)</li>
+    <li>También existe un mapeo especial en caso de no escribir nada en la URL (<b>path: '&nbsp;'</b>), en cuyo caso también se redirecciona al componente que queramos</li>
+    <li>Nuevamente, en el ejemplo también se redirige al componente <i>Inicio</i>, pero no tiene por qué ser así, hubiéramos podido establecer un mapeo distinto en caso de haberlo deseaso sin ningún problema</li>
     <li>Nótese que para cada mapeo es necesario importar el componente implicado, por eso en el ejemplo de la figura 1 fue necesario importar los componentes <i>Inicio</i>, <i>Usuario</i> y <i>Rutas</i>, respectivamente</li>
   </ul>
 
@@ -33,11 +35,12 @@
 
   <ul>
     <li>Dentro del fichero del módulo principal se debe importar la clase que gestiona las rutas e incluirla dentro del campo <b>imports</b> del decorador</li>
-    <li>Esta clase se llama por defecto <b>AppRoutingModule</b>, pero podemos cambiarle el identificador dentro del fichero de rutas siempre y cuando mantengamos la coherencia con el módulo principal</li>
-    <li>En principio no debemos preocuparnos por las modificaciones dentro del módulo princiapl, dado que Angular se encarga por nosotros</li>
-    <li>No obstante, es posible que tengamos que crear el fichero de rutas nosotros mismos, en cuyo caso resulta conveniente saber cómo gestionar las modificaciones necesarias dentro del módulo principal para con el fichero de rutas (aunque podemos crear más de un fichero de rutas, como veremos posteriormente)</li>
+    <li>Esta clase se llama por defecto <b>AppRoutingModule</b>, pero podemos cambiarle el identificador dentro del fichero de rutas siempre y cuando <u>mantengamos la coherencia con el módulo principal</u></li>
+    <li>En principio no debemos preocuparnos por las modificaciones dentro del módulo principal, dado que Angular se encarga por nosotros</li>
+    <li>No obstante, es posible que tengamos que crear el fichero de rutas nosotros mismos, en cuyo caso resulta conveniente saber cómo modificar el módulo principal en base al fichero de rutas</li>
+    <li>Es posible crear más de un fichero de rutas si este fuera demasiado extenso con el objetivo de mantener el código más modularizado, como veremos posteriormente</li>
     <li>Fíjate que la clase dentro del fichero de rutas (figura 1) se llama <b>AppRoutingModule</b> y que delante de su identificador aparece la palabra reservada <b>export</b></li>
-    <li>Esta palabra reservada es clave para poder importar dicha clase dentro del módulo principal (figura 2)</li>
+    <li>Esta palabra reservada es clave para poder importar dicha clase en el módulo principal y dentro del campo <b>imports</b> del decorador (figura 2)</li>
   </ul>
 
   <img src="assets/img/rutas/figura2.png" alt="">
@@ -48,9 +51,9 @@
 
   <ul>
     <li>Este selector de Angular permite <u>renderizar el contenido de un componente</u> u otro en el frontend en función de la URL</li>
-    <li>¿Cualquier componente? No, solo aquellos que tengan asignada una URL dentro del fichero de rutas</li>
-    <li>Además, permite separar el contenido compartido (que a su vez pueden ser otros componentes) por todos los componentes de el contenido específico de cada componente per se (figura 3)</li>
-    <li>Con componentes compartidos nos referimos a componentes que vayan a ser renderizados en otros componentes</li>
+    <li>¿Cualquier componente? No, solo aquellos que tengan asignada una URL dentro del fichero de rutas (figura 2)</li>
+    <li>Además, permite separar el contenido común en varias páginas de el contenido específico de cada página (componente) per se (figura 3)</li>
+    <li>Con contenido común o compartido nos referimos a código que vaya a ser renderizado en más de una página (como el menú de navegación o el pie de página, entre otros), que a su vez puede ser un componente</li>
   </ul>
 
   <img src="assets/img/rutas/figura3.png" alt="">
@@ -58,30 +61,29 @@
 
   <ul>
     <li>Como se observa en la figura 3, los selectores <b>&lt;app-navbar&gt;</b> y <b>&lt;app-footer&gt;</b> corresponden a componentes compartidos (el menú de navegación y el pie de página, respectivamente)</li>
-    <li>Es por ello que escribimos directamente sus selectores y en medio el selector <b>&lt;router-outlet&gt;</b></li>
+    <li>Es por ello que sus selectores se escriben separadamente del selector <b>&lt;router-outlet&gt;</b></li>
     <li>Claro, en este ejemplo se desea que el menú de navegación y el pie de página se vean siempre, independientemente de la URL dentro de la app en la que nos encontremos</li>
     <li>Siguiendo con el ejemplo, con el fin de centralizar la renderización del menú de navegación y del pie de página, no le asignamos a estos ninguna ruta dentro del fichero de rutas y renderizamos indistintamente su contenido</li>
     <li>Imagina cómo serían las cosas sin este selector, teniendo que escribir el código del contenido común en todas y cada una de las páginas que compongan nuestra aplicación</li>
-    <li>Si quisiéramos modificar alguna cosa, por ejemplo en el menú de navegación, tendríamos que repetir esta modificación para todas sus apariciones en cada una de dichas páginas</li>
+    <li>Si quisiéramos modificar alguna cosa, por ejemplo un ítem del menú de navegación, tendríamos que repetir esta modificación para todas sus apariciones en cada una de dichas páginas</li>
     <li>Este selector nos permite realizar las modificaciones pertinentes en el contenido compartido una sola vez y que los cambios se proyecten en todas las páginas del proyecto</li>
     <li>Grosso modo, utilizaremos el selector cuando deseemos renderizar solo determinados componentes en función de la URL escrita dentro de nuestra app</li>
-    <li>Como ya veremos, es posible utilizar más de una vez este selector cuando se trabaja con rutas hijas</li>
+    <li>Como ya veremos, es posible utilizar más de una vez este selector cuando se trabaja con rutas hijas (apartado 8)</li>
   </ul>
 
   <h3>4. Atributo <b>routerLink</b></h3>
   <hr>
 
   <ul>
-    <li>Este atributo de Angular se emplea dentro de un elemento <b>&lt;a&gt;</b> de HTML como si de un atributo HTML se tratara con el fin de sustituir al atributo <b>href</b>&nbsp;<u>en determinados casos</u></li>
-    <li>En los anteriores apartados vimos cómo vincular una URL a un componente (fichero de rutas) y cómo se renderizar un componente en el front (selector <b>&lt;router-outlet&gt;</b>)</li>
-    <li>La pregunta ahora es, ¿cómo navegamos entre páginas (componentes) dentro de nuestra aplicación? En este momento tendríamos que escribir la URL a mano en el navegador web</li>
-    <li>Esto implicaría que la página se refrescase por completo aunque haya componentes compartidos, lo que se aleja de nuestro propósito de conseguir una navegación suavizada (¿qué sentido tiene si no utilizar un framework de front?) </li>
-    <li>Lo ideal sería refrescar únicamente aquellas secciones en concreto de la aplicación que se vayan a actualizar con el cambio de URL y que el usuario no note transiciones abruptas cuando se actualice el contenido, mejorando así su experiencia</li>
-    <li>Lo habitual es contar con un menú de navegación, entre otras muchas opciones, pero existe un problema en la implementación típica de este elemento, dado que se suele utilizar elementos HTML <b>&lt;a&gt;</b> con su atributo <b>href</b> para enlazar páginas</li>
-    <li>Este atributo también hace que la página se refresque por completo, lo que también descarta la idea de la tan anhelada navegación suavizada que estamos buscando</li>
+    <li>Este atributo de Angular se emplea dentro de un elemento HTML <b>&lt;a&gt;</b> como si de un atributo HTML se tratara, con el fin de sustituir al atributo <b>href</b>&nbsp;<u>en determinados casos</u></li>
+    <li>En los anteriores apartados vimos cómo vincular una URL a un componente (fichero de rutas) y cómo se renderizar un componente en el front mediante el selector <b>&lt;router-outlet&gt;</b></li>
+    <li>Nuestro objetivo ahora es permitir al usuario navegar entre las diferentes páginas de nuestra aplicación a tavés de la interfaz web, típicamente con un menú de navegación</li>
+    <li>Actualmente, para navegar entre las páginas del proyecto tendríamos que escribir la URL a mano en el navegador web, lo que conlleva a que la página se refresque por completo</li>
+    <li>En caso de utilizar el clásico un menú de navegación, se espera que dentro del código HTML encontremos elementos <b>&lt;a&gt;</b> y el atributo <b>href</b> para enlazar páginas</li>
+    <li>Desgraciadamente, este atributo hace que la página se refresque por completo, lo que se aleja del objetivo de la navegación suavizada</li>
     <li>Bien, el atributo <b>routerLink</b> permite conseguir este objetivo siguiendo un comportamiento muy similar al del atributo HTML <b>href</b>, aunque no solo admite un texto como valor, sino también un vector (figura 4)</li>
     <li>¿Por qué un vector? Porque además de asignarle la ruta a la que debe redireccionar, también podemos pasar parámetros a través de la URL</li>
-    <li>Por supuesto es posible embeber variables TS como elementos del vector, pero en tal caso debemos escribir <b>[routerLink]</b>, ya que los corchetes indican que va a recibir información del fichero TS</li>
+    <li>Por supuesto es posible embeber variables TS como elementos del vector, pero en tal caso debemos escribir <b>[routerLink]</b>, con corchetes, ya que estos indican que va a recibir información del fichero TS del componente</li>
   </ul>
 
   <img src="assets/img/rutas/figura4.png" alt="">
@@ -91,21 +93,24 @@
     <li>La figura 4 ilustra multitud de casos interesantes (las URLs resultantes aparecen a modo de comentarios dentro de dicha figura)</li>
     <li>En el primer caso, cuando enviamos la URL mediante un literal, podemos ignorar los corchetes que wrappean el atributo, el vector y las comillas simples para wrappear el literal</li>
     <li>En el segundo caso se hace lo mismo que en el primero, pero utilizando el susodicho vector, lo que no obliga a wrappear el atributo con corchetes y utilizar las comillas simples para wrappear el literal</li>
-    <li>Es decir, si utilizamos el vector en el lado derecho de la asignación, tenemos que wrappear el atributo entre corchetes, aunque el vector solo contenga literales</li>
-    <li>En el tercer y cuarto casos se utiliza un vector con más de un elemento para el envío de parámetros, en cuyo caso <u>hay que adaptar el mapeo del fichero de rutas</u> para tener en cuenta los parámetros</li>
-    <li>Como vemos, no estamos limitados al envío de un solo parámetro, sino que podemos enviar tantos como queramos (aunque algunos navegadores pueden dar problemas si el tamaño de la URL es demasiado grande)</li>
+    <li>Es decir, si utilizamos el vector en el lado derecho de la asignación, tenemos que wrappear el atributo entre corchetes, <u>aunque el vector solo contenga literales</u></li>
+    <li>En el tercer y cuarto casos se utiliza un vector con más de un elemento para el envío de parámetros, en cuyo caso <u>hay que adaptar el mapeo del fichero de rutas</u> para tener en cuenta los parámetros (apartado 7)</li>
+    <li>Como vemos, no estamos limitados al envío de un solo parámetro, sino que podemos enviar tantos como queramos (aunque algunos navegadores pueden dar problemas si la URL es demasiado larga)</li>
     <li>¿Podemos enviar variables o expresiones? Sí, los últimos casos así lo ilustran, incluso podemos combinar variables, experiones y literales sin ningún problema</li>
-    <li>Eso sí, si queremos establecer una redirección a algo que no conste en el fichero de rutas, como una página web externa, no debemos utilizar este atributo, sino el clásico <b>href</b>, dado que <b>routerLink</b> sirve para navegar <u>entre componentes</u> (no todos, sino aquellos que consten en el fichero de rutas, recuerda)</li>
+    <li>Eso sí, este atributo no sirve para establecer una redirección a algo que no conste en el fichero de rutas, como una página web externa o un componente que no se recoja dentro del mapeo</li>
+    <li>En tal caso debemos utilizar este atributo <b>href</b>, dado que <b>routerLink</b> sirve para navegar <u>entre componentes</u> (no todos, sino aquellos que consten en el fichero de rutas, recuerda)</li>
   </ul>
 
-  <h4>Atributo <b>routerLink</b> y el plugin Animate.css</h4>
+  <h4>Atributo <b>routerLink</b> y el plugin <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a></h4>
 
   <ul>
-    <li>En el apartado anterior conseguimos navegar entre páginas refrescando solo aquellas zonas que correspondiesen a componentes que no fueran compartidos</li>
-    <li>Aunque hayamos conseguido nuestro objetivo y la página no se refresque tras las transiciones, estas son abruptas y deseamos darle efectos para que tenga una mejor apariencia</li>
-    <li>Para ello podemos utilizar el conocido plugin Animate.css</li>
-    <li>Podemos incorporarlo en nuestro proyecto mediante CDN en el fichero <i>index.htmlk</i> o descargándolo y metiéndolo dentro del directorio <i>assets/libs</i></li>
-    <li>Para utilizarlo debes escribir en la clase que <u>wrapee al componente afectado por el selector <b>&lt;router-outlet&gt;</b></u>&nbsp;<i>animated</i> más una de las clases del plugin en función del efecto que desees asignarle a la transición (por ejemplo, <b>class="animated fadeIn"</b> para un efecto de desvanecimiento, entre otros)</li>
+    <li>Acabamos de ver cómo navegar entre las diferentes páginas que componen nuestra app refrescando solo aquellas zonas que correspondiesen a componentes que no fueran compartidos</li>
+    <li>Aunque hayamos conseguido nuestro objetivo y la página no se refresque por completo tras las transiciones, sino solo el contenido diferente, estas son abruptas</li>
+    <li>Podemos darle efectos a dichas transiciones para mejorar las transiciones y con ello la experiencia de usuario mediante el plugin <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a></li>
+    <li>Podemos incorporarlo a nuestro proyecto integrando su CDN en el fichero <i>index.html</i> o descargándolo y metiéndolo dentro del directorio <i>assets/libs</i></li>
+    <li>Para utilizarlo, debes escribir <i>animated</i> en el contenedor que <u>wrapee al componente afectado por el selector <b>&lt;router-outlet&gt;</b></u> más la clase que corresponda con el efecto deseado</li>
+    <li>Dentro de la página web oficial del plugin tenemos acceso al catálogo de animaciones y la clase CSS asociada</li>
+    <li>Por ejemplo, la clase <b>class="animated fadeIn"</b> se utiliza con bastante asiduidad para conseguir un efecto de desvanecimiento, pero hay más</li>
     <li>Evidentemente podemos gestionar las animaciones por nuestra cuenta a través de CSS, pero este plugin hace este trabajo por nosotros</li>
   </ul>
 
@@ -116,18 +121,20 @@
     <li>Este atributo nos permite activar solo el ítem del menú de navegación que corresponda con el componente que se esté cargando actualmente</li>
     <li>Con activar nos referimos a distinguirlo de entre los demás utilizando CSS (cambiándole el color, utilizando un subrayado, etc.) para que el usuario sepa en todo momento en qué sección de la aplicación se encuentra</li>
     <li>Dado que el manejo del menú de navegación se encuentra ahora centralizado en un único componente, ¿cómo podemos saber qué componente afectado por el selector <b>&lt;router-outlet&gt;</b> es el que se está renderizando?</li>
-    <li>Anteriormente solíamos asignarle una clase (típicamente la clase <i>active</i>, pero podemos utilizar el nombre de clase CSS que nos dé la gana) al ítem del menú que deseábamos resaltar para cada una de las páginas que componían nuestra app, dado que repetíamos el código HTML del menú de navegación en todas ellas</li>
-    <li>Para no tener que estar tomándonos tantas molestias, Angular nos permite utilizar este atributo en el elemento HTML que wrapee el enlace de los ítems del menú de navegación (figura 5)</li>
+    <li>Anteriormente solíamos asignarle una clase CSS al ítem activo para diferenciarlo de los demás, en cada una de las páginas que componían nuestra app en todas las apariciones del menú de navegación</li>
+    <li>Para no tener que estar tomándonos tantas molestias, Angular nos permite utilizar este atributo en el elemento HTML que sea padre directo de cada enlace del menú de navegación (figura 5)</li>
   </ul>
 
   <img src="assets/img/rutas/figura5.png" alt="">
   <caption><strong>Figura 5.</strong> Uso del atributo <b>routerLinkActive</b> en un menú de navegación</caption>
 
   <ul>
-    <li>Grosso modo, le asignará una clase CSS (a modo de literal o variable TS) al <u>padre directo</u> del elemento HTML <b>&lt;a&gt;</b>&nbsp;<u>que esté utilizando el atributo <b>routerLink</b></u></li>
-    <li>Recuerda que en caso de utilizar una variable TS en lugar de un literal, tendremos que wrappear el atributo <b>routerLinkActive</b> entre corchetes, como se observa para el último ítem del menú de navegación del ejemplo ilustrado en la figura 5</li>
-    <li>Ojo, el atributo <b>routerLinkActive</b> debe utilizarse en el padre directo, como ya dijimos, del enlace que utilice el atributo <b>routerLink</b> para que Angular pueda detectar de qué URL se trata y poder localizar el componente vinculado en el mapeo del fichero de rutas</li>
-    <li>Esto implica que en medio de estos dos bloques HTML no debe haber ningún otro, o no serán padre e hijos directo</li>
+    <li>Grosso modo, le asignará la clase CSS (a modo de literal o variable TS) que aparece al lado derecho de la asignación al <u>padre directo</u> del elemento HTML <b>&lt;a&gt;</b>&nbsp;<u>que esté utilizando el atributo <b>routerLink</b></u></li>
+    <li>Siguiendo con el ejemplo de la figura 5, debemos escribir este atributo <u>para todos</u> los ítems del menú de navegación que deseemos resaltar</li>
+    <li>En caso de utilizar una variable TS en lugar de un literal, tendremos que wrappear el atributo <b>routerLinkActive</b> entre corchetes, como se ve en el último ítem del menú de navegación de la figura 5</li>
+    <li>Ojo, puedes utilizar corchetes si quieres, haya o no una variable en el lado derecho de la asignación, pero en tal caso, de tratarse de un literal, utiliza comillas simples</li>
+    <li>Recuerda, el atributo <b>routerLinkActive</b> debe utilizarse en el padre directo del enlace que utilice el atributo <b>routerLink</b> para que Angular pueda detectar de qué URL se trata y poder localizar el componente vinculado dentro del fichero de rutas</li>
+    <li>Esto implica que en medio de estos dos elementos HTML no debe existir ningún otro, o no serán padre e hijos directo y este atributo no surtiría efecto</li>
   </ul>
 
   <h3>6. Enviar parámetros a través de la URL</h3>
