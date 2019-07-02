@@ -26,10 +26,11 @@ import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
 // Cambiar nombre
-import { AmbitoComponent    } from './componentes/ambito/ambito.component';
-import { ResaltadoDirective } from './directivas/resaltado.directive';
+import { AmbitoComponent     } from './componentes/ambito/ambito.component';
+import { ResaltadoDirective  } from './directivas/resaltado.directive';
 import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
 import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
+import { AuthComponent       } from './componentes/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DespliegueComponent } from './componentes/despliegue/despliegue.compone
     UsuarioEditarComponent,
     UsuarioEliminarComponent,
     CiclosVidaComponent,
-    DespliegueComponent
+    DespliegueComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

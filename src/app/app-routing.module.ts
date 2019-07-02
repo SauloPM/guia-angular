@@ -8,6 +8,7 @@ import { NgClassComponent         } from './componentes/directivas/ng-class/ng-c
 import { NgswitchComponent        } from './componentes/directivas/ngswitch/ngswitch.component';
 import { DirectivaPropiaComponent } from './componentes/directivas/directiva-propia/directiva-propia.component';
 import { RutasComponent           } from './componentes/rutas/rutas.component';
+import { AuthComponent            } from './componentes/auth/auth.component';
 
 // Componentes » Usuarios (rutas hijas)
 import { UsuarioComponent         } from './componentes/usuario/usuario.component';
@@ -49,6 +50,9 @@ const routes: Routes = [
 
   // Despliegue
   { path: 'despliegue', component: DespliegueComponent},
+
+  // Autentificación
+  { path: 'auth', component: AuthComponent},
 
   // { path: 'artist/:id', component: ArtistComponent},
 

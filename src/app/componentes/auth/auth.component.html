@@ -1,0 +1,83 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>Autentificación</h2>
+
+  <span class="tarea-pendiente">Creo que en un futuro será necesario crear un ítem del navbar que se llame <i>Usuarios</i>, que contendrá el Auth0 y el Firebase</span>
+  <span class="tarea-pendiente">Explicar cómo funciona el dashboard de Auth0, que hay que ir a la pestaña de Applications y abrir el quickstart dentro del listado de aplicaciones que hayamos creado en Auth0, y que el código que aparece está adaptado a nuestros datos, de modo que no tenemos que hacer naita</span>
+
+  <h3>1. Introducción</h3>
+  <hr>
+
+  <h4>1.1 Qué es Auth0</h4>
+
+  <ul>
+    <li>Auth0 es una empresa encargada del desarrollo de logins robustos para aplicaciones web y móviles a través de múltiples herramientas</li>
+    <li>Esta plataforma ofrece numerosas herramientas, como la <a href="https://es.wikipedia.org/wiki/Autenticaci%C3%B3n_de_m%C3%BAltiples_factores" target="_blank">autentificación de doble factor</a>, login utilizando nuestras cuentas en redes sociales, recuperación de contraseña, envío de contraseña de validación, etc.</li>
+    <li>Muchas compañías famosas a nivel internacional hacen uso de las herramientas proporcionadas por esta empresa, como NVIDIA o Mozilla Firefox, entre otras</li>
+    <li>Es un servicio de pago, pero ofrece un abanico de opciones más que aceptables si deseas utilizarlo gratuitamente</li>
+  </ul>
+
+  <h4>1.2 Registro</h4>
+
+  <ul>
+    <li>Para poder utilizar este servicio, debemos registrarnos en su <a href="https://auth0.com/" target="_blank">página web</a></li>
+    <li>Dentro del formulario de registro, debemos escribir un ID único y seleccionar la región más cercana a nosotros de entre las disponibles</li>
+    <li>Completar el resto del formulario es bastante sencillo</li>
+  </ul>
+
+  <h4>1.2 Crear proyecto</h4>
+
+  <ul>
+    <li>Una vez registrados, dentro del dashboard, hacemos clic en <i>Create Application</i></li>
+    <li>Tras esto, escribimos el nombre de nuestra aplicación y seleccionamos <i>Single Page Web Applications</i></li>
+    <li>Nótese que las otras opciones corresponden a aplicaciones nativas o aplicaciones web regulares, entre otras</li>
+    <li>En cada opción aparecen las herramientas comúnmente asociadas a cada caso</li>
+    <li>Por ejemplo, en la que hemos seleccionado aparecen Angular, AngularJS o NodeJS, lo que nos puede dar una pista de qué opción seleccionar en base a las herramientas que estemos utilizando</li>
+    <li>Posteriormente, seleccionamos <i>Angular</i> y aparecerá un quickstart de gran utilidad</li>
+  </ul>
+
+  <h4>1.4 Integrar Auth0 en nuestra aplicación web</h4>
+
+  <ul>
+    <li>Para integrar Auth0 en nuestra aplicación, necesitamos la librería <i>auth0-spa-js</i>, que podemos integrar en nuestro proyecto de dos formas: utilizando el gestor de paquetes npm o el CDN</li>
+    <li>Lógicamente, de escoger la primera opción, se modificarían los ficheros <i>package.json</i> y <i>package-lock.json</i> y tendríamos que importar esta librería (instrucción <b>import</b>)</li>
+    <li>A continuación, creamos un servicio en nuestro proyecto ejecutando el comando <b>$ ng g s servicios/auth</b></li>
+    <li>Dentro del fichero TS, pegamos el código que aparece en el quickstart</li>
+  </ul>
+
+  <h3>2. Autentificarse con nuestra cuenta de Google, Facebok, Twitter...</h3>
+  <hr>
+
+  <ul>
+    <li>Texto</li>
+  </ul>
+
+  <h3>3. Formulario de registro</h3>
+  <hr>
+
+  <ul>
+    <li>Texto</li>
+  </ul>
+
+  <h3>4. Formulario de login</h3>
+  <hr>
+
+  <ul>
+    <li>Texto</li>
+  </ul>
+
+  <h3>5. Usar servicios para bloquear el acceso a usuarios no registrados</h3>
+  <hr>
+
+  <ul>
+    <li>Texto</li>
+  </ul>
+
+  <h3>6. Obtener información de un usuario registrado</h3>
+  <hr>
+
+  <ul>
+    <li>Texto</li>
+  </ul>
+
+</div>
