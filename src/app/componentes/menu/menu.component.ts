@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
   abrirRutas: boolean = false;
   abrirDirectivas: boolean = false;
+
+  ngOnInit() {
+    $('#sidebar a').click(() => {
+      alert('Funciona');
+    });
+  }
 
   constructor() { }
 

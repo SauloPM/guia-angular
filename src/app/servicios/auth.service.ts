@@ -1,46 +1,46 @@
-import { Injectable } from '@angular/core';
-import createAuth0Client from '@auth0/auth0-spa-js';
-import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
-import { BehaviorSubject } from 'rxjs';
+// import { Injectable } from '@angular/core';
+// import createAuth0Client from '@auth0/auth0-spa-js';
+// import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
+// import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-  isAuthenticated = new BehaviorSubject(false);
-  profile = new BehaviorSubject<any>(null);
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AuthService {
+//   isAuthenticated = new BehaviorSubject(false);
+//   profile = new BehaviorSubject<any>(null);
 
-  private auth0Client: Auth0Client;
+//   private auth0Client: Auth0Client;
 
-  // Auth0 application configuration
-  config = {
-    domain: 'saulopm.eu.auth0.com',
-    client_id: 'LwUuyYPNJmyXtoVxLIo5CzDEcelAUeMk',
-    redirect_uri: `${window.location.origin}/callback`
-  };
+//   // Auth0 application configuration
+//   config = {
+//     domain: 'saulopm.eu.auth0.com',
+//     client_id: 'LwUuyYPNJmyXtoVxLIo5CzDEcelAUeMk',
+//     redirect_uri: `${window.location.origin}/callback`
+//   };
 
-  /**
-   * Gets the Auth0Client instance.
-   */
-  async getAuth0Client(): Promise<Auth0Client> {
-    if (!this.auth0Client) {
-      this.auth0Client = await createAuth0Client(this.config);
+//   /**
+//    * Gets the Auth0Client instance.
+//    */
+//   async getAuth0Client(): Promise<Auth0Client> {
+//     if (!this.auth0Client) {
+//       this.auth0Client = await createAuth0Client(this.config);
 
-      // Provide the current value of isAuthenticated
-      this.isAuthenticated.next(await this.auth0Client.isAuthenticated());
+//       // Provide the current value of isAuthenticated
+//       this.isAuthenticated.next(await this.auth0Client.isAuthenticated());
 
-      // Whenever isAuthenticated changes, provide the current value of `getUser`
-      this.isAuthenticated.subscribe(async isAuthenticated => {
-        if (isAuthenticated) {
-          this.profile.next(await this.auth0Client.getUser());
+//       // Whenever isAuthenticated changes, provide the current value of `getUser`
+//       this.isAuthenticated.subscribe(async isAuthenticated => {
+//         if (isAuthenticated) {
+//           this.profile.next(await this.auth0Client.getUser());
 
-          return;
-        }
+//           return;
+//         }
 
-        this.profile.next(null);
-      });
-    }
+//         this.profile.next(null);
+//       });
+//     }
 
-    return this.auth0Client;
-  }
-}
+//     return this.auth0Client;
+//   }
+// }
