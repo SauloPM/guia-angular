@@ -2,10 +2,21 @@
 
   <h2>Rutas</h2>
 
-  <span class="tarea-pendiente">Modificaciones en subida a producción</span>
   <span class="tarea-pendiente">Rutas absolutas y rutas relativas en el atributo <b>routerLink</b></span>
-  <span class="tarea-pendiente">Cuando se envían parámetros en la URL con un botón, se puede hacer de forma estática, repitiendo los ítems del grid, con un *ngFor o con un #identificador de Angular. Explicar las tres formas</span>
-  <span class="tarea-pendiente">Recuerda hablar del servicio web para obtener la información asociada al elemento seleccionado según el id recibido por parámetro</span>
+  <span class="tarea-pendiente" style="margin-bottom: 50px">Explicar cómo navegar entre las mismas secciones dentro de una misma página web (consular <a href="https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor" target="_blank">enlace</a>)</span>
+
+  <span class="indice">
+    <a href="#">Fichero de rutas</a>
+    <a href="#">Módulo principal</a>
+    <a href="#">Selector <b>&lt;router-outlet&gt;</b></a>
+    <a href="#">Atributo <b>routerLink</b></a>
+    <a href="#">Atributo <b>routerLinkActive</b></a>
+    <a href="#">Enviar de parámetros a través de la URL</a>
+    <a href="#">Recibir parámetros a través de la URL</a>
+    <a href="#">Rutas hijas</a>
+    <a href="#">Obtener parámetros del padre desde una ruta hija</a>
+    <a href="#">Dividir el fichero de rutas en varios ficheros de rutas</a>
+  </span>
 
   <h3>1. Fichero de rutas</h3>
   <hr>
@@ -31,7 +42,7 @@
     <li>Nótese que para cada mapeo es necesario importar el componente implicado, por eso en el ejemplo de la figura 1 fue necesario importar los componentes <i>Inicio</i>, <i>Usuario</i> y <i>Rutas</i>, respectivamente</li>
   </ul>
 
-  <h3>2. Módulo principal</h3>
+  <h3 id="">2. Módulo principal</h3>
   <hr>
 
   <ul>
@@ -47,7 +58,7 @@
   <img src="assets/img/rutas/figura2.png" alt="">
   <caption><strong>Figura 2.</strong> Modificaciones necesarias dentro del módulo principal</caption>
 
-  <h3>3. Selector <b>&lt;router-outlet&gt;</b></h3>
+  <h3 id="">3. Selector <b>&lt;router-outlet&gt;</b></h3>
   <hr>
 
   <ul>
@@ -72,7 +83,7 @@
     <li>Como ya veremos, es posible utilizar más de una vez este selector cuando se trabaja con rutas hijas (apartado 8)</li>
   </ul>
 
-  <h3>4. Atributo <b>routerLink</b></h3>
+  <h3 id="">4. Atributo <b>routerLink</b></h3>
   <hr>
 
   <ul>
@@ -115,7 +126,7 @@
     <li>Evidentemente podemos gestionar las animaciones por nuestra cuenta a través de CSS, pero este plugin hace este trabajo por nosotros</li>
   </ul>
 
-  <h3>5. Atributo <b>routerLinkActive</b></h3>
+  <h3 id="">5. Atributo <b>routerLinkActive</b></h3>
   <hr>
 
   <ul>
@@ -138,7 +149,7 @@
     <li>Esto implica que en medio de estos dos elementos HTML no debe existir ningún otro, o no serán padre e hijos directo y este atributo no surtiría efecto</li>
   </ul>
 
-  <h3>6. Enviar parámetros a través de la URL</h3>
+  <h3 id="">6. Enviar parámetros a través de la URL</h3>
   <hr>
 
   <ul>
@@ -183,11 +194,12 @@
   <h4>6.2 Envío de parámetros a través de un enlace</h4>
 
   <ul>
-    <li>Dentro del código HTML del componente afectado, hacemos uso del elemento <b>&lt;a&gt;</b> con el atributo <b>routerLink</b> entre corchetes, dado que para el envío de parámetros es necesario hacer uso del vector</li>
+    <li>Dentro del código HTML del componente afectado, hacemos uso del elemento <b>&lt;a&gt;</b> con el atributo <b>routerLink</b> entre corchetes, dado que para el envío de parámetros <u>debemos utilizar un vector</u></li>
     <li>Dicho vector contendrá el fragmento del ruta asociado al componente destino más los parámetros entre comillas simples en caso de tratarse de literales o sin comillas simples en caso de tratarse de expresiones TS</li>
-    <li>Siguiendo con el ejemplo visto al comienzo de este apartado, dentro del grid de noticias para cada una tendríamos que escribir <b>[routerLink]=['ficha-noticia', id]</b></li>
-    <li>Tenemos que el fragmento de ruta vendría a ser <i>ficha-noticia</i> y el parámetro <b>id</b> bien podría ser una variable TS declarada como atributo de clase en el fichero TS del componente</li>
-    <li>Recuerda que este fragmento de ruta debe estar asociado al componente que renderice la ficha de una noticia dentro del fichero de rutas</li>
+    <li>Por ejemplo, si quisiéramos crear un link en HTML que nos condujera a la URL <i>www.miproyecto.com/usuario/12345678X</i>, tendríamos que embeber el atributo <b>routerLink</b> de la forma <b>[routerLink]=['usuario', '12345678X']</b></li>
+    <li>En caso de querer enviar también la edad, siguiendo con el ejemplo de la figura 7, hubiéramos tenido que escribir <b>[routerLink]=['usuario', '12345678X', '25']</b></li>
+    <li>Los parámetros no tienen por qué ser literales, por ejemplo en <b>[routerLink]=['usuario', dni, 20 + 5]</b> el primer parámetro se encuentra almacenado dentro del atributo <b>dni</b> de la clase del componente <u>donde se esté renderizando el link</u>, mientras que la edad es una expresión en TS (ambos sin comillas simples)</li>
+    <li>Recuerda respetar en todo momento el mapeo especificado en el fichero de rutas o la redirección no se establerá de la forma deseada</li>
   </ul>  
 
   <h4>6.3 Envío de parámetros a través de un botón</h4>
@@ -195,21 +207,23 @@
   <ul>
     <li>¿Cómo nos las apañaríamos si en lugar de un enlace tuviéramos que hacer uso de un botón?</li>
     <li>La opción más simple es maquetar el enlace con CSS para darle apariencia de botón, pero de no tener esa posibilidad, podemos establecer una redirección mediante TS</li>
-    <li>Al tratarse de un botón no podremos hacer uso del atributo <b>routerLink</b>, pero podemos asociarle un manejador de evento, similar a como hacíamos en JavaScript</li>
-    <li>Para ello, siguiendo con el ejemplo, escribimos <b>(click)="abrirNoticia(id)</b> dentro del cuerpo HTML del botón de cada noticia del grid, tal que al hacer click sobre una de ellas, se invoque a la función <b>abrirNoticia</b> junto con el identificador</li>
+    <li>Al tratarse de un botón no podremos hacer uso del atributo <b>routerLink</b>, pero podemos asociarle un manejador de evento, similar a como hacíamos en JavaScript (figura 8), pero dentro del propio elemento HTML</li>
   </ul>
 
-  <!-- 
-	• Pues al botón le pones (click)="verHeroe(i)", donde verHeroe es un método cuya definición estará en el fichero TS principal del componente Héroes y la i esa es el número de la iteración, que será una suerte de identificador (nos vale para tal propósito)
-	• Dentro del fichero TS importamos el componente Router de la ruta @angular/router
-	• Lo inyectamos en el constructor con private router:Router (recuerda que el identificador router se lo pusimos porque nos dio la gana, hubiéramos podido haberle puesto otro)
-	• Creamos esa función en el fichero TS y escribimos this.router.navigate( ['/heroes', idx] )
-	• Es muy similar a lo que hicimos antes, ya que estamos trabajando con el vector del atributo [routerLink], pero desde TS, si te fijas
+  <img src="assets/img/rutas/figura8.png" alt="">
+  <caption><strong>Figura 8.</strong> Botón HTML con un manejador de evento TS asociado (<b>abrirUsuario()</b>)</caption>
 
-	• En realidad no es obligatorio hacer esto con un botón, lo podemos (creo) hacer con cualquier elemento HTML al que podamos vincular el evento (click)
-   -->
+  <ul>
+    <li>Dentro del fichero TS del componente donde se encuentre el botón HTML debemos importar el módulo <b>Router</b> e inyectarlo dentro del constructor (figura 9)</li>
+    <li>Gracias a esta inyección, es posible utilizar los métodos de este módulo dentro de la función <b>abrirUsuario( )</b>, en particular el método <b>navigate( )</b></li>
+    <li>Este método establece una redirección similar a la que vimos en el apartado 6.2, pero desde TS, como se observa en la figura 9, que continúa con el ejemplo visto anteriormente</li>
+    <li>Este método acepta un vector en caso de desear enviar parámetros a través de la URL. Análogamente, es posible utilizar variables o expresiones TS, no estamos limitados únicamente a literales</li>
+  </ul>
 
-  <h3>7. Recibir parámetros a través de la URL</h3>
+  <img src="assets/img/rutas/figura9.png" alt="">
+  <caption><strong>Figura 9.</strong> Redirección vía TS</caption>
+
+  <h3 id="">7. Recibir parámetros a través de la URL</h3>
   <hr>
 
   <ul>
@@ -217,7 +231,7 @@
     <li>En el resultado captado en la suscripción tenemos un objeto para todos los parámetros, donde el lado izquierdo tiene el mismo nombre que en el fichero de rutas (poner captura de cobnsola de js)</li>
   </ul>
   
-  <h3>8. Rutas hijas</h3>
+  <h3 id="">8. Rutas hijas</h3>
   <hr>
 
   <ul>
@@ -252,7 +266,30 @@
   <img src="assets/rutas-hijas2.png" alt="">
   <caption><strong>Figura X.</strong> Breve explicación del contenido ilustrado en la figura</caption>
 
-  <h3>9. Dividir el fichero de rutas en varios ficheros de rutas</h3>
+  <h3 id="">9. Obtener parámetros del padre desde una ruta hija</h3>
+  <hr>
+
+  <ul>
+    <li>¿Recuerdas que el padre usuario tenía el parámetro 10 en el ejemplo que correspondía con su ID?, ¿cómo podemos capturarlo desde los componentes asociados a las rutas hijas?</li>
+    <li>Captar el ID que se encuentra en la URL desde el componente usuario padre es igual que siempre, importando el módulo ActivatedRoute, inyectándolo en el constructor y suscribiéndonos al observable para almacenarlo dentro de un atributo de clase, pero con los hijos no es igual</li>
+    <li>Claro, ten en cuenta que si lo hiciera igual en alguna de las rutas hijas, el parámetro que pillaríamos tendría que ir DESPUÉS del nombre de la ruta asociado al componente hijo, por ejemplo www.ejemplo.com/usuario/10/crear/parametro-de-la-ruta-hija</li>
+    <li>En este ejemplo, siguiendo el mismo procedimiento, lo que pillaríamos como parémtro en el componente hijo no sería 10, sino parametro-de-la-ruta-hija, dado que va después</li>
+    <li>Por supuesto, de hacerlo así tendríamos que incluir el parámetro 'crear/:parametro en el fichero de rutas del componente padre</li>
+  </ul>
+
+  <img src="assets/rutas-hijas5.png" alt="">
+  <caption><strong>Figura X.</strong> Breve explicación del contenido ilustrado en la figura</caption>
+
+  <ul>
+    <li>El problema es que estamos intentando acceder al parámetro del componente PADRE, no del hijo, por eso no se hace igual</li>
+    <li>Pues la solución es súpe rsencilla, solo tenemos que poner .parent delante del método .params y listo</li>
+    <li>De hecho, no recibiríamos un solo paraámetro del padre, sino todos, de haber más (en este ejemplo solo había uno)</li>
+    <li>Cuando se hace un console log de los parámetros, el JSON que se imprime en la consola de JS tiene un objeto con campos. Como sabe el nombre de eso scampos? porque los definimos en el fihceor de rutas a modo de parametros de la url hola/:id pues el json seria id: algo</li>
+  </ul>
+
+  <img src="assets/rutas-hijas6.png" alt="">
+
+  <h3 id="">10. Dividir el fichero de rutas en varios ficheros de rutas</h3>
   <hr>
 
   <ul>
@@ -286,27 +323,12 @@
     <li>Es interesante ver cómo se exportan las constantes</li>
   </ul>
 
-  <h3>10. Obtener parámetros del padre desde una ruta hija</h3>
+  <h3>11. Título</h3>
   <hr>
 
   <ul>
-    <li>¿Recuerdas que el padre usuario tenía el parámetro 10 en el ejemplo que correspondía con su ID?, ¿cómo podemos capturarlo desde los componentes asociados a las rutas hijas?</li>
-    <li>Captar el ID que se encuentra en la URL desde el componente usuario padre es igual que siempre, importando el módulo ActivatedRoute, inyectándolo en el constructor y suscribiéndonos al observable para almacenarlo dentro de un atributo de clase, pero con los hijos no es igual</li>
-    <li>Claro, ten en cuenta que si lo hiciera igual en alguna de las rutas hijas, el parámetro que pillaríamos tendría que ir DESPUÉS del nombre de la ruta asociado al componente hijo, por ejemplo www.ejemplo.com/usuario/10/crear/parametro-de-la-ruta-hija</li>
-    <li>En este ejemplo, siguiendo el mismo procedimiento, lo que pillaríamos como parémtro en el componente hijo no sería 10, sino parametro-de-la-ruta-hija, dado que va después</li>
-    <li>Por supuesto, de hacerlo así tendríamos que incluir el parámetro 'crear/:parametro en el fichero de rutas del componente padre</li>
+    <li>Si subimos nuestra aplicación a un servidor Apache y no ocupa el directorio raíz, sino un subdirectorio, es necesario realizar una pequeña modificación en el fichero <i>index.html</i> de nuestro proyecto</li>
+    <li>Si en el fichero <i>index.html</i> cambiases el "/" por "" (o era al revés?), entonces en el routerLink no puedes poner ['usuario'], sino ['/usuario']</li>
   </ul>
-
-  <img src="assets/rutas-hijas5.png" alt="">
-  <caption><strong>Figura X.</strong> Breve explicación del contenido ilustrado en la figura</caption>
-
-  <ul>
-    <li>El problema es que estamos intentando acceder al parámetro del componente PADRE, no del hijo, por eso no se hace igual</li>
-    <li>Pues la solución es súpe rsencilla, solo tenemos que poner .parent delante del método .params y listo</li>
-    <li>De hecho, no recibiríamos un solo paraámetro del padre, sino todos, de haber más (en este ejemplo solo había uno)</li>
-    <li>Cuando se hace un console log de los parámetros, el JSON que se imprime en la consola de JS tiene un objeto con campos. Como sabe el nombre de eso scampos? porque los definimos en el fihceor de rutas a modo de parametros de la url hola/:id pues el json seria id: algo</li>
-  </ul>
-
-  <img src="assets/rutas-hijas6.png" alt="">
 
 </div>
