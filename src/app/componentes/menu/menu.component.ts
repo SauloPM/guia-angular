@@ -10,7 +10,6 @@ declare var $: any;
 })
 export class MenuComponent implements OnInit {
 
-  abrirRutas: boolean = false;
   abrirDirectivas: boolean = false;
 
   ngOnInit() {
@@ -32,15 +31,10 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   abrirSubmenu( item: string ) {
-    if ( item === 'rutas' ) {
-      this.abrirRutas      = !this.abrirRutas;
-      this.abrirDirectivas = false;
-    } else if ( item === 'directivas' ) {
+    if ( item === 'directivas' ) {
       this.abrirDirectivas = !this.abrirDirectivas;
-      this.abrirRutas      = false;
     } else {
       this.abrirDirectivas = false;
-      this.abrirRutas      = false;
     }
   }
 }
