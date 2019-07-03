@@ -46,10 +46,16 @@
             .caret {
                 color: rgb(170,175,185);
                 font-size: 18px;
+                line-height: 10px;
                 position: absolute;
                 top: 50%;
                 right: 32px;
                 transform: translateY(-50%);
+                transition: .25s ease-in-out;
+
+                &.active {
+                    transform: translateY(-50%) rotate(90deg);
+                }
             }
 
             .submenu {

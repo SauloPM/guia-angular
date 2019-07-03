@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
+
+declare var $: any;
 
 @Component({
   selector: 'app-menu',
@@ -12,9 +14,19 @@ export class MenuComponent implements OnInit {
   abrirDirectivas: boolean = false;
 
   ngOnInit() {
-    $('#sidebar a').click(() => {
-      alert('Funciona');
+
+    $('.item a').click( ( event ) => {
+
+      const id = '#' + event.target.id + ' .caret';
+
+      if ( !$(id).hasClass('active') ) {
+        $(id).addClass('active');
+      } else {
+        $(id).removeClass('active');
+      }
+
     });
+
   }
 
   constructor() { }

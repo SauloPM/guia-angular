@@ -1,32 +1,32 @@
 <div id="sidebar">
   <img class="logo" src="assets/logo1.svg" alt="">
   <ul>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="inicio">      
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="inicio" routerLink="inicio">      
         <i class="icon fa fa-fw fa-home" aria-hidden="true"></i>
         Inicio
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="typescript">      
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="typescript" routerLink="typescript">      
         <i class="icon fa fa-fw fa-gear" aria-hidden="true"></i>
         TypeScript
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="componentes">      
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="componentes" routerLink="componentes">      
         <i class="icon fa fa-fw fa-puzzle-piece" aria-hidden="true"></i>
         Componentes
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="servicios">      
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="servicios" routerLink="servicios">      
         <i class="icon fa fa-fw fa-paper-plane" aria-hidden="true"></i>
         Servicios
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('directivas')">
-      <a routerLink="ngstyle">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('directivas')">
+      <a id="directivas" routerLink="ngstyle">
         <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
         Directivas
         <i class="caret fa fa-fw fa-angle-right"></i>
@@ -37,14 +37,14 @@
         <li>Item</li>
       </ul>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="pipes">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="pipes" routerLink="pipes">
         <i class="icon fa fa-fw fa-wrench" aria-hidden="true"></i>
         Pipes
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('rutas')">
-      <a routerLink="rutas">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('rutas')">
+      <a id="rutas" routerLink="rutas">
         <i class="icon fa fa-fw fa-link" aria-hidden="true"></i>
         Rutas
         <i class="caret fa fa-fw fa-angle-right"></i>
@@ -55,22 +55,28 @@
         <li>Item</li>
       </ul>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="ciclos-de-vida">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="ciclos" routerLink="ciclos-de-vida">
         <i class="icon fa fa-fw fa-leaf" aria-hidden="true"></i>
         Ciclos de vida
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="auth">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="auth" routerLink="auth">
         <i class="icon fa fa-fw fa-lock" aria-hidden="true"></i>
         Auth0
       </a>
     </li>
-    <li routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a routerLink="despliegue">
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="despliegue" routerLink="despliegue">
         <i class="icon fa fa-fw fa-star-o" aria-hidden="true"></i>
         Despliegue
+      </a>
+    </li>
+    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+      <a id="depuracion" routerLink="depuracion">
+        <i class="icon fa fa-fw fa-search" aria-hidden="true"></i>
+        Depuración
       </a>
     </li>
   </ul>
