@@ -155,19 +155,30 @@
   <ul>
     <li>Dentro del fichero de rutas importamos el componente que vaya a recibir el parámetro desde la URL y establecemos el mapeo entre este y una ruta como vimos en el apartado 1</li>
     <li>No obstante, la ruta en este mapeo tendrá que incluir uno o más sufijos por cada parámetro que se desee enviar (figura 6)</li>
+    <li>Como vemos en la figura 6, el componente <i>Usuario</i> puede recibir uno o dos parámetros, a saber, el DNI (<b>/:dni</b>) y la edad (<b>/:edad</b>), aunque podemos enviar el número de parámetros acorde a nuestras necesidades</li>
   </ul>
 
   <img src="assets/img/rutas/figura6.png" alt="">
   <caption><strong>Figura 6.</strong> Mapeo dentro del fichero de rutas ante el envío de parámetros</caption>
 
   <ul>
-    <li>Es importante asignarle un identificador descriptivo a cada parámetro dentro de este mapeo dado que cuando el componente receptor los reciba, accederemos a uno u otro a través de dichos identificadores</li>
-    <li>En la figura 7 se observa la estructura de datos cuando se reciben varios parámetros a partir de la URL</li>
-    <li>Nótese que los nombres de los campos coinciden con el nombre que nosotros les asignamos dentro del fichero de rutas (figura 6)</li>
+    <li>De esta forma, la URL <i>www.miproyecto.com/usuario/12345678X</i> sería una URL válida, ya que encajaría con el mapeo <b>usuario/:dni</b> visto en la figura 6, siendo <i>12345678X</i> el DNI del usuario</li>
+    <li>Por otra parte, la URL <i>www.miproyecto.com/usuario/12345678X/25</i> también sería una URL válida al encajar con el mapeo <b>usuario/:dni/:edad</b>, siendo <i>25</i> la edad del usuario</li>
+    <li>Ojo, de haber escrito la URL <i>www.miproyecto.com/usuario</i> sin parámetros, no encajaría con ningún mapeo <u>directo</u> dentro del fichero de rutas, redirigiendo en este caso al componente de inicio</li>
+    <li>Claro, fíjate que en la figura 6, en caso de no reconocer la ruta (<b>path: '**'</b>), se redirecciona al componente de inicio</li>
   </ul>
 
   <img src="assets/img/rutas/figura7.png" alt="">
   <caption><strong>Figura 7.</strong> Estructura de los parámetros recibidos a partir de la URL en la consola de JavaScript</caption>
+
+  <ul>
+    <li>Es importante asignarle un identificador descriptivo a cada parámetro dentro del fichero de rutas</li>
+    <li>Siguiendo con el ejemplo de la figura 6, si el primer parámetro va a ser el DNI y el segundo la edad, dos identificadores apropiados serían precisamente <b>dni</b> y <b>edad</b>, respectivamente</li>
+    <li>Cuando el componente <i>Usuario</i> reciba los parámetros a partir de la URL, la forma más cómoda de poder almacenar su valor es a través de sus identificadores, como veremos en el siguiente apartado</li>
+    <li>En la figura 7 se observan los parámetros recibidos dentro del componente <i>Usuario</i> en la consola de JavaScript del navegador web</li>
+    <li>Como vemos, los parámetros se reciben a modo de objeto, donde el identificador de cada campo es el mismo que el especificado en el fichero de rutas (figura 6)</li>
+    <li>En caso de enviarse múltiples parámetros a través de la URL, más nos vale asignarles nombres que tengan sentido o el tratamiento de datos podría complicarse sin ninguna necesidad</li>
+  </ul>
 
   <h4>6.2 Envío de parámetros a través de un enlace</h4>
 
@@ -198,7 +209,7 @@
 	• En realidad no es obligatorio hacer esto con un botón, lo podemos (creo) hacer con cualquier elemento HTML al que podamos vincular el evento (click)
    -->
 
-  <h3>Recibir parámetros a través de la URL</h3>
+  <h3>7. Recibir parámetros a través de la URL</h3>
   <hr>
 
   <ul>
@@ -206,7 +217,7 @@
     <li>En el resultado captado en la suscripción tenemos un objeto para todos los parámetros, donde el lado izquierdo tiene el mismo nombre que en el fichero de rutas (poner captura de cobnsola de js)</li>
   </ul>
   
-  <h3>7. Rutas hijas</h3>
+  <h3>8. Rutas hijas</h3>
   <hr>
 
   <ul>
@@ -241,7 +252,7 @@
   <img src="assets/rutas-hijas2.png" alt="">
   <caption><strong>Figura X.</strong> Breve explicación del contenido ilustrado en la figura</caption>
 
-  <h3>8. Dividir el fichero de rutas en varios ficheros de rutas</h3>
+  <h3>9. Dividir el fichero de rutas en varios ficheros de rutas</h3>
   <hr>
 
   <ul>
@@ -275,7 +286,7 @@
     <li>Es interesante ver cómo se exportan las constantes</li>
   </ul>
 
-  <h3>9. Obtener parámetros del padre desde una ruta hija</h3>
+  <h3>10. Obtener parámetros del padre desde una ruta hija</h3>
   <hr>
 
   <ul>

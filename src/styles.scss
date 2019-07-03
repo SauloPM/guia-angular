@@ -71,6 +71,7 @@ hr {
 
     a {
         color: rgb(0,130,255);
+        font-weight: 400;
         text-decoration: none !important;
         border-bottom: 1px solid rgba(0,130,255,.5);
         transition: .25s ease-in-out;
@@ -111,6 +112,7 @@ hr {
     
     img {
         display: block;
+        border: 1px solid $primary;
         margin: 50px 0 0 50px;
         max-width: 100%;
         height: auto;
