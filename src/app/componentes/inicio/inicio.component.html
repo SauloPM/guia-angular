@@ -32,9 +32,32 @@
   <h3>jQuery</h3>
   <hr>
 
+  <span class="tarea-pendiente" style="margin-bottom: 40px">Buscar la diferencia entre <b>event.target</b> y <b>event.currentTarget</b></span>
+
   <ul>
-    <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>& npm install jquery</b></li>
+    <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>& npm install jquery --save</b> para instalar jQuery dentro del directorio <i>node_modules</i></li>
+    <li>Abrimos el fichero <i>angular.json</i> y dentro del campo vectorial <b>scripts</b> escribimos la ruta del fichero de distribución de jQuery dentro de este directorio</li>
+    <li>Es conveniente elegir el fichero <i>.min</i> al ser más ligero. La ruta típicamente suele ser <i>"./node_modules/jquery/dist/jquery.min.js"</i></li>
     <li>Tras esto, ejecutamos el comando <b>$ npm install</b> o solamente <b>$ npm i</b> para actualizar las dependencias</li>
+    <li>Dentro del componente en el que deseemos utilizar jQuery, escribimos la instrucción <b>declare var $: any;</b> delante del decorador</li>
+    <li>Utilizamos jQuery dentro del hook <b>OnInit</b>, de modo que lo incluimos en el componente en caso de haberlo quitado (Angular CLI lo crea por defecto)</li>
+    <li>Dentro podemos definir todos los manejadores en jQuery con total normalidad como hemos hecho siempre</li>
+  </ul>
+
+  <h4>Selector <b>$(this)</b></h4>
+
+  <ul>
+    <li>Utilizar <b>$(this)</b> puede dar problemas, ya que en TypeScript no apunta al elemento HTML que disparó el evento, como solía suceder típicamente cuando programábamos sin utilizar Angular</li>
+    <li>En su lugar pasamos el evento como parámetro del manejador (<b>event</b>) y utilizamos <b>event.currentTarget</b>, que nos da acceso a todos los atributos necesarios del elemento HTML que disparó el evento</li>
+    <li>Debemos tener en cuenta que el evento puede tener cualquier identificador, pero comúnmente se le suele asignar <i>event</i> o <i>e</i>, pero no es obligatorio</li>
+    <li>Ante cualquier duda sobre la estructura del objeto <i>event</i>, siempre podemos inspeccionarla en la consola de JavaScript mediante la instrucción <b>console.log(event)</b></li>
+  </ul>
+
+  <h4>Funciones flecha</h4>
+
+  <ul>
+    <li>Es posible simplifcar la instrucción del manejador de un evento asociado a un elemento HTML gracias a las funciones flecha</li>
+    <li>Por ejemplo, en lugar de <b>$( '.ejemplo' ).click( function( ... ) &#123; ... &#125; )</b>, podemos escribir <b>$( '.ejemplo' ).click( ( ... ) => &#123; ... &#125; )</b> y omitir así la palabra reservada <b>function</b></li>
   </ul>
 
 </div>
