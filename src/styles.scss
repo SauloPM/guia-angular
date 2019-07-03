@@ -2,7 +2,9 @@ $text        : rgb(50,50,50);
 $primary     : rgb(50,55,65);
 $lightprimary: rgba(50,55,65,.25);
 
-::-webkit-scrollbar { width: 0 }
+::-webkit-scrollbar       { width: 8px }
+::-webkit-scrollbar-track { background: rgb(170,175,185) }
+::-webkit-scrollbar-thumb { background: $primary }
 
 ::selection { color: white; background: $primary }
 
@@ -128,6 +130,32 @@ hr {
     
         strong {
             display: inline;
+        }
+    }
+
+    .indice {
+        display: inline-block;
+        background: rgba(50,55,65,.05);
+        border: 1px solid rgba(50,55,65,.15);
+        border-radius: 5px;
+        padding: 20px;
+
+        a {
+            color: $text;
+            display: block;
+            border: none;
+            margin-bottom: 10px;
+
+            &::before {
+                content: '\f0a4';
+                color: $primary;
+                font-family: "FontAwesome";
+                margin-right: 10px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
     }
 }
