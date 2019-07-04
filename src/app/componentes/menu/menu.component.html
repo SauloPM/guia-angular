@@ -37,11 +37,11 @@
         Directivas
         <i class="caret fa fa-fw fa-angle-right"></i>
       </a>
-      <ul class="submenu" *ngIf="abrirDirectivas">
+      <!-- <ul class="submenu" *ngIf="abrirDirectivas">
         <li>Item</li>
         <li>Item</li>
         <li>Item</li>
-      </ul>
+      </ul> -->
     </li>
     <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
       <a id="pipes" routerLink="pipes">
@@ -64,7 +64,8 @@
     <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
       <a id="auth" routerLink="auth">
         <i class="icon fa fa-fw fa-lock" aria-hidden="true"></i>
-        Auth0
+        Login y registro
+        <i class="caret fa fa-fw fa-angle-right"></i>
       </a>
     </li>
     <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">

@@ -3,12 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Componentes
 import { InicioComponent          } from './componentes/inicio/inicio.component';
-import { NgStyleComponent         } from './componentes/directivas/ng-style/ng-style.component';
-import { NgClassComponent         } from './componentes/directivas/ng-class/ng-class.component';
-import { NgswitchComponent        } from './componentes/directivas/ngswitch/ngswitch.component';
-import { DirectivaPropiaComponent } from './componentes/directivas/directiva-propia/directiva-propia.component';
+import { DespliegueComponent      } from './componentes/despliegue/despliegue.component';
 import { RutasComponent           } from './componentes/rutas/rutas.component';
-import { AuthComponent            } from './componentes/auth/auth.component';
 
 // Componentes » Usuarios (rutas hijas)
 import { UsuarioComponent         } from './componentes/usuario/usuario.component';
@@ -17,24 +13,32 @@ import { UsuarioEditarComponent   } from './componentes/usuario/usuario-editar.c
 import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar.component';
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
-// Componentes » Ciclos de vida
-import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
-
-// Componentes » Despliegue
-import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
+import { ErrorComponent           } from './componentes/error/error.component';
+import { ConstruccionComponent    } from './componentes/construccion/construccion.component';
 
 const routes: Routes = [
 
-  { path: 'inicio'         , component: InicioComponent          },
+  // Casi terminado
+  { path: 'inicio'      , component: InicioComponent       },
+  { path: 'despliegue'  , component: DespliegueComponent   },
+  { path: 'rutas'       , component: RutasComponent        },
 
-  // Directivas
-  { path: 'directivapropia', component: DirectivaPropiaComponent },
-  { path: 'ngstyle'        , component: NgStyleComponent         },
-  { path: 'ngclass'        , component: NgClassComponent         },
-  { path: 'ngswitch'       , component: NgswitchComponent        },
+  { path: 'error'       , component: ErrorComponent        },
+  { path: 'construccion', component: ConstruccionComponent },
 
-  // Rutas
-  { path: 'rutas', component: RutasComponent},
+  // Pendiente
+  { path: 'ficheros'       , component: ConstruccionComponent },
+  { path: 'typescript'     , component: ConstruccionComponent },
+  { path: 'componentes'    , component: ConstruccionComponent },
+  { path: 'servicios'      , component: ConstruccionComponent },
+  { path: 'pipes'          , component: ConstruccionComponent },
+  { path: 'directivapropia', component: ConstruccionComponent },
+  { path: 'ngstyle'        , component: ConstruccionComponent },
+  { path: 'ngclass'        , component: ConstruccionComponent },
+  { path: 'ngswitch'       , component: ConstruccionComponent },
+  { path: 'ciclos-de-vida' , component: ConstruccionComponent },
+  { path: 'auth'           , component: ConstruccionComponent },
+  { path: 'depuracion'     , component: ConstruccionComponent },
 
   // Usuarios (rutas hijas)
   { path: 'usuario/:id' , component: UsuarioComponent, children: [
@@ -45,19 +49,8 @@ const routes: Routes = [
     { path: '**', pathMatch: 'full', redirectTo: 'crear'}
   ]},
 
-  // Ciclos de via
-  { path: 'ciclos-de-vida', component: CiclosVidaComponent},
-
-  // Despliegue
-  { path: 'despliegue', component: DespliegueComponent},
-
-  // Autentificación
-  { path: 'auth', component: AuthComponent},
-
-  // { path: 'artist/:id', component: ArtistComponent},
-
-  { path: ''  , pathMatch: 'full', redirectTo: 'inicio'},
-  { path: '**', pathMatch: 'full', redirectTo: 'inicio'}
+  { path: ''  , pathMatch: 'full', redirectTo: 'error'},
+  { path: '**', pathMatch: 'full', redirectTo: 'error'}
 ];
 
 @NgModule({

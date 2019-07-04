@@ -32,6 +32,8 @@ import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.compo
 import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
 import { AuthComponent       } from './componentes/auth/auth.component';
 import { FicherosComponent } from './componentes/ficheros/ficheros.component';
+import { ConstruccionComponent } from './componentes/construccion/construccion.component';
+import { ErrorComponent } from './componentes/error/error.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { FicherosComponent } from './componentes/ficheros/ficheros.component';
     CiclosVidaComponent,
     DespliegueComponent,
     AuthComponent,
-    FicherosComponent
+    FicherosComponent,
+    ConstruccionComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
