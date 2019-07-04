@@ -2,23 +2,23 @@
 
   <h2>Rutas</h2>
 
-  <span class="tarea-pendiente">Rutas absolutas y rutas relativas en el atributo <b>routerLink</b></span>
-  <span class="tarea-pendiente" style="margin-bottom: 50px">Explicar cómo navegar entre las mismas secciones dentro de una misma página web (consular <a href="https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor" target="_blank">enlace</a>)</span>
+  <div class="pendiente mb-40">Rutas absolutas y rutas relativas en el atributo <b>routerLink</b></div>
 
   <span class="indice">
-    <a href="#">Fichero de rutas</a>
-    <a href="#">Módulo principal</a>
-    <a href="#">Selector <b>&lt;router-outlet&gt;</b></a>
-    <a href="#">Atributo <b>routerLink</b></a>
-    <a href="#">Atributo <b>routerLinkActive</b></a>
-    <a href="#">Enviar de parámetros a través de la URL</a>
-    <a href="#">Recibir parámetros a través de la URL</a>
-    <a href="#">Rutas hijas</a>
-    <a href="#">Obtener parámetros del padre desde una ruta hija</a>
-    <a href="#">Dividir el fichero de rutas en varios ficheros de rutas</a>
+    <a href="#fichero-rutas">Fichero de rutas</a>
+    <a href="#modulo-principal">Módulo principal</a>
+    <a href="#router-outlet">Selector <b>&lt;router-outlet&gt;</b></a>
+    <a href="#routerlink">Atributo <b>routerLink</b></a>
+    <a href="#routerlinkactive">Atributo <b>routerLinkActive</b></a>
+    <a href="#enviar-parametros">Enviar de parámetros a través de la URL</a>
+    <a href="#recibir-parametros">Recibir parámetros a través de la URL</a>
+    <a href="#rutas-hijas">Rutas hijas</a>
+    <a href="#obtener-parametros-padre">Obtener parámetros del padre desde una ruta hija</a>
+    <a href="#dividir-fichero-rutas">Dividir el fichero de rutas en varios ficheros de rutas</a>
+    <a href="#manejo-rutas">Manejo de rutas en Angular</a>
   </span>
 
-  <h3>1. Fichero de rutas</h3>
+  <h3 id="fichero-rutas">1. Fichero de rutas</h3>
   <hr>
 
   <ul>
@@ -42,7 +42,7 @@
     <li>Nótese que para cada mapeo es necesario importar el componente implicado, por eso en el ejemplo de la figura 1 fue necesario importar los componentes <i>Inicio</i>, <i>Usuario</i> y <i>Rutas</i>, respectivamente</li>
   </ul>
 
-  <h3 id="">2. Módulo principal</h3>
+  <h3 id="modulo-principal">2. Módulo principal</h3>
   <hr>
 
   <ul>
@@ -58,7 +58,7 @@
   <img src="assets/img/rutas/figura2.png" alt="">
   <caption><strong>Figura 2.</strong> Modificaciones necesarias dentro del módulo principal</caption>
 
-  <h3 id="">3. Selector <b>&lt;router-outlet&gt;</b></h3>
+  <h3 id="router-outlet">3. Selector <b>&lt;router-outlet&gt;</b></h3>
   <hr>
 
   <ul>
@@ -83,7 +83,7 @@
     <li>Como ya veremos, es posible utilizar más de una vez este selector cuando se trabaja con rutas hijas (apartado 8)</li>
   </ul>
 
-  <h3 id="">4. Atributo <b>routerLink</b></h3>
+  <h3 id="routerlink">4. Atributo <b>routerLink</b></h3>
   <hr>
 
   <ul>
@@ -126,7 +126,7 @@
     <li>Evidentemente podemos gestionar las animaciones por nuestra cuenta a través de CSS, pero este plugin hace este trabajo por nosotros</li>
   </ul>
 
-  <h3 id="">5. Atributo <b>routerLinkActive</b></h3>
+  <h3 id="routerlinkactive">5. Atributo <b>routerLinkActive</b></h3>
   <hr>
 
   <ul>
@@ -149,7 +149,7 @@
     <li>Esto implica que en medio de estos dos elementos HTML no debe existir ningún otro, o no serán padre e hijos directo y este atributo no surtiría efecto</li>
   </ul>
 
-  <h3 id="">6. Enviar parámetros a través de la URL</h3>
+  <h3 id="enviar-parametros">6. Enviar parámetros a través de la URL</h3>
   <hr>
 
   <ul>
@@ -223,15 +223,27 @@
   <img src="assets/img/rutas/figura9.png" alt="">
   <caption><strong>Figura 9.</strong> Redirección vía TS</caption>
 
-  <h3 id="">7. Recibir parámetros a través de la URL</h3>
+  <h3 id="recibir-parametros">7. Recibir parámetros a través de la URL</h3>
   <hr>
 
+  <div class="pendiente">¿Para que la suscripción al observable funcione, solo puede inyectarse en el constructor?</div>
+  <div class="pendiente">¿Podemos suscribirnos al observable fuera del constructor?</div>
+  <div class="pendiente mb-40">¿Es posible pillar los parámetros en plan vector de la forma <b>parametrosURL[i]</b>?</div>
+
   <ul>
-    <li>Tener en cuenta que cuando se pase más de un parámetro, hay que ponerlos todos en el fichero de rutas</li>
-    <li>En el resultado captado en la suscripción tenemos un objeto para todos los parámetros, donde el lado izquierdo tiene el mismo nombre que en el fichero de rutas (poner captura de cobnsola de js)</li>
+    <li>En el apartado anterior vimos cómo un componente emisor podía enviar uno o más parámetros a través de la URL. Ahora veremos cómo el componente receptor puede almacenarlos para poder utilizarlos posteriormente</li>
+    <li>En del fichero TS del componente receptor importamos el módulo <b>ActivatedRoute</b> y lo inyectamos en el constructor</li>
+    <li>Dentro del constructor nos suscribimos al observable de dicho módulo para obtener los parámetros de la URL a través del método <b>params()</b>, como se observa en la figura 10</li>
+    <li>En el resultado captado en la suscripción tenemos un objeto que almacena todos los parámetros, cuyos campos tienen el mismo identificador que el definido en el fichero de rutas, como explicamos en el apartado 6.1</li>
+    <li>En el ejemplo ilustrado en la figura 10 hemos almacenado los parámetros separadamente en atributos por comodidad, pero hubiera sido posible almacenarlos todos en una única variable</li>
+    <li>La variable <i>parametrosURL</i> (le hemos puesto ese nombre porque nos ha dado la gana, pero podríamos haberle puesto cualquier otro) almacena todos los parámetros enviados en la URL</li>
+    <li>Aquí podemos ver por qué resulta tan conveniente asignar nombres intuitivos a los parámetros en el fichero de rutas</li>
   </ul>
-  
-  <h3 id="">8. Rutas hijas</h3>
+
+  <img src="assets/img/rutas/figura10.png" alt="">
+  <caption><strong>Figura 10.</strong> Código base para recibir parámetros de la URL</caption>
+
+  <h3 id="rutas-hijas">8. Rutas hijas</h3>
   <hr>
 
   <ul>
@@ -266,7 +278,7 @@
   <img src="assets/rutas-hijas2.png" alt="">
   <caption><strong>Figura X.</strong> Breve explicación del contenido ilustrado en la figura</caption>
 
-  <h3 id="">9. Obtener parámetros del padre desde una ruta hija</h3>
+  <h3 id="obtener-parametros-padre">9. Obtener parámetros del padre desde una ruta hija</h3>
   <hr>
 
   <ul>
@@ -289,7 +301,7 @@
 
   <img src="assets/rutas-hijas6.png" alt="">
 
-  <h3 id="">10. Dividir el fichero de rutas en varios ficheros de rutas</h3>
+  <h3 id="dividir-fichero-rutas">10. Dividir el fichero de rutas en varios ficheros de rutas</h3>
   <hr>
 
   <ul>
@@ -323,12 +335,22 @@
     <li>Es interesante ver cómo se exportan las constantes</li>
   </ul>
 
-  <h3>11. Título</h3>
+  <h3 id="manejo-rutas">11. Manejo de rutas en Angular</h3>
   <hr>
 
+  <div class="pendiente">Mejorar esta sección porque está muy mal explicada (volver a ver el vídeo en Udemy)</div>
+  <div class="pendiente mb-40">Mirar si esto afecta al modo de especificar una ruta en la navegación, tener que poner, por ejemplo, <b>routerLink="inicio"</b> o <b>"/inicio"</b></div>
+
   <ul>
-    <li>Si subimos nuestra aplicación a un servidor Apache y no ocupa el directorio raíz, sino un subdirectorio, es necesario realizar una pequeña modificación en el fichero <i>index.html</i> de nuestro proyecto</li>
-    <li>Si en el fichero <i>index.html</i> cambiases el "/" por "" (o era al revés?), entonces en el routerLink no puedes poner ['usuario'], sino ['/usuario']</li>
+    <li>Angular por defecto maneja rutas relativas, no absolutas</li>
+    <li>Por ejemplo, en la ruta <i>localhost:4200/home</i> solo hemos escribo el sufijo <i>/home</i> y el navegador carga automáticamente el fichero <i>index.html</i> (cortesía de HTML 5)</li>
+    <li>Para trabajar con rutas de la forma tradicional, dentro del fichero de rutas añade <b>&#123; useHash: true &#125;</b> como segundo parámetro para el método <b>forRoot( )</b></li>
+    <li>De esta forma, la ruta que vimos en el ejemplo anterior quedaría como <i>localhost:4200/#/home</i> (ruta de hash)</li>
+    <li>Cuando trabajamos con la forma que trae Angular por defecto (rutas relativas), Angular CLI carga la base de la ruta a partir de la instrucción <b>&lt;base href="/"&gt;</b> que se encuentra dentro del fichero <i>index.html</i></li>
+    <li>De hecho, si eliminases esa instrucción daría error en la consola de JS, aunque puedes prescindir de dicha instrucción si utilizaras las rutas de hash</li>
+    <li>Es importante tener en cuenta estas dos formas por el paso de parámetros a través de la URL</li>
+    <li>Por lo visto, la primera forma implica una modificación en el servidor, mientras que la segunda no: es inmediata</li>
+    <li>No obstante, existe una forma de mantener la simpleza y elegancia de la primera forma sin tener que configurar el servidor para poder implementar el paso de parámetros a través de la URL</li>
   </ul>
 
 </div>
