@@ -8,6 +8,22 @@ $lightprimary: rgba(50,55,65,.25);
 
 ::selection { color: white; background: $primary }
 
+// Utils
+
+.mb-40 {
+    margin-bottom: 40px !important;
+}
+
+.pendiente {
+    color: red;
+    background: rgba(255,0,0,.35);
+    box-shadow: 0 0 -1px 1px red;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px 0;
+    width: fit-content;
+}
+
 // ─────────────── //
 //     GENERAL     //
 // ─────────────── //
@@ -158,15 +174,4 @@ hr {
             }
         }
     }
-}
-
-.tarea-pendiente {
-    display: block;
-    color: red;
-    background: rgba(255,0,0,.35);
-    box-shadow: 0 0 -1px 1px red;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 5px 0;
-    width: fit-content;
 }
