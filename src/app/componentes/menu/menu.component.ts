@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import * as $ from 'jquery';
 
 declare var $: any;
 
@@ -11,6 +10,8 @@ declare var $: any;
 export class MenuComponent implements OnInit {
 
   abrirDirectivas: boolean = false;
+
+  constructor() { }
 
   ngOnInit() {
 
@@ -27,8 +28,6 @@ export class MenuComponent implements OnInit {
     });
 
   }
-
-  constructor() { }
 
   abrirSubmenu( item: string ) {
     if ( item === 'directivas' ) {

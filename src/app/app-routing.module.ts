@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'ciclos-de-vida' , component: ConstruccionComponent },
   { path: 'auth'           , component: ConstruccionComponent },
   { path: 'depuracion'     , component: ConstruccionComponent },
+  { path: 'aplicaciones'   , component: ConstruccionComponent },
 
   // Usuarios (rutas hijas)
   { path: 'usuario/:id' , component: UsuarioComponent, children: [
