@@ -31,6 +31,7 @@ import { ResaltadoDirective  } from './directivas/resaltado.directive';
 import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
 import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
 import { AuthComponent       } from './componentes/auth/auth.component';
+import { FicherosComponent } from './componentes/ficheros/ficheros.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AuthComponent       } from './componentes/auth/auth.component';
     UsuarioEliminarComponent,
     CiclosVidaComponent,
     DespliegueComponent,
-    AuthComponent
+    AuthComponent,
+    FicherosComponent
   ],
   imports: [
     BrowserModule,
