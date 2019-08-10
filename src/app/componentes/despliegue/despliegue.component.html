@@ -2,8 +2,6 @@
 
   <h2>Despliegue</h2>
 
-  <div class="pendiente">Comprobar si los fallos del apartado 4 se dan cuando se sube una app de Angular en el directorio raíz del servidor de producción</div>
-
   <h3>1. Fichero <i>environment.ts</i></h3>
   <hr>
 
@@ -56,7 +54,7 @@
     <li>Dentro del fichero <i>src/environments/environment.ts</i>, cambiamos el valor del campo <b>production</b> a <b>true</b></li>
     <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>$ ng build --prod</b></li>
     <li>Al igual que en el apartado anterior, este comando generará un directorio llamado <i>dist</i> con nuestro proyecto compilado</li>
-    <li>No obstante, esta versión está totalmente optimizada para ser subida a producción, más que la del apartado anterior (uno de los motivos s debe a que ya no incluye el software para notificación de errores, entre otros)</li>
+    <li>No obstante, esta versión está totalmente optimizada para ser subida a producción, más que la del apartado anterior (uno de los motivos se debe a que ya no incluye el software para notificación de errores, entre otros)</li>
     <li>Volcamos el contenido de este directorio en el servidor de producción a través de un cliente FTP</li>
   </ul>
 
@@ -90,12 +88,12 @@
     <li>Si subimos el contenido del directorio <i>dist</i> a un servidor Apache a través de un cliente FTP, al intentar acceder a la página web a través de nuestro navegador web, es posible que aparezca una página en blanco</li>
     <li>Pudiera dar la impresión de que la aplicación no se subió correctamente, pero lo cierto es que sí, dado que si abres la consola de JavaScript podrás notar que aparecen varios errores 404</li>
     <li>Bien, esto ocurre si la aplicación <u>no se carga en el directorio raíz</u>, sino en un subdirectorio</li>
-    <li>En tal caso, para corregir este error debemos abrir el fichero <i>index.html</i> dentro del directorio <i>dist</i> y modificar la instrucción <b>&lt;base href="/"&gt;</b>, quitnado la barra del lado derecho de la asignación, quedando <b>&lt;base href=""&gt;</b></li>
+    <li>En tal caso, para corregir este error debemos abrir el fichero <i>index.html</i> dentro del directorio <i>dist</i> y modificar la instrucción <b>&lt;base href="/"&gt;</b>, quitando la barra del lado derecho de la asignación, quedando <b>&lt;base href=""&gt;</b></li>
     <li>Tras esto, volvemos a subir el fichero <i>index.html</i> por FTP y lo sustituimos por el anterior, solucionándose el problema</li>
     <li>Ojo, si volvemos a ejecutar el comando <b>$ ng build --prod</b>, este fichero será reemplazado por su versión actualizada y volverá a aparecer la instrucción <b>&lt;base href="/"&gt;</b>, repitiéndose nuevamente el error</li>
     <li>Para que esto no vuelva a suceder, hagamos este cambio que acabamos de explicar, pero esta vez en el fichero <i>index.html</i> de nuestra aplicación (no el que está dentro del directorio <i>dist</i>)</li>
     <li>No obstante, es posible que soluciones los problemas en producción, pero tengas fallos de enrutamiento en el servidor local</li>
-    <li>De ser así, deshaz los cambios en local y actualiza el fichero <i>index.html</i> que se encuentre dentro del directorio <i>dis</i> antes de subir el proyecto a producción</li>
+    <li>De ser así, deshaz los cambios en local y actualiza el fichero <i>index.html</i> que se encuentre dentro del directorio <i>dist</i> antes de subir el proyecto a producción</li>
   </ul>
 
   <h4>4.2 Error 404 tras recargar la página</h4>
