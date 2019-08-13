@@ -34,6 +34,7 @@ import { AuthComponent       } from './componentes/auth/auth.component';
 import { FicherosComponent } from './componentes/ficheros/ficheros.component';
 import { ConstruccionComponent } from './componentes/construccion/construccion.component';
 import { ErrorComponent } from './componentes/error/error.component';
+import { ComponentesComponent } from './componentes/componentes/componentes.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ErrorComponent } from './componentes/error/error.component';
     AuthComponent,
     FicherosComponent,
     ConstruccionComponent,
-    ErrorComponent
+    ErrorComponent,
+    ComponentesComponent
   ],
   imports: [
     BrowserModule,

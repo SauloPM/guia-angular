@@ -2,9 +2,10 @@ import { NgModule             } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Componentes
+import { RutasComponent           } from './componentes/rutas/rutas.component';
 import { InicioComponent          } from './componentes/inicio/inicio.component';
 import { DespliegueComponent      } from './componentes/despliegue/despliegue.component';
-import { RutasComponent           } from './componentes/rutas/rutas.component';
+import { ComponentesComponent     } from './componentes/componentes/componentes.component';
 
 // Componentes » Usuarios (rutas hijas)
 import { UsuarioComponent         } from './componentes/usuario/usuario.component';
@@ -13,23 +14,27 @@ import { UsuarioEditarComponent   } from './componentes/usuario/usuario-editar.c
 import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar.component';
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
+// Componentes para rutas especiales
 import { ErrorComponent           } from './componentes/error/error.component';
 import { ConstruccionComponent    } from './componentes/construccion/construccion.component';
 
 const routes: Routes = [
 
-  // Casi terminado
-  { path: 'inicio'      , component: InicioComponent       },
+  // Terminado
   { path: 'despliegue'  , component: DespliegueComponent   },
-  { path: 'rutas'       , component: RutasComponent        },
 
+  // En proceso
+  { path: 'rutas'       , component: RutasComponent        },
+  { path: 'inicio'      , component: InicioComponent       },
+  { path: 'componentes' , component: ComponentesComponent },
+
+  // Especial
   { path: 'error'       , component: ErrorComponent        },
   { path: 'construccion', component: ConstruccionComponent },
 
   // Pendiente
   { path: 'ficheros'       , component: ConstruccionComponent },
   { path: 'typescript'     , component: ConstruccionComponent },
-  { path: 'componentes'    , component: ConstruccionComponent },
   { path: 'servicios'      , component: ConstruccionComponent },
   { path: 'pipes'          , component: ConstruccionComponent },
   { path: 'directivapropia', component: ConstruccionComponent },

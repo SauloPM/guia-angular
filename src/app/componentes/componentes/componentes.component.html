@@ -1,0 +1,92 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>Componentes</h2>
+
+  <span class="indice">
+    <a href="#introduccion">Introducción</a>
+    <a href="#crear-componente">Crear componente</a>
+    <a href="#eliminar-componente">Eliminar componente</a>
+    <a href="#editar-componente">Editar componente</a>
+    <a href="#renderizar-componente">Renderizar componente</a>
+    <a href="#enviar-hijo">Enviar parámetros desde un componente padre a un componente hijo</a>
+    <a href="#enviar-padre">Enviar parámetros desde un componente hijo a un componente padre</a>
+  </span>
+  
+  <h3 id="introduccion">1. Introducción</h3>
+  <hr>
+
+  <div class="pendiente mb-40">Poner una captura del decorador para cada uno de los tres casos</div>
+  
+  <ul>
+    <li>Grosso modo, un componente es una clase asociada a un decorador que cumple un rol específico dentro de nuestra aplicación</li>
+    <li>Lo habitual es crear un componente para bloques de código de cierta complejidad o que al menos implique una mejora en la modularidad</li>
+    <li>Por ejemplo, podríamos crear un componente para el menú de navegación, otro para el pie de página, otro para la sección de contacto, etc.</li>
+    <li>El decorador de un componente es una extensión de la clase <b>Component</b> que sirve para <u>dotar de identidad única</u> al componente (asignándole un selector, una plantilla HTML y una hoja de estilos CSS)</li>
+    <li><u>Solo el selector es obligatorio</u>, los otros dos campos, así como sus ficheros, se pueden suprimir si no nos hicieran falta</li>
+    <li>Ojo, si eliminásemos cualquiera de estos dos ficheros, habría que eliminar también los campos correspondientes del decorador o dará error</li>
+    <li>Cuando la plantilla HTML o la hoja de estilos CSS sea demasiado simple, es posible escribir su código directamente en el campo correspondiente del decorador en lugar de dedicarle un fichero independiente</li>
+  </ul>
+
+  <h4>1.1 Componente principal</h4>
+
+  <ul>
+    <li>En Angular existe un componente principal cuyo selector es <b>&lt;app-root&gt;</b></li>
+    <li>Este componente es el padre de todos los componentes que pudiéramos crear por nuestra cuenta</li>
+    <li>Se renderiza en el fichero <i>index.html</i> y <u>solo debe renderizarse ahí</u> (no debemos utilizar este selector en ningún otro fichero HTML porque dará error)</li>
+  </ul>
+
+  <h3 id="crear-componente">2. Crear componente</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+  <h3 id="eliminar-componente">3. Eliminar componente</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+  <h3 id="editar-componente">4. Editar componente</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+  <h3 id="renderizar-componente">5. Renderizar componente</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+  <h3 id="enviar-hijo">6. Enviar parámetros desde un componente padre a un componente hijo</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+  <h3 id="enviar-padre">7. Enviar parámetros desde un componente hijo a un componente padre</h3>
+  <hr>
+
+  <ul>
+    <li>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
+    </li>
+  </ul>
+
+</div>
