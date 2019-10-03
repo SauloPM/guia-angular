@@ -1,91 +1,93 @@
 <div id="sidebar">
-  <img class="logo" src="assets/logo1.svg" alt="">
-  <ul>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="inicio" routerLink="inicio">      
-        <i class="icon fa fa-fw fa-home" aria-hidden="true"></i>
-        Inicio
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="ficheros" routerLink="ficheros">      
-        <i class="icon fa fa-fw fa-folder" aria-hidden="true"></i>
-        Ficheros
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="typescript" routerLink="typescript">      
-        <i class="icon fa fa-fw fa-gear" aria-hidden="true"></i>
-        TypeScript
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="componentes" routerLink="componentes">      
-        <i class="icon fa fa-fw fa-puzzle-piece" aria-hidden="true"></i>
-        Componentes
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="servicios" routerLink="servicios">      
-        <i class="icon fa fa-fw fa-paper-plane" aria-hidden="true"></i>
-        Servicios
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('directivas')">
-      <a id="directivas" routerLink="ngstyle">
-        <i class="icon fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
-        Directivas
-        <i class="caret fa fa-fw fa-angle-right"></i>
-      </a>
-      <!-- <ul class="submenu" *ngIf="abrirDirectivas">
-        <li>Item</li>
-        <li>Item</li>
-        <li>Item</li>
-      </ul> -->
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="pipes" routerLink="pipes">
-        <i class="icon fa fa-fw fa-wrench" aria-hidden="true"></i>
-        Pipes
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('rutas')">
-      <a id="rutas" routerLink="rutas">
-        <i class="icon fa fa-fw fa-link" aria-hidden="true"></i>
-        Rutas
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="ciclos" routerLink="ciclos-de-vida">
-        <i class="icon fa fa-fw fa-leaf" aria-hidden="true"></i>
-        Ciclos de vida
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="auth" routerLink="auth">
-        <i class="icon fa fa-fw fa-lock" aria-hidden="true"></i>
-        Login y registro
-        <i class="caret fa fa-fw fa-angle-right"></i>
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="despliegue" routerLink="despliegue">
-        <i class="icon fa fa-fw fa-star-o" aria-hidden="true"></i>
-        Despliegue
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-      <a id="depuracion" routerLink="depuracion">
-        <i class="icon fa fa-fw fa-search" aria-hidden="true"></i>
-        Depuración
-      </a>
-    </li>
-    <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
-        <a id="aplicaciones" routerLink="aplicaciones">
-          <i class="icon fa fa-fw fa-coffee" aria-hidden="true"></i>
-          Aplicaciones
+  <div class="sidebar-content">
+    <img class="logo" src="assets/logo1.svg" alt="">
+    <ul class="items">
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="inicio" routerLink="inicio">      
+          <i class="icono fa fa-fw fa-home" aria-hidden="true"></i>
+          Inicio
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="ficheros" routerLink="ficheros">      
+          <i class="icono fa fa-fw fa-folder" aria-hidden="true"></i>
+          Ficheros
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="typescript" routerLink="typescript">      
+          <i class="icono fa fa-fw fa-gear" aria-hidden="true"></i>
+          TypeScript
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="componentes" routerLink="componentes">      
+          <i class="icono fa fa-fw fa-puzzle-piece" aria-hidden="true"></i>
+          Componentes
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="servicios" routerLink="servicios">      
+          <i class="icono fa fa-fw fa-paper-plane" aria-hidden="true"></i>
+          Servicios
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('directivas')">
+        <a id="directivas" routerLink="ngstyle">
+          <i class="icono fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
+          Directivas
+          <i class="caret fa fa-fw fa-angle-right"></i>
+        </a>
+        <!-- <ul class="submenu" *ngIf="abrirDirectivas">
+          <li>Item</li>
+          <li>Item</li>
+          <li>Item</li>
+        </ul> -->
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="pipes" routerLink="pipes">
+          <i class="icono fa fa-fw fa-wrench" aria-hidden="true"></i>
+          Pipes
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('rutas')">
+        <a id="rutas" routerLink="rutas">
+          <i class="icono fa fa-fw fa-link" aria-hidden="true"></i>
+          Rutas
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="ciclos" routerLink="ciclos-de-vida">
+          <i class="icono fa fa-fw fa-leaf" aria-hidden="true"></i>
+          Ciclos de vida
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="auth" routerLink="auth">
+          <i class="icono fa fa-fw fa-lock" aria-hidden="true"></i>
+          Login y registro
           <i class="caret fa fa-fw fa-angle-right"></i>
         </a>
       </li>
-  </ul>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="despliegue" routerLink="despliegue">
+          <i class="icono fa fa-fw fa-star-o" aria-hidden="true"></i>
+          Despliegue
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+        <a id="depuracion" routerLink="depuracion">
+          <i class="icono fa fa-fw fa-search" aria-hidden="true"></i>
+          Depuración
+        </a>
+      </li>
+      <li class="item" routerLinkActive="active" (click)="abrirSubmenu('')">
+          <a id="aplicaciones" routerLink="aplicaciones">
+            <i class="icono fa fa-fw fa-coffee" aria-hidden="true"></i>
+            Aplicaciones
+            <i class="caret fa fa-fw fa-angle-right"></i>
+          </a>
+        </li>
+    </ul>
+  </div>
 </div>

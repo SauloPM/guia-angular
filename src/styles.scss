@@ -1,3 +1,8 @@
+// Responsive breakpoints
+$mobile: 480px;
+$laptop: 980px;
+
+// Colors
 $text        : rgb(50,50,50);
 $primary     : rgb(50,55,65);
 $lightprimary: rgba(50,55,65,.25);
@@ -32,7 +37,6 @@ body {
     color: $text;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
-    background: $primary;
 }
 
 h2 {
@@ -79,6 +83,32 @@ b {
 hr {
     background: $lightprimary;
     margin: 15px 0 40px;
+}
+
+// ────────────────── //
+//     ESTRUCTURA     //
+// ────────────────── //
+
+.contenido {
+    padding: 25px;
+    width: 100%;
+    min-height: 100vh
+}
+
+// Mobile First
+
+@media only screen and (min-width: $mobile) {
+    
+    .contenido {
+        padding: 75px;
+    }
+}
+
+@media only screen and (min-width: $laptop) {
+
+    .contenido {
+        margin-left: 350px;
+    }
 }
 
 // ───────────── //

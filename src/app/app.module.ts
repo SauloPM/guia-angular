@@ -35,6 +35,7 @@ import { FicherosComponent } from './componentes/ficheros/ficheros.component';
 import { ConstruccionComponent } from './componentes/construccion/construccion.component';
 import { ErrorComponent } from './componentes/error/error.component';
 import { ComponentesComponent } from './componentes/componentes/componentes.component';
+import { ServiciosComponent } from './componentes/servicios/servicios.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ComponentesComponent } from './componentes/componentes/componentes.comp
     FicherosComponent,
     ConstruccionComponent,
     ErrorComponent,
-    ComponentesComponent
+    ComponentesComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,

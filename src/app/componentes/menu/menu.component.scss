@@ -1,11 +1,23 @@
+// Responsive breakpoints
+$mobile: 480px;
+$laptop: 980px;
+
+// Colors
+$text        : rgb(50,50,50);
+$primary     : rgb(50,55,65);
+$lightprimary: rgba(50,55,65,.25);
+
 #sidebar {
-    background: rgb(50,55,70);
-    border-radius: 2px;
-    padding-top: 150px;
-    position: relative;
-    width: 350px;
-    height: 100%;
-    min-height: 100vh;
+    display: none;
+    background: $primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    .sidebar-content {
+        padding-top: 150px;
+        position: relative;
+    }
 
     .logo {
         margin: auto;
@@ -17,15 +29,15 @@
         height: auto;
     }
 
-    ul {
+    .items {
         list-style-type: none;
         padding: 0;
         margin: 0;
 
-        li {
+        .item {
             border-top: 1px solid rgba(245,245,255,.05);
 
-            .icon {
+            .icono {
                 color: rgb(170,175,185);
                 font-size: 15px;
                 margin-right: 8px;
@@ -76,5 +88,18 @@
                 color: white;
             }
         }
+    }
+}
+
+// Mobile First
+
+@media only screen and (min-width: $laptop) {
+
+    #sidebar {
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        height: 100%;
+        min-height: 100vh;
     }
 }
