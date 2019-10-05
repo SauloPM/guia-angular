@@ -4,16 +4,20 @@ $laptop: 980px;
 
 // Colors
 $text        : rgb(50,50,50);
-$primary     : rgb(50,55,65);
+$primary     : rgb(50,55,70);
 $lightprimary: rgba(50,55,65,.25);
 
+// Scroll
 ::-webkit-scrollbar       { width: 8px }
 ::-webkit-scrollbar-track { background: rgb(170,175,185) }
 ::-webkit-scrollbar-thumb { background: $primary }
 
+// Text selection
 ::selection { color: white; background: $primary }
 
-// Utils
+// ───────────── //
+//     UTILS     //
+// ───────────── //
 
 .mb-40 {
     margin-bottom: 40px !important;
@@ -37,6 +41,7 @@ body {
     color: $text;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    background: $primary;
 }
 
 h2 {
@@ -90,6 +95,7 @@ hr {
 // ────────────────── //
 
 .contenido {
+    background: white;
     padding: 25px;
     width: 100%;
     min-height: 100vh
@@ -107,7 +113,7 @@ hr {
 @media only screen and (min-width: $laptop) {
 
     .contenido {
-        margin-left: 350px;
+        // margin-left: 350px;
     }
 }
 
@@ -116,6 +122,7 @@ hr {
 // ───────────── //
 
 #notas {
+    background: white;
 
     a {
         color: rgb(0,130,255);
