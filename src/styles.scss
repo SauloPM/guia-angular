@@ -185,32 +185,6 @@ hr {
             display: inline;
         }
     }
-
-    .indice {
-        display: inline-block;
-        background: rgba(50,55,65,.05);
-        border: 1px solid rgba(50,55,65,.15);
-        border-radius: 5px;
-        padding: 20px;
-
-        a {
-            color: $text;
-            display: block;
-            border: none;
-            margin-bottom: 10px;
-
-            &::before {
-                content: '\f0a4';
-                color: $primary;
-                font-family: "FontAwesome";
-                margin-right: 10px;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
 }
 
 // ────────────────── //
