@@ -4,31 +4,18 @@ $laptop: 980px;
 
 // Colors
 $text        : rgb(50,50,50);
-$primary     : rgb(50,55,65);
+$primary     : rgb(50,55,70);
 $lightprimary: rgba(50,55,65,.25);
 
-.burger-button {
-    background: red;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 200;
-    width: 50px;
-    height: 50px;
-}
-
 #sidebar {
-    display: none;
-    background: $primary;
-    position: fixed;
-    top: 0;
-    left: 0;
+    padding-top: 130px;
+    position: relative;
+    width: fit-content;
+    height: 100%;
+    min-height: 100vh;
     overflow: auto;
 
-    .sidebar-content {
-        padding-top: 150px;
-        position: relative;
-    }
+    // Logo
 
     .logo {
         margin: auto;
@@ -36,9 +23,11 @@ $lightprimary: rgba(50,55,65,.25);
         top: 35px;
         right: 0;
         left: 0;
-        width: 75px;
+        width: 55px;
         height: auto;
     }
+
+    // Items
 
     .items {
         list-style-type: none;
@@ -46,57 +35,63 @@ $lightprimary: rgba(50,55,65,.25);
         margin: 0;
 
         .item {
-            border-top: 1px solid rgba(245,245,255,.05);
-
-            .icono {
-                color: rgb(170,175,185);
-                font-size: 15px;
-                margin-right: 8px;
-                transition: .5s ease-in-out;
-            }
-
-            a {
-                display: block;
-                color: rgb(170,175,185);
+            
+            .enlace {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 text-decoration: none;
-                white-space: nowrap;
-                padding: 14px 40px;
+                border-top: 1px solid rgba(245,245,255,.05);
+                padding: 15px;
                 margin: 0;
-                position: relative;
-                transition: .5s ease-in-out;
-            }
+                transition: .5s ease-in;
+                cursor: pointer;
 
-            .caret {
-                color: rgb(170,175,185);
-                font-size: 18px;
-                line-height: 10px;
-                position: absolute;
-                top: 50%;
-                right: 32px;
-                transform: translateY(-50%);
-                transition: .25s ease-in-out;
-
-                &.active {
-                    transform: translateY(-50%) rotate(90deg);
+                .icono {
+                    color: rgb(170,175,185);
+                    font-size: 12px;
+                    margin-right: 8px;
+                    transition: .5s ease-in-out;
                 }
+    
+                .texto {
+                    display: block;
+                    color: rgb(170,175,185);
+                    font-size: 10px;
+                    white-space: nowrap;
+                    outline: none;
+                    margin: 0;
+                    width: 100%;
+                    transition: .5s ease-in-out;
+                }
+    
+                .caret {
+                    color: rgb(170,175,185);
+                    font-size: 18px;
+                    line-height: 10px;
+                    transition: .25s ease-in-out;
+                }
+
             }
 
-            .submenu {
-                transition: 1s;
+            &:first-child .enlace {
+                border-top: none;
             }
 
-            &:last-child {
-                border-bottom: none;
-                margin: 0;
-            }
-
-            &.active {
+            &:hover  .enlace,
+            &.active .enlace {
                 background: rgba(255,255,255,.1);
+
+                .icono,
+                .texto,
+                .caret {
+                    color: white;
+                }
+
             }
 
-            &:hover  a, &:hover  .icon,
-            &.active a, &.active .icon {
-                color: white;
+            &.active .enlace .caret {
+                transform: rotate(90deg);
             }
         }
     }
@@ -107,10 +102,24 @@ $lightprimary: rgba(50,55,65,.25);
 @media only screen and (min-width: $laptop) {
 
     #sidebar {
-        display: block;
-        width: 100%;
-        max-width: 350px;
-        height: 100%;
-        min-height: 100vh;
+        flex-shrink: 0;
+        padding-top: 150px;
+        width: 350px;
+
+        .logo {
+            width: 75px;
+        }
+
+        .items .item .enlace {
+            padding: 15px 40px;
+
+            .icono {
+                font-size: 15px;
+            }
+
+            .texto {
+                font-size: 14px;
+            }
+        }
     }
 }
