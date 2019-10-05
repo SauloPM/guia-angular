@@ -26,16 +26,19 @@ import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
 // Cambiar nombre
-import { AmbitoComponent     } from './componentes/ambito/ambito.component';
-import { ResaltadoDirective  } from './directivas/resaltado.directive';
-import { CiclosVidaComponent } from './componentes/ciclos-vida/ciclos-vida.component';
-import { DespliegueComponent } from './componentes/despliegue/despliegue.component';
-import { AuthComponent       } from './componentes/auth/auth.component';
-import { FicherosComponent } from './componentes/ficheros/ficheros.component';
+import { AuthComponent         } from './componentes/auth/auth.component';
+import { ErrorComponent        } from './componentes/error/error.component';
+import { AmbitoComponent       } from './componentes/ambito/ambito.component';
+import { IndiceComponent       } from './componentes/indice/indice.component';
+import { FicherosComponent     } from './componentes/ficheros/ficheros.component';
+import { ServiciosComponent    } from './componentes/servicios/servicios.component';
+import { CiclosVidaComponent   } from './componentes/ciclos-vida/ciclos-vida.component';
+import { DespliegueComponent   } from './componentes/despliegue/despliegue.component';
+import { ComponentesComponent  } from './componentes/componentes/componentes.component';
 import { ConstruccionComponent } from './componentes/construccion/construccion.component';
-import { ErrorComponent } from './componentes/error/error.component';
-import { ComponentesComponent } from './componentes/componentes/componentes.component';
-import { ServiciosComponent } from './componentes/servicios/servicios.component';
+
+// Directivas
+import { ResaltadoDirective    } from './directivas/resaltado.directive';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ import { ServiciosComponent } from './componentes/servicios/servicios.component'
     ConstruccionComponent,
     ErrorComponent,
     ComponentesComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    IndiceComponent
   ],
   imports: [
     BrowserModule,
