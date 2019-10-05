@@ -1,16 +1,5 @@
 $(window).on("load", function() {
 
-    // WOW
-    // new WOW({
-    //     mobile: false
-    // }).init(); 
-
-    $(".top-button").click(function() {
-        $("html, body").stop().animate({
-            scrollTop: 0
-        }, 500);
-    });
-
     // ─────────────── //
     //     SPINNER     //
     // ─────────────── //
@@ -44,5 +33,12 @@ $(window).on("load", function() {
         else
             $(".top-button").css("opacity", "0");
     }
+
+    // Top button click event
+    $(".top-button").click(function() {
+        $('html, body').stop().animate({
+            scrollTop: 0
+        }, 500);
+    });
 
 });
