@@ -1,0 +1,46 @@
+// Responsive breakpoints
+$mobile: 480px;
+$laptop: 980px;
+
+// Colors
+$text        : rgb(50,50,50);
+$primary     : rgb(50,55,70);
+$lightprimary: rgba(50,55,65,.25);
+
+#indice {
+    display: inline-block;
+    background: rgba(50,55,65,.05);
+    border: 1px solid rgba(50,55,65,.15);
+    border-radius: 5px;
+    padding: 20px;
+
+    .item {
+        margin-bottom: 10px;
+        cursor: pointer;
+        
+        .texto {
+            color: $text;
+            margin-left: 10px;
+        }
+
+        .icono {
+            color: $primary;
+            position: relative;
+            transition: .5s ease-out;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &:hover .icono {
+            animation: mover-dedo .25s linear infinite alternate;
+        }
+
+    }
+}
+
+@keyframes mover-dedo {
+    from { left: 0 }
+    to   { left: 4px }
+}
