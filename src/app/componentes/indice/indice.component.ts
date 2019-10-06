@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Input } from '@angular/core';
 
 // Interfaces
 import { ItemIndice } from 'src/app/interfaces/item-indice';
