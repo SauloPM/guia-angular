@@ -1,0 +1,168 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>TypeScript</h2>
+
+  <app-indice [items]="itemsIndice"></app-indice>
+
+  <h3 id="proposito">1. Propósito</h3>
+  <hr>
+
+  <ul>
+    <li>En el <u>código de JS</u> de la figura 1 tenemos la declaración de una función que utiliza un parámetro de entrada para imprimir un saludo por consola, una declaración de objeto y una invocación a esta función, respectivamente</li>
+    <li>El resultado no va a ser el esperado, dado que para que tenga sentido, la función debería recibir un parámetro de tipo <b>string</b> y le estamos enviando un objeto</li>
+    <li>A priori no tenemos modo alguno de darnos cuenta de nuestro error hasta en el momento de su ejecución, analizando el resultado en la consola de JS del navegador web, que mostraría el mensaje <i>Hola, [object Object]</i></li>
+    
+    <img src="assets/img/typescript/figura1.png" alt="">
+    <caption><strong>Figura 1.</strong> Código JS para imprimir un saludo por consola</caption>
+    
+    <li>Recordemos que en JS no se especifica el tipo de los parámetros en la declaraciónde una función, de modo que no tenemos medios suficientes para ser alertados por el compilador</li>
+    <li>Es más, si lo hiciéramos, es probable que apareciera resalado a modo de error (figura 2), dado que para poder especificar el tipo en la declaración de parámetros hemos de utilizar TS</li>
+
+    <img src="assets/img/typescript/figura2.png" alt="">
+    <caption><strong>Figura 3.</strong> Mensaje de error al especificar el tipo de un parámetro</caption>
+
+    <li>Si ejecutásemos el código de la figura 2 en TS, seríamos alertados por el compilador, como se observa en la figura 3, en el que el mensaje de error nos indica la incompatibilidad debido precisamente al tipado entre los parámetros actuales y formales</li>
+    <li>Ojo, a pesar de alertarnos en TS, si el código <u>no contiene ningún error de JS, se ejecutará sin problemas</u> (lo peor que puede pasar es que el resultado no sea el esperado)</li>
+    <li>Es decir, que aunque asuste la aparición de advertencias de errores al pasar de JS a TS, el compilador no nos impide ejecutar nuestro código, al contrario que en otros lenguajes de programación</li>
+    <li>No debemos asustarnos a la hora de utilizar TS tras ver tanta notificación de error, dado que se trata de una herramienta que nos ayuda a darnos cuenta de nuestras meteduras de pata antes de la ejecución</li>
+    <li>¿Qué ventajas ofrece? Muchas. Por ejemplo, la detección de errores resulta muchísimo más sencilla gracias a estas notificaciones. No tenemos que estar sacando conclusiones a partir de un resultado no deseado, sobre todo si no se produce ningún mensaje de error en la consola, lo que a veces nos puede llevar muchísimo tiempo</li>
+    <li>Ten en cuenta que nuestro código de JS puede estar mal aunque no se muestre ningún error en la consola del navegador web si el resultado es erróneo, en cuyo caso no tendríamos pista alguna de por qué las cosas no han salido como planeábamos</li>
+
+    <img src="assets/img/typescript/figura3.png" alt="">
+    <caption><strong>Figura 3.</strong> Código de la figura 2 en TS</caption>
+
+    <li>La figura 4 ilustra el código equivalente en TS, en el que se especifica el tipo del parámetro de la función y se envía el campo <i>nombre</i> del objeto, en lugar del objeto completo, obteniendo el resultado esperado: <i>Hola, John</i></li>
+    <li>En resumen, TS es un súper conjunto de TS porque lo enriquece, nos alerta de posibles <u>errores antes de la ejecución</u>, ofrece mayor robustez debido al tipado de datos, entre otros, lo que asciende a JS al mismo nivel que otros lenguajes de programación</li>
+
+    <img src="assets/img/typescript/figura4.png" alt="">
+    <caption><strong>Figura 4.</strong> Código TS para imprimir un saludo por consola</caption>
+
+    <h4>1.1 TS versus JS</h4>
+
+    <ul>
+      <li>En JS no se conoce el tipo de una variable hasta que es inicializada</li>
+      <li>Por si fuera poco, una misma variable puede cambiar de tipo si se inicializa a literales de diferente tipo, lo que puede resultar caótico y poco robusto</li>
+      <li>En JS la notificación de errores se produce en tiempo de ejecución, en la consola del navegador web, pero no antes, como ocurre con TS</li>
+      <li>Esto da pie a multitud de errores que podrían ser detectados a tiempo y que son difíciles de detectar tras la ejecución</li>
+      <li>Algunos de estos errores podrían ser variables no definidas, mapeo incoherente entre las propiedades de objetos, erratas en la escritura de identificadores, persistencia de código obsoleto de JS en la caché del navegador, colisión de código, etc.</li>
+      <li>Dado que TS es un súper conjunto de JS, este es 100% compatible con el primero, con lo que podremos utilizar JS en TS sin ningún problema</li>
+      <li>El código en JS tiende a ser mucho más complejo que el código en TS equivalente</li>
+      <li>De esta forma, el propósito de TS es ayudarnos a cometer la menos cantidad de errores posible</li>
+    </ul>
+
+  </ul>
+
+  <h3 id="configuracion">2. Configuración</h3>
+  <hr>
+
+  <ul>
+    <li>El fichero <i>tsconfig.json</i> nos permite configurar o establecer nuevas reglas para el compilador de TS</li>
+    <li>Sí, en el momento de ejecución no trabajamos con TS, sino con JS compilado, dado que el navegador web no es capaz de interpretar código TS, sino JS</li>
+    <li>En la figura 5 se ilustra el contenido por defecto de este fichero en un proyecto de Angular</li>
+
+    <img src="assets/img/typescript/figura5.png" alt="">
+    <caption><strong>Figura 5.</strong> Contenido por defecto del fichero <i>tsconfig.json</i> en un proyecto de Angular</caption>
+
+    <li>El campo <b>target</b> es la versión de JS a la que deseamos compilar nuestro código de TS (en el ejemplo de la figura 5 es ECMAScript 5)</li>
+    <li>El campo <b>sourceMap</b> activa o desactiva la generación de ficheros de soporte para depuración de código</li>
+  </ul>
+
+  <h3 id="variables">3. Variables</h3>
+  <hr>
+
+  <h4>3.1 Declaración de variables con <b>var</b> y <b>let</b></h4>
+
+  <ul>
+    <li>El código de la figura 6 mostrará por consola el mensaje <i>Adiós, mundo</i></li>
+    <li>Dentro de la sentencia condicional, aunque estemos declarando la variable nuevamente, se considera la misma al tener el mismo identificador que la anterior</li>
+
+    <img src="assets/img/typescript/figura6.png" alt="">
+    <caption><strong>Figura 6.</strong> Declaración de variables con <b>var</b></caption>
+
+    <li>Por el contrario, el código de la figura 7 mostrará por consola el mensaje <i>Hola, mundo</i></li>
+    <li>¿Por qué? Porque con <b>let</b> cada variable es distinta, aunque compartan el mismo identificador, dado que en la segunda declaración, la variable solo tiene repercusión dentro del ámbito de la sentencia condicional</li>
+    <li>De hecho, si inspeccionáramos el código compilado a JS, veríamos que el compilador generó el alias <i>saludo_1</i> para la segunda declaración</li>
+    <li>El motivo reside en que los ámbitos de estas declaraciones son diferentes. El de la primera declaración afecta a todo el cuerpo del algoritmo, mientras que el de la segunda afecta solo a la sentencia condicional</li>
+    
+    <img src="assets/img/typescript/figura7.png" alt="">
+    <caption><strong>Figura 7.</strong> Declaración de variables con <b>let</b></caption>
+
+    <li>No obstante, si ambas declaraciones estuvieran <u>dentro del mismo ámbito</u> (es decir, en el mismo nivel), TS mostraría un mensaje de error</li>
+    <li>De ahora en adelante utilizaremos <b>let</b> en lugar de <b>var</b> en TS, dado que el primero ofrece un mejor control sobre el ámbito que el segundo</li>
+  </ul>
+
+  <h4>3.2 Constantes</h4>
+
+  <ul>
+    <li>Para declarar constantes debemos utilizar la palabra reservada <b>const</b> en lugar de <b>let</b></li>
+    <li>Es un estándar que los identificadores de las constantes se escriban en mayúsculas</li>
+    <li>Estas deben ser inicializadas en el momento de su declaración</li>
+    <li>Tras esto no podremos variar su valor, dado que son de solo lectura</li>
+    <li>No obstante, al igual que como ocurría en la figura 6, si declaramos dos constantes con el mismo identificador, pero en ámbitos diferentes, no habría problema</li>
+    <li>Claro, se compilarían a JS con identificadores distintos a modo de alias, como ocurría en la figura 7</li>
+  </ul>
+
+  <h4>3.3 Inicialización de variables</h4>
+
+  <ul>
+
+    <img src="assets/img/typescript/figura8.png" alt="">
+    <caption><strong>Figura 8.</strong> Declaración e inicialización de variables en TS</caption>
+
+    <li>Por lo general, en TS debemos indicar el tipo de una variable en el momento de su declaración (figura 8)</li>
+    <li>No obstante, si esta se inicializa en el momento de su declaración, podremos omitir su tipo, dado que con el literal resultaría evidente</li>
+    <li>Ojo, si omitimos el tipo en la declaración de una variable debido a que la hemos inicializado, igualmente se debe respetar en futuras reasignaciones</li>
+    <li>Es decir, no podremos asignarle un literal numérico a una vairable inicializada como cadena de caracteres, aunque omitiéramos el tipo en el momento de su declaración</li>
+    <li>Ojo, cuando decimos que algo no se puede, en realidad no es del todo cierto necesariamente. TS dará un mensaje de error, pero <u>es posible</u> que el código JS resultante no dé errores en el navegador web</li>
+  </ul>
+
+  <h4>3.4 Tipo especial <b>any</b></h4>
+
+  <ul>
+    <li>El tipado de TS otorga de robustez a JS, pero es una pena haber perdido la flexibilidad que nos brindaba JS a la hora de poder almacenar en una misma variable literales de diferente tipo</li>
+    <li>Esta flexibilidad se mantiene en TS con el tipo <b>any</b> (figura 8), que nos permite utilizar variables en TS con la misma libertad que ofrecía JS por defecto con cualquier variable</li>
+  </ul>
+
+  <h4>3.5 Objetos</h4>
+
+  <ul>
+
+    <img src="assets/img/typescript/figura9.png" alt="">
+    <caption><strong>Figura 9.</strong> Declaración de objetos en TS</caption>
+
+    <li>Tras declarar un objeto mediante su inicialización (figura 9), TS generará automáticamente un tipo personalizado de variables</li>
+    <li>¿Qué significa eso? Que si utilizáramos este mismo objeto y lo asignáramos a otro objeto, tendríamos que respetar su estructura interna</li>
+    <li>Obivamente, es posible cambiar una propiedad en particular mediante el operador punto</li>
+    <li>En el último caso ilustrado en la figura 9, vemos cómo reasignamos el objeto <i>heroe</i>, pero incorporando una nueva propiedad llamada <i>alias</i></li>
+    <li>Dado que dicha propiedad no se especificó en el momento de la declaración de este objeto, dará error</li>
+  </ul>
+
+  <h3 id="interpolacion">4. Plantillas de interpolación de literales de tipo <b>string</b></h3>
+  <hr>
+
+  <ul>
+
+    <img src="assets/img/typescript/figura10.png" alt="">
+    <caption><strong>Figura 10.</strong> Diferentes formas de trabajar con literales <b>string</b> en TS</caption>
+
+    <li>En la figura 10 vemos diferentes maneras de operar con literales <b>string</b>, siendo especialmente interesante cuando se incluyen variables</li>
+    <li>Como vemos, la manera convencional de mezclar literales <b>string</b> y variables puede volverse extremadamente laboriosa, como se observa en el caso 4 de de esta figura</li>
+    <li>Como alternativa se nos ofrece el operador <b>$&#123; _Expresión_ &#125;</b>, conocido como interpolación que, combinado con los caracteres <i>`</i> (no confundir con los apóstrofes convencionales), nos permiten trabajar mezclando literales <b>string</b> y variables de una forma más cómoda y compacta, como ilustra el caso 5 de la figura 10</li>
+    <li>Esta técnica se conoce como plantillas de interpolación de literales de tipo <b>string</b> o template string interpolation en inglés</li>
+
+    <img src="assets/img/typescript/figura11.png" alt="">
+    <caption><strong>Figura 11.</strong> Interpolación y saltos de línea</caption>
+
+    <li>Otra ventaja de esta forma de operar es que podemos añadir saltos de línea fácilmente, sin necesidad de escribir <i>\n</i>, como se observa en la figura 11</li>
+    <li>No solo eso, sino que si imprimiéramos el valor de la variable <i>receta</i> por consola, veríamos que igualmente se respetarían los saltos de línea (figura 12)</li>
+    <li>Imagina lo laborioso que sería conseguir eso mismo sin esta técnica: tendríamos que escribir <i>\n</i> para cada salto de línea e ir probando con los espacios para clavar la indentación</li>
+    <li>El compilador se encargará de dejarlo de la manera convencional cuando compile a JS, librándonos a nosotros de esta tarea</li>
+
+    <img src="assets/img/typescript/figura12.png" alt="">
+    <caption><strong>Figura 12.</strong> Representación por consola del ejemplo ilustrado en la figura 11</caption>
+
+    <li>Ojo, la interpolación no solo admite variables, también expresiones y en general cualquier código TS</li>
+    <li>En el ejemplo de la figura 11 no hemos especificado el tipo de la variable receta, pero como la inicializamos a un literal de tipo <b>string</b>, no fue necesario, pero de haber querido especificar el tipo, este hubiera sido lógicamente <b>string</b></li>
+
+  </ul>
+</div>

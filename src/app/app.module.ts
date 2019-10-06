@@ -33,6 +33,7 @@ import { IndiceComponent       } from './componentes/indice/indice.component';
 import { FicherosComponent     } from './componentes/ficheros/ficheros.component';
 import { ServiciosComponent    } from './componentes/servicios/servicios.component';
 import { CiclosVidaComponent   } from './componentes/ciclos-vida/ciclos-vida.component';
+import { TypescriptComponent   } from './componentes/typescript/typescript.component';
 import { DespliegueComponent   } from './componentes/despliegue/despliegue.component';
 import { ComponentesComponent  } from './componentes/componentes/componentes.component';
 import { ConstruccionComponent } from './componentes/construccion/construccion.component';
@@ -65,7 +66,8 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
     ErrorComponent,
     ComponentesComponent,
     ServiciosComponent,
-    IndiceComponent
+    IndiceComponent,
+    TypescriptComponent
   ],
   imports: [
     BrowserModule,

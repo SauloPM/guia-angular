@@ -2,10 +2,11 @@ import { NgModule             } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Componentes
-import { RutasComponent           } from './componentes/rutas/rutas.component';
-import { InicioComponent          } from './componentes/inicio/inicio.component';
-import { DespliegueComponent      } from './componentes/despliegue/despliegue.component';
-import { ComponentesComponent     } from './componentes/componentes/componentes.component';
+import { RutasComponent       } from './componentes/rutas/rutas.component';
+import { InicioComponent      } from './componentes/inicio/inicio.component';
+import { DespliegueComponent  } from './componentes/despliegue/despliegue.component';
+import { TypescriptComponent  } from './componentes/typescript/typescript.component';
+import { ComponentesComponent } from './componentes/componentes/componentes.component';
 
 // Componentes » Usuarios (rutas hijas)
 import { UsuarioComponent         } from './componentes/usuario/usuario.component';
@@ -15,17 +16,18 @@ import { UsuarioEliminarComponent } from './componentes/usuario/usuario-eliminar
 import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.component';
 
 // Componentes para rutas especiales
-import { ErrorComponent           } from './componentes/error/error.component';
-import { ConstruccionComponent    } from './componentes/construccion/construccion.component';
+import { ErrorComponent        } from './componentes/error/error.component';
+import { ConstruccionComponent } from './componentes/construccion/construccion.component';
 
 const routes: Routes = [
 
   // Terminado
   { path: 'despliegue'  , component: DespliegueComponent   },
-
+  
   // En proceso
   { path: 'rutas'       , component: RutasComponent        },
   { path: 'inicio'      , component: InicioComponent       },
+  { path: 'typescript'  , component: TypescriptComponent   },
   { path: 'componentes' , component: ComponentesComponent },
 
   // Especial
@@ -34,7 +36,6 @@ const routes: Routes = [
 
   // Pendiente
   { path: 'ficheros'       , component: ConstruccionComponent },
-  { path: 'typescript'     , component: ConstruccionComponent },
   { path: 'servicios'      , component: ConstruccionComponent },
   { path: 'pipes'          , component: ConstruccionComponent },
   { path: 'directivapropia', component: ConstruccionComponent },
