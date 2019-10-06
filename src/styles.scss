@@ -1,5 +1,6 @@
 // Responsive breakpoints
 $mobile: 480px;
+$tablet: 768px;
 $laptop: 980px;
 
 // Colors
@@ -168,7 +169,7 @@ hr {
     img {
         display: block;
         border: 1px solid $primary;
-        margin: 50px 0 0 50px;
+        margin: 50px 0 0;
         max-width: 100%;
         height: auto;
     }
@@ -179,10 +180,26 @@ hr {
         font-size: 11px;
         font-weight: 400;
         padding: 0;
-        margin: 5px 0 50px 50px;
+        margin: 5px 0 50px;
     
         strong {
             display: inline;
+        }
+    }
+}
+
+// Mobile First
+
+@media only screen and (min-width: $tablet) {
+
+    #notas ul {
+
+        img {
+            margin: 50px 0 0 50px;
+        }
+        
+        caption {
+            margin: 5px 0 50px 50px;
         }
     }
 }
