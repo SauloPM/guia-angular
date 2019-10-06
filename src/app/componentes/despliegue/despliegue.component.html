@@ -2,7 +2,9 @@
 
   <h2>Despliegue</h2>
 
-  <h3>1. Fichero <i>environment.ts</i></h3>
+  <app-indice [items]="itemsIndice"></app-indice>
+
+  <h3 id="fichero-environment">1. Fichero <i>environment.ts</i></h3>
   <hr>
 
   <ul>
@@ -16,7 +18,7 @@
     <li>En caso de tener un equipo trabajando en un mism proyecto utilizando un repositorio remoto como punto de conexión, en dicho repositorio jamás se subirá este fichero, sino el de producción</li>
   </ul>
 
-  <h3>2. Despliegue para preproducción</h3>
+  <h3 id="despliegue-preproduccion">2. Despliegue para preproducción</h3>
   <hr>
 
   <ul>
@@ -46,7 +48,7 @@
       <li>En este casos también se utilizan ficheros <i>.map</i> que actúen de intermediarios para que la implementación de la compilación no sea tan compleja</li>
   </ul>
 
-  <h3>3. Despliegue para producción</h3>
+  <h3 id="despliegue-produccion">3. Despliegue para producción</h3>
   <hr>
 
   <ul>
@@ -79,7 +81,7 @@
     <li>Claro, al cambiar el nombre del fichero, aunque pese lo mismo, al llamarse diferente el navegador web no lo cacehará, de modo que tenemos la garantía de que siempre mostrará en producción la versión más actualizada</li>
   </ul>
 
-  <h3>4. Errores en despliegue de un servidor Apache</h3>
+  <h3 id="errores-apache">4. Errores en despliegue de un servidor Apache</h3>
   <hr>
 
   <h4>4.1 Página en blanco</h4>
