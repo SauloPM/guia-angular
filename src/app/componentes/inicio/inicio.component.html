@@ -2,9 +2,9 @@
 
   <h2>Bienvenido</h2>
 
-  <div class="pendiente">El índice de cada sección debiera ser un componente</div>
-  
-  <h3>Propósito</h3>
+  <app-indice [items]="itemsIndice"></app-indice>
+
+  <h3 id="proposito">1. Propósito</h3>
   <hr>
 
   <ul>
@@ -12,44 +12,54 @@
     <li>Me he formado en el funcionamiento de este framework durante un largo periodo de tiempo y he creado estas notas por si le pudieran servir a alguien basándome en diferente fuentes</li>
   </ul>
 
-  <h3>Introducción</h3>
+  <h3 id="introduccion">2. Introducción</h3>
   <hr>
 
   <ul>
-    <li>Angular es un framework de front desarrollado por Google que utiliza TypeScript</li>
+    <li>Angular es un framework de front desarrollado por Google que utiliza TypeScript (de ahora en adelante, TS)</li>
     <li>Un framework es un set de herramientas software que el programador tiene a su disposición para elaborar aplicaciones web contando con un gran abanico de prestaciones que no tendrías programando desde cero</li>
-    <li>TypeScript (de ahora en adelante, TS) es un lenguaje de programación desarrollado por Microsoft que utiliza JavaScript (de ahora en adelante, JS) como base crear un lenguaje de programación más robusto</li>
+    <li>TS es un lenguaje de programación desarrollado por Microsoft que utiliza JavaScript (de ahora en adelante, JS) como base crear un lenguaje de programación más robusto</li>
     <li>Ofrece numerosas prestaciones adicionales con las que JS no cuenta, por lo que se conoce como un superconjunto de JS, como tipado de variables, notificación de errores previa al periodo de ejecución, etc.</li>
   </ul>
 
-  <h3>jQuery</h3>
+  <h3 id="jquery">3. jQuery</h3>
   <hr>
 
-  <div class="pendiente">Crear una sección solo de jQuery</div>
-  <div class="pendiente">Buscar la diferencia entre <b>event.target</b> y <b>event.currentTarget</b></div>
-  <div class="pendiente">Explicar cómo hacer smooth scrolling para navegar entre los apartados <u>de una misma sección</u></div>
-  <div class="pendiente mb-40">Explicar cómo navegar entre las mismas secciones dentro de una misma página web (lo tienes hecho en el hook OnInit del componente Rutas, en el índice)</div>
+  <h4>3.1 Instalar jQuery</h4>
 
   <ul>
     <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>& npm install jquery --save</b> para instalar jQuery dentro del directorio <i>node_modules</i></li>
     <li>Abrimos el fichero <i>angular.json</i> y dentro del campo vectorial <b>scripts</b> escribimos la ruta del fichero de distribución de jQuery dentro de este directorio</li>
-    <li>Es conveniente elegir el fichero <i>.min</i> al ser más ligero. La ruta típicamente suele ser <i>"./node_modules/jquery/dist/jquery.min.js"</i></li>
-    <li>Tras esto, ejecutamos el comando <b>$ npm install</b> o solamente <b>$ npm i</b> para actualizar las dependencias</li>
-    <li>Dentro del componente en el que deseemos utilizar jQuery, escribimos la instrucción <b>declare var $: any;</b> delante del decorador</li>
-    <li>Utilizamos jQuery dentro del hook <b>OnInit</b>, de modo que lo incluimos en el componente en caso de haberlo quitado (Angular CLI lo crea por defecto)</li>
-    <li>Dentro podemos definir todos los manejadores en jQuery con total normalidad como hemos hecho siempre</li>
+    <li>Es conveniente elegir el fichero de extensión <i>.min</i> al ser más ligero. La ruta típicamente suele ser <i>"./node_modules/jquery/dist/jquery.min.js"</i></li>
+    <li>Otra opción igual de válida y mucho más sencilla es pegar el CDN dentro del fichero <i>index.html</i></li>
+    <li>Tras esto, dentro del componente en el que deseemos utilizar jQuery, escribimos la instrucción <b>declare var $: any;</b> delante del decorador</li>
+    <li>A partir de ahora podremos utilizar jQuery dentro de cualquier hook con total normalidad como hemos hecho siempre</li>
   </ul>
 
-  <h4>Selector <b>$(this)</b></h4>
+  <h4>3.2 Selector <b>$(this)</b></h4>
 
   <ul>
-    <li>Utilizar <b>$(this)</b> puede dar problemas, ya que en TypeScript no apunta al elemento HTML que disparó el evento, como solía suceder típicamente cuando programábamos sin utilizar Angular</li>
-    <li>En su lugar pasamos el evento como parámetro del manejador (<b>event</b>) y utilizamos <b>event.currentTarget</b>, que nos da acceso a todos los atributos necesarios del elemento HTML que disparó el evento</li>
-    <li>Debemos tener en cuenta que el evento puede tener cualquier identificador, pero comúnmente se le suele asignar <i>event</i> o <i>e</i>, pero no es obligatorio</li>
-    <li>Ante cualquier duda sobre la estructura del objeto <i>event</i>, siempre podemos inspeccionarla en la consola de JavaScript mediante la instrucción <b>console.log(event)</b></li>
+    <li>Utilizar <b>$(this)</b> puede dar problemas, ya que en TS no apunta al elemento HTML que disparó el evento, como solía suceder típicamente cuando programábamos sin utilizar Angular</li>
+    <li>En su lugar pasamos el evento como parámetro del manejador (<b>event</b>) y utilizamos <b>event.target</b> o <b>event.currentTarget</b>, que nos da acceso a todos los atributos necesarios del elemento HTML que disparó el evento</li>
+    <li>Típicamente se le suele dar al evento el identificador <i>event</i> o <i>evento</i> a modo de estándar, pero no es obligatorio (aunque sí una buena práctica)</li>
+    <li>Ante cualquier duda sobre la estructura interna de este objeto (el evento), siempre podremos inspeccionarlo en la consola de JS mediante la instrucción <b>console.log(event)</b></li>
+    <li>De esta forma la instrucción de ejemplo <b>$(this).attr("href")</b> y la instrucción <b>$(event.currentTarget).attr("href")</b> son equivalentes, salvo que la primera puede dar fallos (ver figura 1)</li>
   </ul>
 
-  <h4>Funciones flecha</h4>
+  <h4>3.3 Navegación suavizada entre apartados dentro de una misma página</h4>
+
+  <ul>
+    <li>Escribimos la instrucción <b>declare var $: any;</b> delante del decorador del componente correspondiente</li>
+    <li>Tras esto, ejecutamos el código ilustrado en la figura 1 dentro de un hook</li>
+    <li>En este ejemplo se navega de una sección a otra haciendo clic en un elemento HTML cuya clase CSS es <i>item</i></li>
+    <li>Como vemos, dentro del atributo HTML personalizado <i>data-target</i> contiene el identificador CSS del apartado correspondiente que hemos utilizado para fijar la posición del scroll</li>
+
+    <img src="assets/img/inicio/figura1.png" alt="">
+    <caption><strong>Figura 1.</strong> Navegación suavizada entre apartados dentro de una misma página</caption>
+
+  </ul>
+
+  <h4>3.4 Funciones flecha</h4>
 
   <ul>
     <li>Es posible simplifcar la instrucción del manejador de un evento asociado a un elemento HTML gracias a las funciones flecha</li>
