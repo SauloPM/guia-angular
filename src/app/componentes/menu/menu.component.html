@@ -1,127 +1,13 @@
 <div id="sidebar">
   <img class="logo" src="assets/logo1.svg" alt="">
   <ul class="items">
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="inicio">
-        <i class="icono fa fa-fw fa-home" aria-hidden="true"></i>
+    <li class="item" routerLinkActive="active" *ngFor="let item of items">
+      <a class="enlace" [routerLink]="item.enlace">
+        <i class="icono fa fa-fw {{ item.icono }}" aria-hidden="true"></i>
         <span class="texto">
-          Inicio
+          {{ item.texto }}
         </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="ficheros">
-        <i class="icono fa fa-fw fa-folder" aria-hidden="true"></i>
-        <span class="texto">
-          Ficheros
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="typescript">
-        <i class="icono fa fa-fw fa-gear" aria-hidden="true"></i>
-        <span class="texto">
-          TypeScript
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="componentes">
-        <i class="icono fa fa-fw fa-puzzle-piece" aria-hidden="true"></i>
-        <span class="texto">
-          Componentes
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="servicios">
-        <i class="icono fa fa-fw fa-paper-plane" aria-hidden="true"></i>
-        <span class="texto">
-          Servicios
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="directivas">
-        <i class="icono fa fa-fw fa-lightbulb-o" aria-hidden="true"></i>
-        <span class="texto">
-          Directivas
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="pipes">
-        <i class="icono fa fa-fw fa-wrench" aria-hidden="true"></i>
-        <span class="texto">
-          Pipes
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="rutas">
-        <i class="icono fa fa-fw fa-link" aria-hidden="true"></i>
-        <span class="texto">
-          Rutas
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="ciclos-de-vida">
-        <i class="icono fa fa-fw fa-leaf" aria-hidden="true"></i>
-        <span class="texto">
-          Ciclos de vida
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="auth">
-        <i class="icono fa fa-fw fa-lock" aria-hidden="true"></i>
-        <span class="texto">
-          Login y registro
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="despliegue">
-        <i class="icono fa fa-fw fa-star" aria-hidden="true"></i>
-        <span class="texto">
-          Despliegue
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="depuracion">
-        <i class="icono fa fa-fw fa-search" aria-hidden="true"></i>
-        <span class="texto">
-          Depuración
-        </span>
-      </a>
-    </li>
-
-    <li class="item" routerLinkActive="active">
-      <a class="enlace" routerLink="aplicaciones">
-        <i class="icono fa fa-fw fa-coffee" aria-hidden="true"></i>
-        <span class="texto">
-          Aplicaciones
-        </span>
-        <i class="caret fa fa-fw fa-angle-right"></i>
-        <!-- <ul class="submenu" *ngIf="submenuAbierto">
-          <li>Buscador</a>
-          <li>SpotiApp</a>
-          <li>...</a>
-        </ul> -->
+        <i class="caret fa fa-fw fa-angle-right" *ngIf="item.submenu"></i>
       </a>
     </li>
   </ul>
