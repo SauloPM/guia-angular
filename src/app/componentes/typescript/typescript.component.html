@@ -164,5 +164,32 @@
     <li>Ojo, la interpolación no solo admite variables, también expresiones y en general cualquier código TS</li>
     <li>En el ejemplo de la figura 11 no hemos especificado el tipo de la variable receta, pero como la inicializamos a un literal de tipo <b>string</b>, no fue necesario, pero de haber querido especificar el tipo, este hubiera sido lógicamente <b>string</b></li>
 
+    <h3 id="funciones">5. Funciones</h3>
+    <hr>
+
+    <div class="pendiente">Poner una ristra de parámetros opcionales, algunos de ellos con valores y otros sin nada, en plan desordenado, a ver si se lo traga</div>
+    <div class="pendiente">Cambiar las figuras de abajo</div>
+
+    <ul>
+
+      <img src="assets/img/typescript/figura13.png" alt="">
+      <caption><strong>Figura 13.</strong> Distintos casos de paso de parámetros</caption>
+
+      <li>Hay diferentes formas de especificar los parámetros de una función, como se observa la figura 13</li>
+      <li>En TS no está permitido declarar un parámetro sin tipo (parámetro <i>parametro1</i>), dado que para eso tenemos el tipo <b>any</b> (parámetro <i>parametro2</i>)</li>
+      <li>Nótese que en la figura 13, TS nos está advirtiendo de que no está permitida la declaración de parámetros sin tipo (línea punteada debajo de <i>parametro1</i>)</li>
+      <li>El parámetro <i>parametro3</i> es un caso completamente normal</li>
+      <li>Tenemos dos parámetros opcionales, que son <i>parametro4</i>, en el que además se transfiere un vector, y <i>parametro7</i></li>
+      <li>Los parámetros <i>parametro5</i> y <i>parametro6</i> tienen asignados un valor por defecto, y dado que su tipo se evidencia con el literal, no es necesario especificarlo explícitamente, como ocurre en el primer caso</li>
+      <li>Los parámetros opcionales (<i>parametro4</i> y <i>parametro7</i>) no pueden preceder a parámetros obligatorios, a no ser que estos tengan un valor asignado por defecto, de ahí que no tengamos problemas porque el parámetro <i>parametro4</i> preceda a los dos siguientes</li>
+      <li>Es una buena práctica que los parámetros opcionales vayan todos al final, uno detrás de otro, dejando los primeros puestos para los obligatorios</li>
+
+      <img src="assets/img/typescript/figura14.png" alt="">
+      <caption><strong>Figura 14.</strong> Invocación a la función de la figura 14</caption>
+
+      <li>El motivo reside en el momento de la invocación, dado que en la figura 14 podemos ver en la tercera invocación que nos señala un error si dejamos el hueco del parámetro opcional vacío si después vienen otros parámetros, aunque estos tengan un valor por defecto</li>
+      <li>En las dos primeras invocaciones hemos prescindido del último parámetro, dado que este es opcional, podemos no enviar nada (primera invocación) o dejarlo en blanco (segunda invocación)</li>
+    </ul>
+
   </ul>
 </div>

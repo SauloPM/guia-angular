@@ -25,8 +25,12 @@ export class TypescriptComponent {
     {
       texto: 'Plantillas de literales <b>string</b>',
       enlace: 'interpolacion'
+    },
+    {
+      texto: 'Funciones',
+      enlace: 'funciones'
     }
-  ]
+  ];
 
   constructor() { }
 
