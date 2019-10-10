@@ -16,29 +16,4 @@ $(window).on("load", function() {
     //     });
     // }
 
-    // ────────────────── //
-    //     TOP BUTTON     //
-    // ────────────────── //
-
-    showTopButton();
-
-    $(document).scroll(function() {
-        showTopButton();
-    });
-
-    // Top button revealing
-    function showTopButton () {
-        if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150)
-            $(".top-button").css("opacity", "1");
-        else
-            $(".top-button").css("opacity", "0");
-    }
-
-    // Top button click event
-    $(".top-button").click(function() {
-        $('html, body').stop().animate({
-            scrollTop: 0
-        }, 500);
-    });
-
 });

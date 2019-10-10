@@ -9,6 +9,9 @@ import { AppComponent       } from './app.component';
 import { InicioComponent    } from './componentes/inicio/inicio.component';
 import { MenuComponent      } from './componentes/menu/menu.component';
 
+// Componentes » Compartidos
+import { TopButtonComponent } from './componentes/shared/top-button/top-button.component';
+
 // Componentes » Directivas
 import { NgStyleComponent   } from './componentes/directivas/ng-style/ng-style.component';
 import { NgClassComponent   } from './componentes/directivas/ng-class/ng-class.component';
@@ -67,7 +70,8 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
     ComponentesComponent,
     ServiciosComponent,
     IndiceComponent,
-    TypescriptComponent
+    TypescriptComponent,
+    TopButtonComponent
   ],
   imports: [
     BrowserModule,
