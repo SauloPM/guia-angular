@@ -276,6 +276,40 @@
 
     <img src="assets/img/typescript/figura25.png" alt="">
     <caption><strong>Figura 25.</strong> Omisión de variables en la desestructuración de un vector</caption>
+  </ul>
+
+  <h3 id="promesas">7. Promesas</h3>
+  <hr>
+
+  <ul>
+    <li>Las promesas son una prestación de ES6 que permite ejecutar código tras la finalización de una tarea asíncrona</li>
+    <li>En la figura 26 podemos ver la sintaxis general de una promesa, en la que la tarea asíncrosa es <b>setTimeout()</b>, pero que bien pudiera haber sido cualquier otra</li>
+    <li>Las funciones <b>resolve()</b> y <b>reject()</b> se ejecutarán en función de si la promesa finaliza su ejecución bien o mal, respectivamente</li>
+    <li>Estos identificadores son un estándar, pero las hubiéramos podido nombrar de cualquier otra forma</li>
+    <li>Lo que importa es que la función que se ejecute si todo fue bien sea la que escribamos en primer lugar como parámetro y la otra en segundo lugar</li>
+
+    <img src="assets/img/typescript/figura26.png" alt="">
+    <caption><strong>Figura 26.</strong> Cuepro de una promesa</caption>
+
+    <li>En la figura 27 se invoca la promesa de la figura 26. Nótese que la invocación se divide en dos partes: el cuerpo de la función <b>resolve()</b> en primer lugar y el de la función <b>reject()</b> en segundo lugar</li>
+
+    <img src="assets/img/typescript/figura27.png" alt="">
+    <caption><strong>Figura 27.</strong> Invocación de una promesa</caption>
+
+    <li>La figura 28 ilustra la inesperada salida por consola tras la ejecución del código de la figura 27</li>
+    <li>¿Por qué los mensajes aparecen desordenados? Porque la promesa encierra código asíncrono (en este caso, la función <b>setTimeout()</b>)</li>
+    <li>Esto significa que el código que se encuentre después de código asíncrono se ejecutará tanto si este último ha finalizado su ejecución como si no</li>
+    <li>Claro, eso explica que el segundo mensaje en aparecer sea <i>Paso 2</i>, dado que la instrucción inherente a esta salida no esperó a que la promesa finalizara su ejecución</li>
+    <li>Tras esto, mientras se ejecuta el código que se encuentra dentro del cuerpo de la promesa (figura 26), no se espera a que la función <b>setTimeout()</b> finalice, sino que se ejecuta primero el código de la función <b>resolve()</b> tras ser invocada, lo que explica la salida <i>La ejecución finalizó sin errores</i> antes de la salida <i>Ejecución finalizada</i></li>
+
+    <img src="assets/img/typescript/figura28.png" alt="">
+    <caption><strong>Figura 28.</strong> Salida de la consola tras la ejecución del código de la figura 27</caption>
+
+    <li>Es interesante saber que de haberse ejecutado la función <b>reject()</b>, la salida de la consola se hubiera ejecutado con el formato propio de un error (figura 29)</li>
+
+    <img src="assets/img/typescript/figura29.png" alt="">
+    <caption><strong>Figura 29.</strong> Salida de la función <b>reject()</b> por consola</caption>
 
   </ul>
+
 </div>

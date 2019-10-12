@@ -33,6 +33,10 @@ export class TypescriptComponent {
     {
       texto: 'Desestructuración',
       enlace: 'desestructuracion'
+    },
+    {
+      texto: 'Promesas',
+      enlace: 'promesas'
     }
   ];
 
