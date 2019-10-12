@@ -1,3 +1,93 @@
-<p>
-  ficheros works!
-</p>
+<div id="notas" class="animated fadeIn">
+
+  <h2>Ficheros</h2>
+
+  <app-indice [items]="itemsIndice"></app-indice>
+  
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="e2e">1. Directorio <i>e2e</i></h3>
+  <hr>
+
+  <ul>
+    <li>Su nombre significa <i>end to end</i></li>
+    <li>Este directorio es para fines de pruebas</li>
+    <li>Angular CLI configura este directorio automáticamente</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="node_modules">2. Directorio <i>node_modules</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este directorio almacena las dependencias de nuestro proyecto</li>
+    <li>Suele pesar demasiado, con lo que no debe subirse a nuestro repositorio de Git (es por ello que Angular por defecto lo ignora dentro del fichero <i>.gitignore</i>)</li>
+    <li>En su lugar, trabajamos con el fichero <i>package.json</i> (mucho más ligero), que contiene un listado de especificaciones en formato JSON de todas las dependencias que utiliza nuestra aplicación</li>
+    <li>Así, cuando un compañero clone el repositorio en su equipo, no tendrá que descargarse este pesado directorio, sino que bastará con este fichero</li>
+    <li>Una vez haya finalizado la descarga del repositorio, tras ejecutar el comando <b>$ npm install</b> o <b>$ npm i</b> se generará el directorio <i>node_modules</i> con todas sus dependencias dentro</li>
+    <li>Angular CLI sabe qué dependencias necesita instalar gracias al fichero <i>package.json</i></li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="package">3. Ficheros <i>package.json</i> y <i>package-lock.json</i></h3>
+  <hr>
+
+  <div class="nota mb-40">Consultar <a href="https://medium.com/coinmonks/everything-you-wanted-to-know-about-package-lock-json-b81911aa8ab8" target="_blank">enlace</a></div>
+  
+  <ul>
+    <li>Estos dos ficheros nos permiten gestionar las dependencias de nuestro proyecto a través del comando <b>$ npm install</b> o <b>$ npm i</b></li>
+    <li>De esta forma, no tendremos que subir al repositorio de Git el directorio <i>node_modules</i>, que almacena las dependencias per se y por ello suele ser muy pesado</li>
+    <li>Como norma general, estos dos ficheros no deben ser modificados por el usuario, ya que Angular los gestiona automáticamente</li>
+  </ul>
+
+  <h4>Fichero <i>package.json</i></h4>
+
+  <ul>
+    <li>Contiene un listado de especificaciones en formato JSON de todas las dependencias que utiliza nuestra aplicación</li>
+    <li>De esta forma evitamos trabajar directamente con el directorio <i>node_modules</i>, que contiene las dependencias especificadas en este fichero perse, lo que lo hace demasiado pesado</li>
+    <li>De esta forma, si clonamos un repositorio de Git en nuestro equipo, a priori nuestro proyecto no contará con dicho directorio</li>
+    <li>Tendremos que generarlo ejecutando el comando <b>$ npm install</b> o <b>$ npm i</b>, que lo genera e inserta dentro todas las dependencias a partir del contenido de este fichero</li>
+    <li>Dentro de este fichero, el campo <b>dependencies</b> lista las dependencias de la aplicación en producción, mientras que el campo <b>devDependencies</b> lista las dependencias de la aplicación durante su fase de desarrollo</li>
+  </ul>
+
+  <h4>Fichero <i>package-lock.json</i></h4>
+
+  <ul>
+    <li>Al igual que el fichero anterior, contiene un listado de especificaciones en formato JSON de todas las dependencias que utiliza nuestra aplicación</li>
+    <li>La diferencia estriba en que este fichero recoge la versión exacta de cada dependencia</li>
+    <li>Esto permite generar un árbol de dependencias idéntico en cada equipo en el que hayamos clonado el repositorio de Git donde se alojará nuestro proyecto</li>
+    <li>Ten en cuenta que el fichero <i>package.json</i> provee de una información mucho más simplificada acerca de la versión de cada dependencia</li>
+    <li>Ante cualquier actualización en la versión de una o más dependencias, es posible que el fichero <i>package.json</i> no varíe</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Directorio <i>assets</i></h3>
+  <hr>
+
+  <div class="nota mb-40">Este directorio se encuentra dentro del directorio <i>app</i></div>
+
+  <ul>
+    <li>Dentro de este directorio almacenaremos nuestras imágenes, vídeos, ficheros PDF, fuentes, hojas JSON, etc.</li>
+    <li>Es una buena práctica agrupar cada cosa en un subdirectorio (por ejemplo, crear un subdirectorio llamado <i>img</i> solo para las imágenes)</li>
+    <li>El fichero vacío <i>.gitkeep</i> evita que Git no suba este directorio al repositorio si se encuentra vacío, es decir, fuerza a que se suba siempre independientemente de su contenido</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>README.md</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este fichero no tiene repercusión alguna sobre la implementación de nuestro proyecto</li>
+    <li>Normalmente, dentro del repositorio de Git de nuestro proyecto, es común ver una explicación debajo del listado de ficheros y directorios que componen nuestra aplicación</li>
+    <li>Grosso modo, este fichero debiera contener una explicación de la implementación de nuestro proyecto para facilitar su compresión a otros usuarios que puedan descargar nuestra aplicación</li>
+    <li>Por defecto contiene una explicación genérica, pero podemos modificarlo como nos parezca más oportuno</li>
+    <li>Si deseamos que el formato sea más bonito, debemos respetar la sintaxis (nos podemos guiar por el contenido que aparece por defecto), aunque no estamos obligados a ello</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+</div>

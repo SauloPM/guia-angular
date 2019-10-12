@@ -26,8 +26,17 @@ $lightprimary: rgba(50,55,65,.25);
 
 .pendiente {
     color: rgb(255,100,75);
-    background: rgba(255,100,75,.35);;
-    box-shadow: 0 0 -1px 1px rgb(255,100,75);;
+    background: rgba(255,100,75,.35);
+    box-shadow: 0 0 -1px 1px rgb(255,100,75);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px 0;
+    width: fit-content;
+}
+
+.nota {
+    color: #00af4b;
+    border: 1px solid #00af4b;
     border-radius: 5px;
     padding: 10px 20px;
     margin: 5px 0;

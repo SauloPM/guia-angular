@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // Componentes
 import { RutasComponent       } from './componentes/rutas/rutas.component';
 import { InicioComponent      } from './componentes/inicio/inicio.component';
+import { FicherosComponent    } from './componentes/ficheros/ficheros.component';
 import { DespliegueComponent  } from './componentes/despliegue/despliegue.component';
 import { TypescriptComponent  } from './componentes/typescript/typescript.component';
 import { ComponentesComponent } from './componentes/componentes/componentes.component';
@@ -22,13 +23,14 @@ import { ConstruccionComponent } from './componentes/construccion/construccion.c
 const routes: Routes = [
 
   // Terminado
-  { path: 'despliegue'  , component: DespliegueComponent   },
+  { path: 'inicio'    , component: InicioComponent     },
+  { path: 'ficheros'  , component: FicherosComponent   },
+  { path: 'despliegue', component: DespliegueComponent },
   
   // En proceso
-  { path: 'rutas'       , component: RutasComponent        },
-  { path: 'inicio'      , component: InicioComponent       },
-  { path: 'typescript'  , component: TypescriptComponent   },
-  { path: 'componentes' , component: ComponentesComponent },
+  { path: 'rutas'      , component: RutasComponent       },
+  { path: 'typescript' , component: TypescriptComponent  },
+  { path: 'componentes', component: ComponentesComponent },
 
   // Especial
   { path: 'error'       , component: ErrorComponent        },
