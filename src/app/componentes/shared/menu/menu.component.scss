@@ -90,8 +90,41 @@ $lightprimary: rgba(50,55,65,.25);
 
             }
 
-            &.active .enlace .caret {
-                transform: rotate(90deg);
+            &.active {
+                
+                .enlace .caret {
+                    transform: rotate(90deg);
+                }
+
+                .submenu {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    // Submenu
+
+    .submenu {
+        display: none;
+        list-style: none;
+        color: $primary;
+        background: rgb(170,175,185);
+        padding: 0;
+        margin: 0;
+
+        li {
+            border-bottom: 1px solid rgba(50,55,70,.1);
+            padding: 15px 40px;
+            transition: .5s;
+            cursor: pointer;
+
+            &:last-child {
+                border: none;
+            }
+
+            &:hover {
+                opacity: .75;
             }
         }
     }

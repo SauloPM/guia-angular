@@ -7,8 +7,11 @@
         <span class="texto">
           {{ item.texto }}
         </span>
-        <i class="caret fa fa-fw fa-angle-right" *ngIf="item.submenu"></i>
+        <i class="caret fa fa-fw fa-angle-right" *ngIf="item.tieneSubmenu"></i>
       </a>
+      <ul class="submenu" *ngIf="item.tieneSubmenu">
+        <li *ngFor="let itemSubmenu of item.itemsSubmenu" [innerHTML]="itemSubmenu"></li>
+      </ul>
     </li>
   </ul>
 </div>

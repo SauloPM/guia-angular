@@ -10,86 +10,96 @@ import { ItemMenu } from 'src/app/interfaces/item-menu';
 })
 export class MenuComponent {
 
-  submenu: boolean = false;
+  tieneSubmenu: boolean = false;
 
   items: ItemMenu[] = [
     {
       texto: 'Inicio',
       enlace: 'inicio',
       icono: 'fa-home',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Ficheros',
       enlace: 'ficheros',
       icono: 'fa-folder',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'TypeScript',
       enlace: 'typescript',
       icono: 'fa-gear',
-      submenu: false
+      tieneSubmenu: false,
+      itemsSubmenu: [
+        'Propósito',
+        'Configuración',
+        'Variables',
+        'Plantillas de literales <b>string</b>',
+        'Funciones',
+        'Desestructuración',
+        'Promesas',
+        'Interfaces'
+      ]
     },
     {
       texto: 'Componentes',
       enlace: 'componentes',
       icono: 'fa-puzzle-piece',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Servicios',
       enlace: 'servicios',
       icono: 'fa-paper-plane',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Directivas',
       enlace: 'directivas',
       icono: 'fa-lightbulb-o',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Pipes',
       enlace: 'pipes',
       icono: 'fa-wrench',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Rutas',
       enlace: 'rutas',
       icono: 'fa-link',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Ciclos de vida',
       enlace: 'ciclos-de-vida',
       icono: 'fa-leaf',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Login y registro',
       enlace: 'auth',
       icono: 'fa-lock',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Despliegue',
       enlace: 'despliegue',
       icono: 'fa-star',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Depuración',
       enlace: 'depuracion',
       icono: 'fa-search',
-      submenu: false
+      tieneSubmenu: false
     },
     {
       texto: 'Aplicaciones',
       enlace: 'aplicaciones',
       icono: 'fa-coffee',
-      submenu: true
+      tieneSubmenu: true
     }
   ]
 
