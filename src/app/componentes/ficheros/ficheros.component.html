@@ -42,7 +42,7 @@
     <li>Como norma general, estos dos ficheros no deben ser modificados por el usuario, ya que Angular los gestiona automáticamente</li>
   </ul>
 
-  <h4>Fichero <i>package.json</i></h4>
+  <h4>3.1 Fichero <i>package.json</i></h4>
 
   <ul>
     <li>Contiene un listado de especificaciones en formato JSON de todas las dependencias que utiliza nuestra aplicación</li>
@@ -52,7 +52,7 @@
     <li>Dentro de este fichero, el campo <b>dependencies</b> lista las dependencias de la aplicación en producción, mientras que el campo <b>devDependencies</b> lista las dependencias de la aplicación durante su fase de desarrollo</li>
   </ul>
 
-  <h4>Fichero <i>package-lock.json</i></h4>
+  <h4>3.1 Fichero <i>package-lock.json</i></h4>
 
   <ul>
     <li>Al igual que el fichero anterior, contiene un listado de especificaciones en formato JSON de todas las dependencias que utiliza nuestra aplicación</li>
@@ -64,15 +64,129 @@
 
   <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
+  <h3>4. Directorio <i>src</i></h3>
+  <hr>
+
+  <div class="pendiente">Poner los directorios y ficheros importantes <u>de primer nivel</u> contenidos en este directorio a modo de subapartados</div>
+
+  <ul>
+    <li></li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Directorio <i>app</i></h3>
+  <hr>
+
+  <div class="nota mb-40">Este directorio se encuentra dentro del directorio <i>src</i></div>
+
+  <ul>
+    <li>Este directorio contiene los ficheros que componen el componente principal de un proyecto de Angular</li>
+    <li>Estos ficheros son el fichero HTML o template (<i>app.component.html</i>), la hoja de estilos (<i>app.component.scss</i>), el fichero TS (<i>app.component.ts</i>), el módulo (<i>app.module.ts</i>) y el fichero de rutas (<i>app-routing.module.ts</i>)</li>
+    <li>La importancia del componente principal reside en que a partir de él se pueden ejecutar los demás componentes en caso de existir</li>
+    <li>Este directorio contiene a su vez los componentes, servicios, interfaces, pipes personalizados, directivas personalizadas, etc. que vayamos creando</li>
+    <li>Es una buena práctica agrupar estos tipos de elementos en subdirectorios para lograr una mejor organización</li>
+    <li>Por ejemplo, los componentes suelen estar dentro del subdirectorio <i>componentes</i>, y aquellos que sean compartidos suelen estar dentro del subdirectorio <i>componentes/compartido</i></li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
   <h3>Directorio <i>assets</i></h3>
   <hr>
 
-  <div class="nota mb-40">Este directorio se encuentra dentro del directorio <i>app</i></div>
+  <div class="nota mb-40">Este directorio se encuentra dentro del directorio <i>src</i></div>
 
   <ul>
     <li>Dentro de este directorio almacenaremos nuestras imágenes, vídeos, ficheros PDF, fuentes, hojas JSON, etc.</li>
     <li>Es una buena práctica agrupar cada cosa en un subdirectorio (por ejemplo, crear un subdirectorio llamado <i>img</i> solo para las imágenes)</li>
     <li>El fichero vacío <i>.gitkeep</i> evita que Git no suba este directorio al repositorio si se encuentra vacío, es decir, fuerza a que se suba siempre independientemente de su contenido</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>styles.scss</i></h3>
+  <hr>
+
+  <ul>
+    <li>Es la hoja de estilos genérica cuyo ámbito afecta a todo el proyecto</li>
+    <li>El código que escribamos dentro afectará a todos los componentes de nuestra aplicación, al contrario que las hojas de estilos de cada componente, cuyo ámbito se limita al componente en cuestión</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Directorio <i>environments</i></h3>
+  <hr>
+
+  <div class="nota mb-40">Este directorio se encuentra dentro del directorio <i>src</i></div>
+
+  <ul>
+    <li>Dentro de este directorio almacenaremos variables globales</li>
+    <li>Contiene dos ficheros: el fichero <i>environments.ts</i> para el proyecto en desarrollo y el fichero <i>environments.prod.ts</i> para el proyecto en producción</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Directorio <i>dist</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este directorio por defecto no aparece cuando creamos un nuevo proyecto con Angular CLI</li>
+    <li>Se crea tras ejecutar el comando <b>$ ng build --prod</b> para albergar el código compilado que va a ser subido a producción</li>
+    <li>Recuerda que el código de TS debe ser compilado a JS para que pueda ser interpretado correctamente en servidor remoto, fuera del contexto de Angular</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>tsconfig.json</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este ficheronos permite configurar o establecer nuevas reglas para el compilador de TS</li>
+    <li>En el momento de ejecución no trabajamos con TS, sino con JS compilado, dado que el navegador web no es capaz de interpretar código TS, sino JS</li>
+    <li>Dentro del fichero, el campo <b>target</b> es la versión de JS a la que deseamos compilar nuestro código de TS (<i>es</i> quiere decir ECMAScript)</li>
+    <li>Por otro lado, el campo <b>sourceMap</b> activa o desactiva la generación de ficheros de soporte para depuración de código</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>tslint.json</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este fichero contiene reglas en las que se define el comportamiento de los lints</li>
+    <li>Un lint o linter es una herramienta que analiza el código fuente para señalar diferentes tipos errores (de programación, de estilos, etc.)</li>
+    <li>La forma típica que tiene un lint de señalizar un problema es con rayas punteadas de color rojo para errores o de color amarillo para advertencias, entre otras</li>
+    <li>Podemos variar sus reglas para ajustar el comportamiento de los lints según nuestras necesidades</li>
+    <li>Por ejemplo, es posible que nos interese omitir ciertas advertencias para dar más libertad al programador</li>
+    <li>Por otra parte, es posible que nos interese ser más estrictos para asegurarnos que todos los miembros de un equipo de desarrollo programen de la misma manera en cuanto al formato</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>.editorconfig</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este fichero contiene opciones de configuración referentes al editor de texto que estemos utilizando (Visual Studio Code, Sublime Text, Atom...)</li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>.gitignore</i></h3>
+  <hr>
+
+  <ul>
+    <li>Angular CLI crea un repositorio local de Git con su fichero <i>.gitignore</i> al crear un proyecto</li>
+    <li>Dentro aparecen las especificaciones de los ficheros y directorios que no van a subirse al repositorio, como el ya mencionado directorio <i>node_modules</i></li>
+  </ul>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3>Fichero <i>polyfills.ts</i></h3>
+  <hr>
+
+  <ul>
+    <li>Este fichero contiene especificaciones de compatibilidad para poder ejecutar nuestro proyecto en versiones antiguas de navegadores web</li>
   </ul>
 
   <!-- ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
