@@ -37,6 +37,10 @@ export class TypescriptComponent {
     {
       texto: 'Promesas',
       enlace: 'promesas'
+    },
+    {
+      texto: 'Interfaces',
+      enlace: 'interfaces'
     }
   ];
 
