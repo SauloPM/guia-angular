@@ -14,3 +14,9 @@ funcionEjemplo('Literal', 'Literal', 123456789, [ 'Hola', 'Adiós' ], 'Literal',
 funcionEjemplo('Literal', 'Literal', 123456789, [ 'Hola', 'Adiós' ], 'Literal', 'Literal', );
 funcionEjemplo('Literal', 'Literal', 123456789, , 'Literal', 'Literal', );
 */
+
+let persona: string[] = [ 'Javier', 'López Guerra', '34', 'Arquitecto' ];
+
+let [ , apellidos ] = persona;
+let [ , , edad, profesion ] = persona;
+

@@ -29,6 +29,10 @@ export class TypescriptComponent {
     {
       texto: 'Funciones',
       enlace: 'funciones'
+    },
+    {
+      texto: 'Desestructuración',
+      enlace: 'desestructuracion'
     }
   ];
 

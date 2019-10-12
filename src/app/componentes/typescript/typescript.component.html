@@ -163,18 +163,20 @@
 
     <li>Ojo, la interpolación no solo admite variables, también expresiones y en general cualquier código TS</li>
     <li>En el ejemplo de la figura 11 no hemos especificado el tipo de la variable receta, pero como la inicializamos a un literal de tipo <b>string</b>, no fue necesario, pero de haber querido especificar el tipo, este hubiera sido lógicamente <b>string</b></li>
+  </ul>
 
-    <h3 id="funciones">5. Funciones</h3>
-    <hr>
+  <h3 id="funciones">5. Funciones</h3>
+  <hr>
 
-    <div class="pendiente">Poner una ristra de parámetros opcionales, algunos de ellos con valores y otros sin nada, en plan desordenado, a ver si se lo traga</div>
-    <div class="pendiente">Cambiar las figuras de abajo</div>
-
-    <img src="assets/img/typescript/figura13.png" alt="">
-    <caption><strong>Figura 13.</strong> Distintos casos de paso de parámetros</caption>
-
-    <h4>5.1 Paso de parámetros</h4>
-
+  <div class="pendiente">Poner una ristra de parámetros opcionales, algunos de ellos con valores y otros sin nada, en plan desordenado, a ver si se lo traga</div>
+  <div class="pendiente">Cambiar las figuras de abajo</div>
+    
+  <img src="assets/img/typescript/figura13.png" alt="">
+  <caption><strong>Figura 13.</strong> Distintos casos de paso de parámetros</caption>
+  
+  <h4>5.1 Paso de parámetros</h4>
+  
+  <ul>
     <li>Hay diferentes formas de especificar los parámetros de una función, como se observa la figura 13</li>
     <li>En TS no está permitido declarar un parámetro sin tipo (parámetro <i>parametro1</i>), dado que para eso tenemos el tipo <b>any</b> (parámetro <i>parametro2</i>)</li>
     <li>Nótese que en la figura 13, TS nos está advirtiendo de que no está permitida la declaración de parámetros sin tipo (línea punteada debajo de <i>parametro1</i>)</li>
@@ -182,9 +184,11 @@
     <li>Tenemos dos parámetros opcionales, que son <i>parametro4</i>, en el que además se transfiere un vector, y <i>parametro7</i></li>
     <li>Los parámetros <i>parametro5</i> y <i>parametro6</i> tienen asignados un valor por defecto, y dado que su tipo se evidencia con el literal, no es necesario especificarlo explícitamente, como ocurre en el primer caso</li>
     <li>Los parámetros opcionales (<i>parametro4</i> y <i>parametro7</i>) no pueden preceder a parámetros obligatorios, a no ser que estos tengan un valor asignado por defecto, de ahí que no tengamos problemas porque el parámetro <i>parametro4</i> preceda a los dos siguientes</li>
+  </ul>
 
-    <h4>5.2 Invocación</h4>
+  <h4>5.2 Invocación</h4>
 
+  <ul>
     <li>Es una buena práctica que los parámetros opcionales vayan todos al final, uno detrás de otro, dejando los primeros puestos para los obligatorios</li>
 
     <img src="assets/img/typescript/figura14.png" alt="">
@@ -192,17 +196,86 @@
 
     <li>El motivo reside en el momento de la invocación, dado que en la figura 14 podemos ver en la tercera invocación que nos señala un error si dejamos el hueco del parámetro opcional vacío si después vienen otros parámetros, aunque estos tengan un valor por defecto</li>
     <li>En las dos primeras invocaciones hemos prescindido del último parámetro, dado que este es opcional, podemos no enviar nada (primera invocación) o dejarlo en blanco (segunda invocación)</li>
-
-    <h4>5.3 Funciones flecha</h4>
-
-    <div class="pendiente">Terminar sección a partir de las capturas (las tienes en el Gmail)</div>
-    <div class="pendiente mb-40">Mirar vídeo a partir del minuto 7:00</div>
-
-    <ul>
-      <li>Una función flecha es una nueva característica del ES6</li>
-      <li>Normalmente toda función convencional tiene su equivalente en función flecha y viceversa, pero a veces solo la función flecha puede ofrecernos una solución</li>
-    </ul>
-
   </ul>
 
+  <h4>5.3 Funciones flecha</h4>
+  
+  <div class="pendiente">Terminar sección a partir de las capturas (las tienes en el Gmail)</div>
+  <div class="pendiente mb-40">Mirar vídeo a partir del minuto 7:00</div>
+
+  <ul>
+    <li>Una función flecha es una nueva característica del ES6</li>
+    <li>Normalmente toda función convencional tiene su equivalente en función flecha y viceversa, pero a veces solo la función flecha puede ofrecernos una solución</li>
+  </ul>
+
+  <h3 id="desestructuracion">6. Desestructuración</h3>
+  <hr>
+
+  <ul>
+    <li>En este apartado vamos a tratar la desestructuración de objetos y vectores utilizando ejemplos simples</li>
+    <li>No obstante, es posible aplicar esta técnica en objetos o vectores anidados, también en vectores de objetos</li>
+  </ul>
+
+  <h4>6.1 Objetos</h4>
+
+  <ul>
+    <li>Dado un objeto, podemos almacenar el valor de sus campos o propiedades en variables aparte (figura 18)</li>
+    <li>Como vemos, inicializamos un objeto llamado <i>persona</i>, posteriormente declaramos una variable por cada campo (les hemos puesto el mismo nombre) y luego imprimimos cada una de ellas por consola</li>
+
+    <img src="assets/img/typescript/figura18.png" alt="">
+    <caption><strong>Figura 18.</strong> Asignación entre variables y campos de un objeto</caption>
+    
+    <li>No obstante, el código de esta figura puede ser notablemente simplificado mediante desestructuración de objetos, como ilustra la figura 19</li>
+    <li>Como vemos, hemos establecido un mapping entre las variables y los campos del objeto <u>a través de sus identificadores</u></li>
+    
+    <img src="assets/img/typescript/figura19.png" alt="">
+    <caption><strong>Figura 19.</strong> Asignación entre variables y campos de un objeto mediante desestructuración</caption>
+    
+    <li>Esto implica que el orden en el que escribamos las variables dentro de la desestructuración de un objeto es irrelevante</li>
+    <li>Claro, la asignación se rige por los identificadores, no por la posición de las variables dentro de la desestructuración</li>
+    <li>En la figura 20 hemos cambiado el orden de las variables dentro de la desestructuración, pero la asignación se mantiene porque el orden no importa</li>
+    <li>No obstante, de haber cambiado el nombre de algunas de las variables, siendo distinto al campo correspondiente del objeto, daría error, dado que los identificadores deben ser los mismos</li>
+
+    <img src="assets/img/typescript/figura20.png" alt="">
+    <caption><strong>Figura 20.</strong> Cambio del orden de las variables dentro de la desestructuración</caption>
+
+    <li>En la figura 21 hemos especificado el tipo para uno de los campos de la desestructuración, pero como vemos, a la hora de imprimir por consola, daría error</li>
+    <li>¿Por qué? Porque cuando especificamos el tipo en la desestructuración siguiendo esta sintaxis, la palabra reservada <b>string</b> no se interpreta como un tipo, sino como un alias</li>
+
+    <img src="assets/img/typescript/figura21.png" alt="">
+    <caption><strong>Figura 21.</strong> Especificación de tipos en la desestructuración de objetos</caption>
+
+    <li>Esto explica que al imprimir el valor de estas variables por consola tengamos que escribir <b>string</b> en lugar del nombre del campo en cuestión, dado que <b>string</b> es el alias del campo (figura 22)</li>
+    <li>Grosso modo, no debemos especificar el tipo dentro de una desestructuración porque estos serán interpretados como alias, no como tipos</li>
+    <li>TS es capaz de suponer el tipo de una variable en una desestructuración en base a los literales asignados a las propiedades de nuestros objetos con los que se establece el mapping</li>
+
+    <img src="assets/img/typescript/figura22.png" alt="">
+    <caption><strong>Figura 22.</strong> Uso de alias en la desestructuración de objetos</caption>
+  </ul>
+
+  <h4>6.2 Vectores</h4>
+
+  <ul>
+    <li>La desestructuración en vectores sigue un esquema similar al de la figura 19, pero de manera más simple, como ilustra la figura 23</li>
+    
+    <img src="assets/img/typescript/figura23.png" alt="">
+    <caption><strong>Figura 23.</strong> Asignación entre variables y campos de un vector mediante desestructuración</caption>
+    
+    <li>Nótese que al contrario que antes, en este caso <u>el orden sí importa</u>. De haber cambiado los nombres de lugar, el mapping cambiaría porque <u>ahora es secuencial</u> (figura 24)</li>
+    <li>Claro, en un objeto cada campo tenía un identificador propio, pero en un vector solo tenemos literales, de modo que el único modo de establecer un mapping es mediante el orden</li>
+    <li>Por este mismo motivo también es posible escribir identificadores distintos a nuestras variables</li>
+    <li>Por ejemplo, en la figura 24 tenemos una variable de identificador <i>dni</i> que será mappeada con el literal <i>Arquitecto</i> al empatar en posición, aunque no tenga sentido</li>
+
+    <img src="assets/img/typescript/figura24.png" alt="">
+    <caption><strong>Figura 24.</strong> Cambio del orden de las variables dentro de la desestructuración</caption>
+
+    <li>¿Es posible asignar una variable al literal del vector que no fuera la primera posición? En este caso hubiera sido necesario omitir las posiciones anteriores anteriores del vector (figura 25)</li>
+    <li>Como se observa en esta figura, hemos asignado la variable <i>apellidos</i> al literal de la segunda posición del vector, lo que requiere omitir las posiciones anteriores (en este caso, la primera)</li>
+    <li>Nótese que no fue necesario omitir las siguientes posiciones escribiendo comas, no hace falta, solo es necesario hacerlos con las posiciones anteriores, no con las posteriores</li>
+    <li>Tras esto asignamos las variables <i>edad</i> y <i>profesion</i> a los literales de las dos últimas posiciones para ilustrar que es posible hacer esto con más de una variable</li>
+
+    <img src="assets/img/typescript/figura25.png" alt="">
+    <caption><strong>Figura 25.</strong> Omisión de variables en la desestructuración de un vector</caption>
+
+  </ul>
 </div>
