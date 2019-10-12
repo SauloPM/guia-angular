@@ -5,11 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 // Componentes » General
-import { AppComponent       } from './app.component';
-import { InicioComponent    } from './componentes/inicio/inicio.component';
-import { MenuComponent      } from './componentes/menu/menu.component';
+import { AppComponent    } from './app.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
 
 // Componentes » Compartidos
+import { MenuComponent      } from './componentes/shared/menu/menu.component';
+import { IndiceComponent    } from './componentes/shared/indice/indice.component';
 import { TopButtonComponent } from './componentes/shared/top-button/top-button.component';
 
 // Componentes » Directivas
@@ -32,7 +33,6 @@ import { UsuarioPerfilComponent   } from './componentes/usuario/usuario-perfil.c
 import { AuthComponent         } from './componentes/auth/auth.component';
 import { ErrorComponent        } from './componentes/error/error.component';
 import { AmbitoComponent       } from './componentes/ambito/ambito.component';
-import { IndiceComponent       } from './componentes/indice/indice.component';
 import { FicherosComponent     } from './componentes/ficheros/ficheros.component';
 import { ServiciosComponent    } from './componentes/servicios/servicios.component';
 import { CiclosVidaComponent   } from './componentes/ciclos-vida/ciclos-vida.component';
