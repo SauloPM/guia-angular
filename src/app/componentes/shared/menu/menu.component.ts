@@ -20,7 +20,7 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'Ficheros',
+      texto: 'Ficheros y directorios',
       enlace: 'ficheros',
       icono: 'fa-folder',
       tieneSubmenu: false
