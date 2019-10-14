@@ -147,10 +147,25 @@
   <hr>
 
   <ul>
-    <li>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
-    </li>
+    <li>Es posible enviar parámetros desde un componente (componente padre) a otro (componente hijo)</li>
+    <li>El envío de parámetros se efectúa desde el fichero HTML, escribéndolos dentro del selector del componente, siguiendo una sintaxis similar a los atributos de HTML (figura 6.1)</li>
+    <li>Como se observa en la digura 6.1, si el valor del parámetro se obtiene de una variable TS del componente padre, wrappeamos el nombre del atributo con corchetes, </li>
+
+    <img src="assets/img/componentes/figura6-1.png" alt="">
+    <caption><strong>Figura 6.1.</strong> Envío de parámetros desde el componente padre al componente hijo</caption>
+    
+    <li>Para poder recibir y utilizar estos parámetros en el componente hijo, tenemos que importar la clase <b>Input</b> dentro de su fichero TS</li>
+    <li>A partir de ahora podremos crear tantos atributos como deseemos declarando variables dentro de la clase del componente hijo como hemos hecho siempre (figura 6.2)</li>
+    <li>La única diferencia es que debemos escribir el decorador <b>@Input()</b> delante del identificador de la variable para indicarle a Angular que esta recibirá su valor del componente padre</li>
+    <li>No obstante, es posible inicializar un parámetro y darle un valor por defecto en caso de que el componente padre no transfiera nada (no escribiendo el atributo dentro del selector)</li>
+    
+    <img src="assets/img/componentes/figura6-2.png" alt="">
+    <caption><strong>Figura 6.2.</strong> Captación de parámetros desde el componente hijo</caption>
+
+    <li>En el ejemplo ilustrado en la figura 6.2 es necesario utilizar el decorador <b>@Input()</b> incluso para el segundo parámetro, que transfiere un literal</li>
+    <li>Claro, aunque se transfiera un literal, para utilizar el valor del segundo parámetro debemos almacenarlo en una variable TS mediante este decorador</li>
   </ul>
+
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
