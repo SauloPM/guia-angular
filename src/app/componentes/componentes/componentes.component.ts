@@ -5,8 +5,7 @@ import { ItemIndice } from 'src/app/interfaces/item-indice';
 
 @Component({
   selector: 'app-componentes',
-  templateUrl: './componentes.component.html',
-  styles: []
+  templateUrl: './componentes.component.html'
 })
 export class ComponentesComponent {
 
@@ -14,6 +13,10 @@ export class ComponentesComponent {
     {
       texto: 'Introducción',
       enlace: 'introduccion'
+    },
+    {
+      texto: 'Decorador',
+      enlace: 'decorador'
     },
     {
       texto: 'Crear componente',

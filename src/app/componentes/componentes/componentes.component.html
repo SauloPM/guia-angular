@@ -4,19 +4,17 @@
 
   <app-indice [items]="itemsIndice"></app-indice>
   
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
   <h3 id="introduccion">1. Introducción</h3>
   <hr>
 
-  <div class="pendiente mb-40">Poner una captura del decorador con el campo CSS con una ruta, vacío, con código CSS o eliminado (¿también para el HTML o se puede suponer?)</div>
-  
   <ul>
     <li>Grosso modo, un componente es una clase asociada a un decorador que cumple un rol específico dentro de nuestra aplicación</li>
-    <li>Lo habitual es crear un componente para bloques de código de cierta complejidad o que al menos implique una mejora en la modularidad</li>
-    <li>Por ejemplo, podríamos crear un componente para el menú de navegación, otro para el pie de página, otro para la sección de contacto, etc.</li>
-    <li>El decorador de un componente es una extensión de la clase <b>Component</b> que sirve para <u>dotar de identidad única</u> al componente (asignándole un selector, una plantilla HTML y una hoja de estilos CSS)</li>
-    <li><u>Solo el selector es obligatorio</u>, los otros dos campos, así como sus ficheros, se pueden suprimir si no nos hicieran falta</li>
-    <li>Ojo, si eliminásemos cualquiera de estos dos ficheros, habría que eliminar también los campos correspondientes del decorador o dará error</li>
-    <li>Cuando la plantilla HTML o la hoja de estilos CSS sea demasiado simple, es posible escribir su código directamente en el campo correspondiente del decorador en lugar de dedicarle un fichero independiente</li>
+    <li>Lo deseable es crear componentes para bloques de código de cierta complejidad o susceptibles de repetirse en más de una página, como sucede por ejemplo con el menú de navegación o el pie de página, entre otros</li>
+    <li>De esta forma, cada bloque de código afectado por su correspondiente componente <u>queda encapsulado</u>, mejorando además la modularidad de nuestro proyecto</li>
+    <li>Un componente por defecto se compone de un fichero HTML o template, una hoja de estilos, un fichero de pruebas y un fichero TS, donde <u>solo este último es obligatorio</u></li>
+    
   </ul>
 
   <h4>1.1 Componente principal</h4>
@@ -27,83 +25,76 @@
     <li>Se renderiza en el fichero <i>index.html</i> y <u>solo debe renderizarse ahí</u> (no debemos utilizar este selector en ningún otro fichero HTML porque dará error)</li>
   </ul>
 
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="decorador">2. Decorador</h3>
+  <hr>
+
+  <ul>
+      <li>El decorador de un componente es una extensión de la clase <b>Component</b> que sirve para <u>dotar de identidad única</u> al componente</li>
+      <li>Este se compone de una serie de campos que sirven para asignar a un componente un selector, un fichero HTML y una hoja de estilos a través de sus campos (figura 1.1)</li>
+      <li>Como vemos en la figura 1.1, <u>solo el selector es obligatorio</u>, los otros dos campos, así como sus ficheros, se pueden suprimir si no nos hicieran falta</li>
+      <li>Eso sí, si eliminásemos cualquiera de estos dos ficheros, habría que eliminar también el campo o los campos correspondientes del decorador para que no dé error</li>
+  
+      <img src="assets/img/componentes/figura1-1.png" alt="">
+      <caption><strong>Figura 1.1.</strong> Diferentes configuraciones para el decorador de un componente</caption>
+  
+      <li>Cuando la plantilla HTML o la hoja de estilos sea demasiado simple, tenemos la opción de escribir el código directamente dentro el campo correspondiente del decorador en lugar de utilizar un fichero aparte (figura 1.2)</li>
+      <li>Este es el motivo por el que solo el fichero TS es indispensable para trabajar con un componente, dado que el decorador puede albergar el contenido de los otros dos ficheros</li>
+
+      <img src="assets/img/componentes/figura1-2.png" alt="">
+      <caption><strong>Figura 1.2.</strong> Código HTML y hoja de estilos embebidos dentro del campo del decorador de un componente</caption>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
   <h3 id="crear-componente">2. Crear componente</h3>
   <hr>
 
   <ul>
-    <li>Para crear un componente, ejecutamos el comando <b>$ ng g c _Nombre del componente_</b></li>
-    <li>Esto creará el directorio del componente en cuestión dentro del directorio <i>app</i></li>
-    <li>No obstante, es una buena práctica crear todos los componentes dentro de un mismo directorio (por ejemplo, <i>components</i> o <i>componentes</i>) para separarlos de los demás tipos de elementos</li>
-    <li>Para ello, escribiemos el prefijo de ruta se escribe delante del nombre del componente, de la forma <b>$ ng g c componentes/_Nombre del componente_</b></li>
-    <li>Otra práctica muy común es meter dentro de un mismo directorio (por ejemplo, <i>shared</i> o <i>compartido</i>) todos aquellos componentes que vayan a aparecer en otros componentes, como sucede típicamente con el menú de navegación o el pie de página, entre otros</li>
-    <li>En estos casos, el comando resultante sería de la forma <b>$ ng g c componentes/compartido/_Nombre del componente_</b></li>
-    <li>Como vemos, no es necesario escribir la ruta completa, sino la ruta a partir del directorio <i>app</i></li>
-    <li>El directorio de un componente se compone de cuatro ficheros, a saber, un fichero HTML (estructura), un fichero CSS (estilos), un fichero <i>.ts</i> o TypeScript (funcionamiento) y un fichero <i>.spec.ts</i> (para pruebas)</li>
-    <li>De estos cuatro, solo el fichero TypeScript es indispensable, ya que podemos embeber el contenido de los ficheros HTML y CSS dentro del decorador del componente, por no mencionar que el fichero de pruebas carece de sentido si no tenemos pensado implementar ninguna prueba sobre el componente</li>
+    <li>Para crear un componente dentro del directorio <i>app</i>, ejecutamos el comando <b>$ ng generate component _Nombre del componente_</b> o <b>$ ng g c _Nombre del componente_</b></li>
+    <li>Es una buena práctica crear todos los componentes dentro de un mismo directorio (por ejemplo, <i>components</i> o <i>componentes</i>) para separarlos de los demás tipos de elementos</li>
+    <li>Para ello, escribiemos el prefijo de ruta delante del nombre del componente, de la forma <b>$ ng g c componentes/_Nombre del componente_</b></li>
+    <li>Como vemos, no es necesario escribir la ruta completa para el prefijo de ruta, sino la ruta a partir del directorio <i>app</i></li>
+    <li>También es una buena práctica meter dentro de un directorio (por ejemplo, <i>shared</i> o <i>compartido</i>) aquellos componentes compartidos, como el menú de navegación o el pie de página, entre otros</li>
   </ul>
 
-  <h4>2.1 Crear componente sin fichero de pruebas</h4>
+  <h4>2.1 Eliminar uno o más ficheros opcionales</h4>
 
   <ul>
-    <li>Una vez creado el componente podemos sin más eliminar el fichero de pruebas desde el editor de código</li>
-    <li>No obstante, si tenemos claro que no deseamos trabajar con ningún fichero de pruebas antes de crear un componente, se lo podemos indicar a Angular CLI para que este no lo cree a través de un flag</li>
-    <li>Ejecutamos el comando <b>$ ng g c _Nombre del componente_ --spec=false</b></li>
+    <li>Con ficheros opcionales nos referimos a los ficheros que no son indispensables para el correcto funcionamiento de un componente, es decir, todos menos el fichero TS</li>
+    <li>Podemos eliminar cada uno de ellos manualmente, pero si se tratase del fichero HTML o de la hoja de estilos, recuerda actualizar también el campo correspondiente del decorador</li>
+    <li>Con actualizar nos referimos a eliminar la ruta del campo del decorador, ya que apuntaría a un fichero inexistente</li>
+    <li>A partir de aquí podemos dejar ese camp vacío (escribiendo <b>[]</b>), eliminarlo o embeber dentro del código HTML o CSS correspondiente</li>
+    <li>Ojo, el fichero de pruebas (de extensión <i>.spec.ts</i>) se puede eliminar sin más, dado que no le corresponde ningún campo del decorador</li>
   </ul>
 
-  <h4>2.2 Crear compnente sin fichero HTML</h4>
+  <h4>2.2 Omitir la creación de uno o más ficheros secundarios mediante flags</h4>
 
   <ul>
-    <li>Si ya tenemos el componente creado, eliminamos el fichero HTML y el campo HTML del decorador (o cambiar el nombre del campo de <b>templateUrl: ['_Ruta del fichero HTML_']</b> a <b>template: []</b>)</li>
-    <li>En caso de omitirlo a la hora de crear el componente, habría que utilizar el flag <b>-it</b> (de <i>inline template</i>), dado que se nos da la posibilidad de escribir código HTML en línea dentro del campo HTML del decorador del componente</li>
-    <li>De esta forma, el comando queda tal que <b>$ ng g c _Nombre del componente_ -it</b></li>
+    <li>En lugar de eliminar manualmente los ficheros secundarios de un componente, podemos ahorrarnos este proceso diciéndole a Angular CLI que no los cree cuando creamos un componente desde la consola mediante flags</li>
+    <li>Para crear un componente sin fichero HTML ejecutamos el comando <b>$ ng g c _Nombre del componente_ -it</b> (<b>it</b> de inline template)</li>
+    <li>Para crear un componente sin hoja de estilos ejecutamos el comando <b>$ ng g c _Nombre del componente_ -is</b> (<b>is</b> de inline styles)</li>
+    <li>Para crear un componente sin fichero de pruebas ejecutamos el comando <b>$ ng g c _Nombre del componente_ --skipTests</b></li>
+    <li>Para crear un componente sin directorio propio ejecutamos el comando <b>$ ng g c _Nombre del componente_ --flat</b></li>
+    <li>Podemos utilizar más de un flag si quisiéramos, incluso todos ellos, quedando <b>$ ng g c _Nombre del componente_ --flat -it -is --skipTests</b></li>
   </ul>
 
-  <h4>2.3 Crear componente sin fichero CSS</h4>
-
-  <div class="pendiente">Poner una captura del decorador sin hoja de estilos</div>
-  <div class="pendiente mb-40">Poner una captura del decorador con código CSS dentro del campo correspondiente</div>
+  <h4>2.3 Actualizar el fichero <i>app.module.ts</i></h4>
 
   <ul>
-    <li>Este caso no es tan directo como el anterior, dado que no basta con eliminar el fichero CSS</li>
-    <li>En tal caso, también habría que eliminar el campo CSS del decorador del componente o cambiar <b>styleUrls: ['_Ruta del fichero CSS_']</b> por <b>styles: []</b></li>
-    <li>Otra opción es ahorrarnos este procedimiento y omitir este fichero cuando creemos el componente mediante el flag <b>-is</b>, de <i>inline styles</i>, parecido a como hicimos antes</li>
-    <li>Claro, y es que para el campo CSS del decorador del componente no constará la ruta del fichero CSS, sino la posibilidad de escribir directamente código CSS a modo de literal para dicho campo</li>
-    <li>De ahí el nombre del flag, ya que estamos escribiendo estilos en línea, similar a como se hacía en HTML plano</li>
-    <li>De esta forma, el comando queda tal que <b>$ ng g c _Nombre del componente_ -is</b></li>
+    <li>Tras crear un componente es necesario actualizar el fichero <i>app.module.ts</i> para dejar constancia de la existencia de dicho componente dentro del proyecto (esa es la función principal de los módulos)</li>
+    <li>No obstante, Angular CLI actualiza este módulo automáticamente y nos notifica de ello por consola tras completarse la creación (figura 2.1)</li>
+
+    <img src="assets/img/componentes/figura2-1.png" alt="">
+    <caption><strong>Figura 2.1.</strong> Notificación de Angular CLI de que el fichero <i>app.module.ts</i> ha sido actualizado</caption>
+
+    <li>No obstante, si esto no llegara a ocurrir, conviene saber cómo actualizarlo por nosotros mismos</li>
+    <li>Para ello, tenemos que importar el componente y escribir el nombre de su clase dentro del campo <b>declarations</b> del decorador</li>
+    <li>También conviene verificar que la palabra reservada <b>export</b> se encuentre delante del nombre de clase de nuestro componente, justo delante de la palabra reservada <b>class</b></li>
   </ul>
 
-  <h4>2.4 Crear componente sin directorio</h4>
-
-  <ul>
-    <li>Acabamos de ver que un componente se compone típicamente de cuatro ficheros y que estos se almacenan en un directorio, pero esto no tiene por qué ser así</li>
-    <li>Es posible crear estos ficheros sin directorio padre utilizando un flag en el momento de su creación, sin más (normalmente no se considera una buena práctica)</li>
-    <li>Para ello, ejecutamos el comando <b>$ ng g c _Nombre del componente_ --flat</b></li>
-  </ul>
-
-  <h4>2.5 Omitir más de un fichero al crear un componente</h4>
-
-  <ul>
-    <li>Podemos combinar varios flags que acabamos de ver en un mismo comando sin ningún problema (incluso podemos utilizarlos todos)</li>
-    <li>Por ejemplo, el comando <b>$ ng g c _Nombre del componente_ -is --spec=false</b> creará un componente de solo dos ficheros: el fichero HTML y el fichero TypeScript, dado que los otros dos los hemos obviado</li>
-  </ul>
-
-  <h4>2.6 Actualizar el fichero <i>app.module.ts</i></h4>
-
-  <div class="pendiente mb-40">Poner una captura de Angular CLI en la consola indicando la actualización del módulo principal tras crear un componente</div>
-
-  <ul>
-    <li>Tras crear un componente el fichero <i>app.module.ts</i> debiera actualizarse automáticamente (Angular CLI nos lo indica en la consola tras crear un componente mediante una instrucción UPDATE, como se ve en la figura X)</li>
-    <li>No obstante, si esto no llegara a ocurrir, conviene saber cómo actualizarlo por nosotros mismos (creo que en versiones antiguas de Angular se tenía que realizar la actualización a mano)</li>
-    <li>Para ello, tenemos que importar el componente y escribir el nombre de su clase dentro del campo <b>declarations</b> del decorador (figura X)</li>
-    <li>Ojo, este fichero debe actualizarse para dejar constancia de la existencia del nuevo componenete para que este pueda ser utilizado dentro de nuestra aplicación (esa es la principal función de los módulos)</li>
-    <li>Otro detalle a tener en cuenta es verificar que la palabra reservada <b>export</b> se encuentre delante del nombre de clase de nuestro componente, justo delante de la palabra reservada <b>class</b></li>
-  </ul>
-
-  <!-- <img src="assets/img/rutas/figuraX.png" alt=""> -->
-  <!-- <caption><strong>Figura X.</strong> Historial de operaciones del Angular CLI tras crear el componente X</caption> -->
-
-  <!-- <img src="assets/img/rutas/figuraX.png" alt=""> -->
-  <!-- <caption><strong>Figura X.</strong> Cambios sufridos en el fichero <i>app.module.ts</i> tras crear el componente X</caption> -->
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="eliminar-componente">3. Eliminar componente</h3>
   <hr>
