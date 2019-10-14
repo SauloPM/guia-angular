@@ -19,10 +19,14 @@ export class InicioComponent {
       enlace: 'introduccion'
     },
     {
+      texto: 'Angular CLI',
+      enlace: 'angular-cli'
+    },
+    {
       texto: 'jQuery',
       enlace: 'jquery'
     }
-  ]
+  ];
 
   constructor() { }
 

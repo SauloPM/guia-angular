@@ -32,6 +32,8 @@ $lightprimary: rgba(50,55,65,.25);
     padding: 10px 20px;
     margin: 5px 0;
     width: fit-content;
+
+    u { border-color: red }
 }
 
 .consultar {
@@ -41,6 +43,8 @@ $lightprimary: rgba(50,55,65,.25);
     padding: 10px 20px;
     margin: 5px 0;
     width: fit-content;
+
+    u { border-color: rgb(0,130,255) }
 }
 
 .nota {
@@ -50,6 +54,8 @@ $lightprimary: rgba(50,55,65,.25);
     padding: 10px 20px;
     margin: 5px 0;
     width: fit-content;
+
+    u { border-color: #00af4b }
 }
 
 // ─────────────── //

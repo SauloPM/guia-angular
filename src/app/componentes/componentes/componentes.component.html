@@ -146,7 +146,7 @@
   <h3 id="enviar-hijo">6. Enviar parámetros desde un componente padre a un componente hijo</h3>
   <hr>
 
-  <ul>
+   <ul>
     <li>Es posible enviar parámetros desde un componente (componente padre) a otro (componente hijo)</li>
     <li>El envío de parámetros se efectúa desde el fichero HTML, escribéndolos dentro del selector del componente, siguiendo una sintaxis similar a los atributos de HTML (figura 6.1)</li>
     <li>Como se observa en la digura 6.1, si el valor del parámetro se obtiene de una variable TS del componente padre, wrappeamos el nombre del atributo con corchetes, </li>
@@ -154,28 +154,55 @@
     <img src="assets/img/componentes/figura6-1.png" alt="">
     <caption><strong>Figura 6.1.</strong> Envío de parámetros desde el componente padre al componente hijo</caption>
     
-    <li>Para poder recibir y utilizar estos parámetros en el componente hijo, tenemos que importar la clase <b>Input</b> dentro de su fichero TS</li>
+    <li>Para poder recibir y utilizar estos parámetros en el componente hijo, tenemos que importar la clase <b>Input</b> en el fichero TS del mismo</li>
     <li>A partir de ahora podremos crear tantos atributos como deseemos declarando variables dentro de la clase del componente hijo como hemos hecho siempre (figura 6.2)</li>
     <li>La única diferencia es que debemos escribir el decorador <b>@Input()</b> delante del identificador de la variable para indicarle a Angular que esta recibirá su valor del componente padre</li>
     <li>No obstante, es posible inicializar un parámetro y darle un valor por defecto en caso de que el componente padre no transfiera nada (no escribiendo el atributo dentro del selector)</li>
     
     <img src="assets/img/componentes/figura6-2.png" alt="">
-    <caption><strong>Figura 6.2.</strong> Captación de parámetros desde el componente hijo</caption>
+    <caption><strong>Figura 6.2.</strong> Declaración de parámetros de entrada</caption>
 
     <li>En el ejemplo ilustrado en la figura 6.2 es necesario utilizar el decorador <b>@Input()</b> incluso para el segundo parámetro, que transfiere un literal</li>
     <li>Claro, aunque se transfiera un literal, para utilizar el valor del segundo parámetro debemos almacenarlo en una variable TS mediante este decorador</li>
   </ul>
-
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="enviar-padre">7. Enviar parámetros desde un componente hijo a un componente padre</h3>
   <hr>
 
-  <ul>
-    <li>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
-    </li>
-  </ul>
+  <div class="pendiente">Mejorar explicación</div><!-- Vídeo 65 -->
+  <div class="pendiente">Falta explicar cómo el componente padre consigue almacenar el valor devuelto por un parámetro de salida en una variable TS</div>
+  <div class="pendiente">¿Es posible que devuelva <b>undefined</b> al tratarse de un evento <u>posiblemente</u> asíncrono?</div>
+  <div class="pendiente">Comprobar si efectivamente se trata de un evento asíncrono</div>
+  <div class="pendiente mb-40">¿El parámetro de salida debe llamarse igual que la variable TS del componente hijo?</div>
 
+  <ul>
+    <li>Es posible enviar parámetros desde un componente (componente padre) a otro (componente hijo) siguiendo un procedimiento similar al descrito en el anterior apartado</li>
+    <li>Para ello, debemos importar las clases <b>Output</b> y <b>EventEmitter</b> en el fichero TS del componente hijo</li>
+    <li>A la hora de declarar los parámetros de salida dentro del fichero TS del componente hijo, tendremos que utilizar el decorador <b>@Output()</b> antes de escribir el identificador de las variables (figura 7.1)</li>
+    <li>Además, estas variables deben ser de tipo <b>EventEmitter&lt;_Tipo_&gt;</b>, un manejador, indicando entre paréntesis angulares el tipo devuelto por el manejador (por ejemplo, <b>number</b>, <b>string</b>, etc.)</li>
+
+    <img src="assets/img/componentes/figura7-1.png" alt="">
+    <caption><strong>Figura 7.1.</strong> Declaración de parámetros de salida</caption>
+
+    <li>Tras esto, debemos instanciar los parámetros de salida declarados dentro del cuerpo del constructor del componente hijo (figura 7.2)</li>
+
+    <img src="assets/img/componentes/figura7-2.png" alt="">
+    <caption><strong>Figura 7.2.</strong> Instancia de un parámetro de salida</caption>
+
+    <li>Posteriormente creamos un método que dispare este evento devolviendo la información deseada dentro del fichero TS del componente hijo (figura 7.3)</li>
+    <li>Nótese que en el ejemplo ilustrado en la figura 7.3 hemos enviado un literal, pero bien podría haber sido un caso más sofisticado, como la propiedad de un objeto, entre otros</li>
+
+    <img src="assets/img/componentes/figura7-3.png" alt="">
+    <caption><strong>Figura 7.3.</strong> Método que dispara el evento de envío del parámetro de salida al componente padre desde el componente hijo</caption>
+
+    <li>Por último, desde el fichero HTML del componente padre escribimos el selector del componente hijo más el evento que obtiene el parámetro de salida desde el componente hijo (figura 7.4)</li>
+    <li>Nótese que en este caso debemos utilizar paréntesis en lugar de corchetes, dado que deseamos enviar o lanzar un evento al componente hijo para que nos devuelva un valor</li>
+    <li>Nótese además que invocamos el método declarado en la figura 7.3, enviándole un evento como parámetro</li>
+
+    <img src="assets/img/componentes/figura7-4.png" alt="">
+    <caption><strong>Figura 7.4.</strong> Captación de parámetros de salida desde el fichero HTML del componente padre</caption>
+
+  </ul>
 </div>

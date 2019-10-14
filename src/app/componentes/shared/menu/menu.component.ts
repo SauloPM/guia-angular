@@ -26,7 +26,7 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'TypeScript',
+      texto: 'TypeScript ~',
       enlace: 'typescript',
       icono: 'fa-gear',
       tieneSubmenu: false,
@@ -48,37 +48,37 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'Servicios',
+      texto: 'Servicios ×',
       enlace: 'servicios',
       icono: 'fa-paper-plane',
       tieneSubmenu: false
     },
     {
-      texto: 'Directivas',
+      texto: 'Directivas ×',
       enlace: 'directivas',
       icono: 'fa-lightbulb-o',
       tieneSubmenu: false
     },
     {
-      texto: 'Pipes',
+      texto: 'Pipes ×',
       enlace: 'pipes',
       icono: 'fa-wrench',
       tieneSubmenu: false
     },
     {
-      texto: 'Rutas',
+      texto: 'Rutas ~',
       enlace: 'rutas',
       icono: 'fa-link',
       tieneSubmenu: false
     },
     {
-      texto: 'Ciclos de vida',
+      texto: 'Ciclos de vida ×',
       enlace: 'ciclos-de-vida',
       icono: 'fa-leaf',
       tieneSubmenu: false
     },
     {
-      texto: 'Login y registro',
+      texto: 'Login y registro ×',
       enlace: 'auth',
       icono: 'fa-lock',
       tieneSubmenu: false
@@ -90,13 +90,13 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'Depuración',
+      texto: 'Depuración ×',
       enlace: 'depuracion',
       icono: 'fa-search',
       tieneSubmenu: false
     },
     {
-      texto: 'Aplicaciones',
+      texto: 'Aplicaciones ×',
       enlace: 'aplicaciones',
       icono: 'fa-coffee',
       tieneSubmenu: true

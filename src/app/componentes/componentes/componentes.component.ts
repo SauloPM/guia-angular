@@ -42,7 +42,7 @@ export class ComponentesComponent {
       texto: 'Enviar parámetros desde un componente hijo a un componente padre',
       enlace: 'enviar-padre'
     }
-  ]
+  ];
 
   constructor() { }
 

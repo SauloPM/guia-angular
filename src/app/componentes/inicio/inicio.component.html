@@ -4,6 +4,8 @@
 
   <app-indice [items]="itemsIndice"></app-indice>
 
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  
   <h3 id="proposito">1. Propósito</h3>
   <hr>
 
@@ -11,6 +13,8 @@
     <li>Esta web tiene como objetivo ilustrar el funcionamiento de Angular de forma sencilla, breve y directa</li>
     <li>Me he formado en el funcionamiento de este framework durante un largo periodo de tiempo y he creado estas notas por si le pudieran servir a alguien basándome en diferente fuentes</li>
   </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="introduccion">2. Introducción</h3>
   <hr>
@@ -22,10 +26,21 @@
     <li>Ofrece numerosas prestaciones adicionales con las que JS no cuenta, por lo que se conoce como un superconjunto de JS, como tipado de variables, notificación de errores previa al periodo de ejecución, etc.</li>
   </ul>
 
-  <h3 id="jquery">3. jQuery</h3>
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="angular-cli">3. Angular CLI</h3>
   <hr>
 
-  <h4>3.1 Instalar jQuery</h4>
+  <ul>
+    <li>Angular CLI es una línea de comandos que nos permite gestionar proyectos de Angular desde consola</li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="jquery">4. jQuery</h3>
+  <hr>
+
+  <h4>4.1 Instalar jQuery</h4>
 
   <ul>
     <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>& npm install jquery --save</b> para instalar jQuery dentro del directorio <i>node_modules</i></li>
@@ -36,7 +51,7 @@
     <li>A partir de ahora podremos utilizar jQuery dentro de cualquier hook con total normalidad como hemos hecho siempre</li>
   </ul>
 
-  <h4>3.2 Selector <b>$(this)</b></h4>
+  <h4>4.2 Selector <b>$(this)</b></h4>
 
   <ul>
     <li>Utilizar <b>$(this)</b> puede dar problemas, ya que en TS no apunta al elemento HTML que disparó el evento, como solía suceder típicamente cuando programábamos sin utilizar Angular</li>
@@ -46,7 +61,7 @@
     <li>De esta forma la instrucción de ejemplo <b>$(this).attr("href")</b> y la instrucción <b>$(event.currentTarget).attr("href")</b> son equivalentes, salvo que la primera puede dar fallos (ver figura 1)</li>
   </ul>
 
-  <h4>3.3 Navegación suavizada entre apartados dentro de una misma página</h4>
+  <h4>4.3 Navegación suavizada entre apartados dentro de una misma página</h4>
 
   <ul>
     <li>Escribimos la instrucción <b>declare var $: any;</b> delante del decorador del componente correspondiente</li>
@@ -59,7 +74,7 @@
 
   </ul>
 
-  <h4>3.4 Funciones flecha</h4>
+  <h4>4.4 Funciones flecha</h4>
 
   <ul>
     <li>Es posible simplifcar la instrucción del manejador de un evento asociado a un elemento HTML gracias a las funciones flecha</li>
