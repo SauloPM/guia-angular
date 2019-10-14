@@ -36,11 +36,11 @@ export class ComponentesComponent {
     },
     {
       texto: 'Enviar parámetros desde un componente padre a un componente hijo',
-      enlace: 'enviar-hijo'
+      enlace: 'enviar-parametro'
     },
     {
-      texto: 'Enviar parámetros desde un componente hijo a un componente padre',
-      enlace: 'enviar-padre'
+      texto: 'Enviar evento desde un componente hijo a un componente padre',
+      enlace: 'enviar-evento'
     }
   ];
 

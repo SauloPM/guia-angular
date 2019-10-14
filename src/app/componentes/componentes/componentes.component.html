@@ -143,7 +143,7 @@
   
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-  <h3 id="enviar-hijo">6. Enviar parámetros desde un componente padre a un componente hijo</h3>
+  <h3 id="enviar-parametro">6. Enviar parámetros desde un componente padre a un componente hijo</h3>
   <hr>
 
    <ul>
@@ -168,38 +168,44 @@
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-  <h3 id="enviar-padre">7. Enviar parámetros desde un componente hijo a un componente padre</h3>
+  <h3 id="enviar-evento">7. Enviar evento desde un componente hijo a un componente padre</h3>
   <hr>
 
-  <div class="pendiente">Mejorar explicación</div><!-- Vídeo 65 -->
-  <div class="pendiente">Falta explicar cómo el componente padre consigue almacenar el valor devuelto por un parámetro de salida en una variable TS</div>
-  <div class="pendiente">¿Es posible que devuelva <b>undefined</b> al tratarse de un evento <u>posiblemente</u> asíncrono?</div>
-  <div class="pendiente">Comprobar si efectivamente se trata de un evento asíncrono</div>
-  <div class="pendiente mb-40">¿El parámetro de salida debe llamarse igual que la variable TS del componente hijo?</div>
+  <div class="nota">¿Cuándo tiene sentido utilizar esta herramienta? Supón que tienes un grid de tarjetas con resúmenes de noticias (como el típico blog de WordPress) y que deseas hacer clic en una de ellas para abrir su ficha en una página independiente. Puedes hacerlo trabajando con las rutas, como veremos en el apartado de rutas, o puedes hacerlo de esta forma</div>
+  <div class="nota mb-40">Por lo general, es conveniente utilizar esta técnica cuando tenemos un componente hijo repetido dentro de un componente padre y deseamos obtener información el componente hijo con el que deseemos interactuar sin confundirlo con el resto de sus hermanos cuando trabajar con rutas no es viable (por ejemplo, si al interactuar con el componente hijo no se abre ninguna página nueva)</div>
 
   <ul>
-    <li>Es posible enviar parámetros desde un componente (componente padre) a otro (componente hijo) siguiendo un procedimiento similar al descrito en el anterior apartado</li>
-    <li>Para ello, debemos importar las clases <b>Output</b> y <b>EventEmitter</b> en el fichero TS del componente hijo</li>
-    <li>A la hora de declarar los parámetros de salida dentro del fichero TS del componente hijo, tendremos que utilizar el decorador <b>@Output()</b> antes de escribir el identificador de las variables (figura 7.1)</li>
-    <li>Además, estas variables deben ser de tipo <b>EventEmitter&lt;_Tipo_&gt;</b>, un manejador, indicando entre paréntesis angulares el tipo devuelto por el manejador (por ejemplo, <b>number</b>, <b>string</b>, etc.)</li>
+    <li>Es posible enviar información al revés que como vimos en el apartado anterior, esto es, desde un componente padre a un componente hijo</li>
+    <li>Esta comunicación, como veremos a continuación, no se va a establecer mediante el envío de parámetors, sino a través de eventos</li>
+  </ul>
+
+  <h4>7.1 Modificaciones en el fichero TS del componente hijo</h4>
+
+  <ul>
+    <li>Importamos las clases <b>Output</b> y <b>EventEmitter</b></li>
+    <li>Para declarar el evento que deseemos que el componente padre esté escuchando, debemos utilizar el decorador <b>@Output()</b> antes de escribir el identificador del mismo (figura 7.1)</li>
+    <li>Este evento, que no es más que un observable, debe ser de tipo <b>EventEmitter&lt;_Tipo_&gt;</b>, indicando entre paréntesis angulares el tipo devuelto por el manejador</li>
+    <li>Tiene sentido, dado que vamos a implementar <u>un evento que emita información</u> al componente padre, teniendo que indicar el tipo de la información que deseamos enviar</li>
 
     <img src="assets/img/componentes/figura7-1.png" alt="">
-    <caption><strong>Figura 7.1.</strong> Declaración de parámetros de salida</caption>
+    <caption><strong>Figura 7.1.</strong> Declaración del observable</caption>
 
-    <li>Tras esto, debemos instanciar los parámetros de salida declarados dentro del cuerpo del constructor del componente hijo (figura 7.2)</li>
+    <li>Tras esto, debemos instanciar este nuevo evento que acabamos de crear dentro del cuerpo del constructor (figura 7.2)</li>
 
     <img src="assets/img/componentes/figura7-2.png" alt="">
-    <caption><strong>Figura 7.2.</strong> Instancia de un parámetro de salida</caption>
+    <caption><strong>Figura 7.2.</strong> Instancia del observable</caption>
 
-    <li>Posteriormente creamos un método que dispare este evento devolviendo la información deseada dentro del fichero TS del componente hijo (figura 7.3)</li>
-    <li>Nótese que en el ejemplo ilustrado en la figura 7.3 hemos enviado un literal, pero bien podría haber sido un caso más sofisticado, como la propiedad de un objeto, entre otros</li>
+    <li>Posteriormente creamos, un método que dispare este evento devolviendo la información deseada (figura 7.3)</li>
+    <li>Nótese que en el ejemplo ilustrado en la figura 7.3 hemos enviado un literal, pero bien podría haber sido un caso más sofisticado, como una expresión, la propiedad de un objeto, etc.</li>
 
     <img src="assets/img/componentes/figura7-3.png" alt="">
-    <caption><strong>Figura 7.3.</strong> Método que dispara el evento de envío del parámetro de salida al componente padre desde el componente hijo</caption>
+    <caption><strong>Figura 7.3.</strong> Método que dispara el evento con la información que se desea transferir</caption>
 
-    <li>Por último, desde el fichero HTML del componente padre escribimos el selector del componente hijo más el evento que obtiene el parámetro de salida desde el componente hijo (figura 7.4)</li>
-    <li>Nótese que en este caso debemos utilizar paréntesis en lugar de corchetes, dado que deseamos enviar o lanzar un evento al componente hijo para que nos devuelva un valor</li>
-    <li>Nótese además que invocamos el método declarado en la figura 7.3, enviándole un evento como parámetro</li>
+    <h4>7.2 Modificaciones en el fichero HTML del componente padre</h4>
+    
+    <li>Por último, escribimos el selector del componente hijo con el identificador del observable a modo de parámetro entre paréntesis (figura 7.4)</li>
+    <li>Claro, utilizamos paréntesis en lugar de corchetes, dado que <u>deseamos enviar o lanzar un evento</u> al componente hijo para que nos devuelva información</li>
+    <li>Nótese que debemos declarar el método declarado en el componente hijo (figura 7.3) que emitía el evento en cuestión, enviándole un evento como parámetro (figura 7.4)</li>
 
     <img src="assets/img/componentes/figura7-4.png" alt="">
     <caption><strong>Figura 7.4.</strong> Captación de parámetros de salida desde el fichero HTML del componente padre</caption>
