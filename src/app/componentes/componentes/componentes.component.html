@@ -65,7 +65,7 @@
     <li>Con ficheros opcionales nos referimos a los ficheros que no son indispensables para el correcto funcionamiento de un componente, es decir, todos menos el fichero TS</li>
     <li>Podemos eliminar cada uno de ellos manualmente, pero si se tratase del fichero HTML o de la hoja de estilos, recuerda actualizar también el campo correspondiente del decorador</li>
     <li>Con actualizar nos referimos a eliminar la ruta del campo del decorador, ya que apuntaría a un fichero inexistente</li>
-    <li>A partir de aquí podemos dejar ese camp vacío (escribiendo <b>[]</b>), eliminarlo o embeber dentro del código HTML o CSS correspondiente</li>
+    <li>A partir de aquí podemos dejar ese camp vacío (escribiendo <b>[&nbsp;]</b>), eliminarlo o embeber dentro del código HTML o CSS correspondiente</li>
     <li>Ojo, el fichero de pruebas (de extensión <i>.spec.ts</i>) se puede eliminar sin más, dado que no le corresponde ningún campo del decorador</li>
   </ul>
 
@@ -100,28 +100,48 @@
   <hr>
 
   <ul>
-    <li>Para eliminar un componente debemos eliminar su directorio, así como todos los ficheros que pudiera contener</li>
-    <li>Tras esto, actualizamos el fichero <i>app.module.ts</i>, eliminando la instrucción <b>import</b> asociada, así como el nombre de clase del componente del campo <b>declarations</b> del decorador</li>
+    <li>Primero debemos eliminar su directorio, así como todos los ficheros que pudiera contener</li>
+    <li>Tras esto, actualizamos el fichero <i>app.module.ts</i>, eliminando la instrucción <b>import</b> asociada, así como el nombre de clase del componente dentro campo <b>declarations</b> del decorador</li>
     <li>Finalmente, actualizamos el fichero <i>app.routes.ts</i>, eliminando la instrucción <b>import</b> asociada, así como el mapping entre la ruta y el componente, en caso de existir, dentro de la constante <b>APP_ROUTES</b></li>
   </ul>
 
-  <h3 id="editar-componente">4. Editar componente</h3>
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="modificar-componente">4. Modificar componente</h3>
   <hr>
 
+  <h4>4.1 Cambiar ubicación de un componente</h4>
+
   <ul>
-    <li>Con editar nos referimos a cambiar el nombre o la ubicación de un componente</li>
-    <li>Podemos cambiar el nombre o la ubicación de un componente desde el editor de código, pero luego debemos cambiar la ruta de la importación en el fichero <i>app.module.ts</i></li>
-    <li>Podemos cambiar el identificador de la clase de un componente, pero luego debemos cambiar el identificador de dicha clase en la importación y en el campos <b>declarations</b> en el fichero <i>app.module.ts</i></li>
+    <li>Para cambiar un componente de sitio, podemos utilizar la consola, el editor de código (recomendado) o el explorador de archivos</li>
+    <li>Tras esto, actualizamos los ficheros <i>app.module.ts</i> y <i>app.routes.ts</i> manualmente, concretamente las instrucciones <b>import</b></li>
   </ul>
+
+  <h4>4.2 Cambiar nombre de clase de un componente</h4>
+
+  <ul>
+    <li>Actualizamos los ficheros <i>app.module.ts</i> y <i>app.routes.ts</i> manualmente, concretamente las instrucciones <b>import</b></li>
+    <li>Además, tendremos que actualizar esta en el campo <b>declarations</b> del decorador del fichero <i>app.module.ts</i> y el mapping del fichero <i>app.routes.ts</i></li>
+  </ul>
+
+  <h4>4.3 Cambiar selector de un componente</h4>
+
+  <ul>
+    <li>Para cambiar el selector de un componente, debemos modificar el literal asociado al campo <b>selector</b> del decorador</li>
+    <li>Tras esto, actualizamos el selector en cada uno de los ficheros HTML donde hayamos renderizado el componente, sin tocar los ficheros <i>app.module.ts</i> ni <i>app.routes.ts</i></li>
+    <li>Nótese que Angular pone el prefijo <i>app</i> en el selector del componente automáticamente, pero podemos quitarlo y poner el identificador que queramos</li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="renderizar-componente">5. Renderizar componente</h3>
   <hr>
 
   <ul>
-    <li>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
-    </li>
+    <li>Para renderizar un componente basta con escribir su selector dentro del fichero HTML de uno o más componentes</li>
   </ul>
+  
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="enviar-hijo">6. Enviar parámetros desde un componente padre a un componente hijo</h3>
   <hr>
@@ -131,6 +151,8 @@
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto voluptatibus accusamus adipisci quibusdam totam placeat esse molestiae mollitia iure consectetur iste, sunt similique debitis eveniet neque commodi nisi illo beatae.
     </li>
   </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
   <h3 id="enviar-padre">7. Enviar parámetros desde un componente hijo a un componente padre</h3>
   <hr>

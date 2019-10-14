@@ -27,8 +27,8 @@ export class ComponentesComponent {
       enlace: 'eliminar-componente'
     },
     {
-      texto: 'Editar componente',
-      enlace: 'editar-componente'
+      texto: 'Modificar componente',
+      enlace: 'modificar-componente'
     },
     {
       texto: 'Renderizar componente',
