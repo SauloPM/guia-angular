@@ -2,53 +2,122 @@
 
   <h2>Servicios</h2>
 
-  <h3>Funcionamiento de un serivicio</h3>
+  <app-indice [items]="itemsIndice"></app-indice>
+  
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="introduccion">1. Introducción</h3>
   <hr>
 
   <ul>
-    <li>Texto</li>
+    <li>Un servicio es un elemento que provee de datos a nuestros componentes</li>
+    <li>Es recomendable utilizar un servicio cuando deseamos compartir información entre componentes, cuando varios componentes requieran de datos provenientes de la misma fuente de información (por ejemplo, una API REST) o cuando la información manejada sea de la misma temática (por ejemplo, un servicio que provea todos los datos de los usuarios registrados en el sistema)</li>
+    <li>Esta información puede provenir del propio proyecto (por ejemplo, un fichero JSON almacenado en el directorio <i>assets</i>) o de un servidor remoto, lo que implicaría utilizar los métodos HTTP, como veremos a continuación</li>
+    <li>De esta forma podemos centralizar la transferencia de datos en lugar de que cada componente se abastezca por su separado, dado que esto podría generar redundancia debido a la posibilidad de que haya más de un componente utilizando la misma información, lo que resulta una mal práctica y dificulta las actualizaciones</li>
+    <li>No obstante, si se tratase de un caso aislado en el que un componente requiriese de información, es posible que utilizar un servicio resulte excesivo y sea más conveniente almacenar la información en una variable</li>
+    <li>Gracias a los servicios podremos interactuar con BD y realizar un CRUD desde Angular</li>
+    <li>Recuerda que Angular no permite operar directamente con BD debido a que es un framework de frontend, pero sí que puede interactuar con una aplicación de backend que sí pueda operar con BD comunicándose con esta utilizando servicios a modo de intermediarios (servicios HTTP, concretamente)</li>
+    <li>Un servicio por defecto se compone de un fichero de pruebas y un fichero TS, donde <u>solo este último es obligatorio</u></li>
   </ul>
 
-  <h3>Programación reactiva</h3>
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="crear-servicio">2. Crear servicio</h3>
   <hr>
 
   <ul>
-    <li>Texto</li>
+    <li>Para crear un servicio dentro del directorio <i>app</i>, ejecutamos el comando <b>$ ng generate service _Nombre del servicio</b> o <b>$ ng g s _Nombre del servicio</b></li>
+    <li>Es una buena práctica crear todos los servicios dentro de un mismo directorio (por ejemplo, <i>services</i> o <i>servicios</i>) para separarlos de los demás tipos de elementos</li>
+    <li>Para ello, escribiemos el prefijo de ruta delante del nombre del componente, de la forma <b>$ ng g s servicios/_Nombre del servicio</b></li>
+    <li>Como vemos, no es necesario escribir la ruta completa para el prefijo de ruta, sino la ruta a partir del directorio <i>app</i></li>
+  </ul>
+  
+  <h4>2.1 Actualizar fichero <i>app.module.ts</i></h4>
+  
+  <ul>
+    <li>Los servicios cuentan con el decorador <b>@Injectable(&#123; providedIn: 'root' &#125;)</b>, lo que nos libra de modificar el fichero <i>app.module.ts</i> tras su creación, al contrario que como ocurría con los componentes</li>
+    <li>Esto implica que en caso de cambiar la ubicación de un servicio dentro del directorio <i>app</i>, no haría falta actualizar el fichero <i>app.module.ts</i></li>
+    <li>No obstante, en versiones antiguas de Angular, era necesario dejar constancia en el fichero <i>app.module.ts</i> manualmente</li>
+    <li>Para ello, tendríamos que importar el nombre de clase de nuestro servicio e incorporándolo dentro del campo <b>providers</b> del decorador</li>
   </ul>
 
-  <h3>Operadorex RXJS</h3>
-  <hr>
+  <h4>2.2 Eliminar fichero de pruebas</h4>
 
   <ul>
-    <li>Texto</li>
+    <li>El fichero de pruebas (de extensión <i>.spec.ts</i>) se puede eliminar sin más</li>
   </ul>
 
-  <h3>Observable</h3>
-  <hr>
+  <h4>2.3 Omitir la creación del fichero de pruebas mediante flags</h4>
 
   <ul>
-    <li>Texto</li>
+    <li>En lugar de eliminar manualmente el fichero de pruebas de un componente, podemos ahorrarnos este proceso diciéndole a Angular CLI que no los cree cuando creamos un componente desde la consola mediante flags</li>
+    <li>Para crear un servicio sin fichero de pruebas, ejecutamos el comando <b>$ ng g s _Nombre del servicio --skipTests</b></li>
   </ul>
 
-  <h3>Suscripción</h3>
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="configurar-servicio">3. Configurar servicio</h3>
   <hr>
 
+  <h4>3.1 Configurar servicio local</h4>
+
   <ul>
-    <li>Texto</li>
+    <li>Un servicio local provee de datos a partir de información almacenada dentro de nuestro proyecto</li>
+    <li>Por ejemplo, es posible que la información sea un literal almacenado en una variable dentro del fichero TS del servicio, o que sea un fichero JSON dentro del directorio <i>assets</i>, entre otros</li>
+    <li>En cualquier caso, solo sería necesario alojar la información en una variable y devolverlo en un método auxiliar creado por nosotros (figura 3.1)</li>
+
+    <img src="assets/img/servicios/figura3-1.png" alt="">
+    <caption><strong>Figura 3.1.</strong> Configuración de un servicio local</caption>
   </ul>
 
-  <h3>Promesas</h3>
+  <h4>3.2 Configurar servicio HTTP</h4>
+
+  <ul>
+    <li>Un servicio HTTP provee de datos a partir de información almacenada en un servidor remoto, lo que hace necesario obtener los datos mediante HTTP</li>
+    <li>Dado que la información se encuentra fuera de nuestro proyecto, en un servidor remoto, cuando solicitamos la información no podemos saber en qué momento va a llegar</li>
+    <li>Es por ello que necesitamos utilizar un observable que esté pendiente de la respuesta del servidor con la información necesaria, dado que es un evento asíncrono</li>
+    <li>Los observables no son necesarios en los servicios locales porque ya contamos con la información correspondiente: la obtención de información en este caso es un evento síncrono e inmediato</li>
+
+    <img src="assets/img/servicios/figura3-2.png" alt="">
+    <caption><strong>Figura 3.2.</strong> Inyección de la clase <b>HttpClient</b> dentro del constructor del servicio</caption>
+
+    <li>Dentro del fichero TS del servicio importamos la clase <b>HttpClient</b> y la inyectamos en el constructor con el identificador que queramos (en el ejemplo de la figura 6.2 el identificador es <i>http</i>)</li>
+    <li>De esta forma dispondremos de todos los métodos de esta clase dentro de la variable <i>http</i>, continuando con el ejemplo de la figura 3.2, como el método <b>.get()</b>, correspondiente al método GET de HTTP</li>
+
+    <img src="assets/img/servicios/figura3-3.png" alt="">
+    <caption><strong>Figura 3.3.</strong> Devolución de observable</caption>
+
+    <li>Creamos un método auxiliar que devuelva un observable que esté pendiente de la información devuelta desde la aplicación remota mediante una URL</li>
+    <li>Un observable per se no devuelve información, eso ocurre cuando nos suscribamos a él</li>
+    <li>En la figura 3.3 vemos el código análogo al visto en la figura 3.1 para un servicio local</li>
+  </ul>
+  
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  
+  <h3 id="consumir-servicio">4. Consumir servicio</h3>
   <hr>
 
-  <ul>
-    <li>Texto</li>
-  </ul>
+  <div class="pendiente">Decir qué hay que hacer para evitar que devuelve undefined</div>
 
-  <h3>Inyección</h3>
-  <hr>
+  <h4>4.1 Consumir servicio local</h4>
 
   <ul>
-    <li>Texto</li>
+    <li>Cuando inyectamos el servicio en una variable, esta dispone de los métodos del servicio, como <b>getSaludo()</b></li>
   </ul>
 
+  <h4>4.2 Consumir servicio HTTP</h4>
+
+  <ul>
+    <img src="assets/img/servicios/figura3-2.png" alt="">
+    <caption><strong>Figura 3.2.</strong> Inyección de la clase <b>HttpClient</b> dentro del constructor del servicio</caption>
+
+    <li>Dentro del fichero TS del servicio importamos la clase <b>HttpClient</b> y la inyectamos en el constructor con el identificador que queramos (en el ejemplo de la figura 6.2 el identificador es <i>http</i>)</li>
+    <li>Dentro del método <b>ngOnInit()</b></li>
+  </ul>
+
+  <p>{{ informacion }}</p>
+
+  <ul>
+    <li>Un servicio HTTP provee los datos a partir de información almacenada en un servidor remoto, lo que hace necesario obtener los datos mediante HTTP</li>
+  </ul>
 </div>

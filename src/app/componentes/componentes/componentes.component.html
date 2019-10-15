@@ -65,7 +65,7 @@
     <li>Con ficheros opcionales nos referimos a los ficheros que no son indispensables para el correcto funcionamiento de un componente, es decir, todos menos el fichero TS</li>
     <li>Podemos eliminar cada uno de ellos manualmente, pero si se tratase del fichero HTML o de la hoja de estilos, recuerda actualizar también el campo correspondiente del decorador</li>
     <li>Con actualizar nos referimos a eliminar la ruta del campo del decorador, ya que apuntaría a un fichero inexistente</li>
-    <li>A partir de aquí podemos dejar ese camp vacío (escribiendo <b>[&nbsp;]</b>), eliminarlo o embeber dentro del código HTML o CSS correspondiente</li>
+    <li>A partir de aquí podemos dejar ese campo vacío (escribiendo <b>[&nbsp;]</b>), eliminarlo o embeber dentro del código HTML o CSS correspondiente</li>
     <li>Ojo, el fichero de pruebas (de extensión <i>.spec.ts</i>) se puede eliminar sin más, dado que no le corresponde ningún campo del decorador</li>
   </ul>
 
@@ -73,10 +73,10 @@
 
   <ul>
     <li>En lugar de eliminar manualmente los ficheros secundarios de un componente, podemos ahorrarnos este proceso diciéndole a Angular CLI que no los cree cuando creamos un componente desde la consola mediante flags</li>
-    <li>Para crear un componente sin fichero HTML ejecutamos el comando <b>$ ng g c _Nombre del componente_ -it</b> (<b>it</b> de inline template)</li>
-    <li>Para crear un componente sin hoja de estilos ejecutamos el comando <b>$ ng g c _Nombre del componente_ -is</b> (<b>is</b> de inline styles)</li>
-    <li>Para crear un componente sin fichero de pruebas ejecutamos el comando <b>$ ng g c _Nombre del componente_ --skipTests</b></li>
-    <li>Para crear un componente sin directorio propio ejecutamos el comando <b>$ ng g c _Nombre del componente_ --flat</b></li>
+    <li>Para crear un componente sin fichero HTML, ejecutamos el comando <b>$ ng g c _Nombre del componente_ -it</b> (<b>it</b> de inline template)</li>
+    <li>Para crear un componente sin hoja de estilos, ejecutamos el comando <b>$ ng g c _Nombre del componente_ -is</b> (<b>is</b> de inline styles)</li>
+    <li>Para crear un componente sin fichero de pruebas, ejecutamos el comando <b>$ ng g c _Nombre del componente_ --skipTests</b></li>
+    <li>Para crear un componente sin directorio propio, ejecutamos el comando <b>$ ng g c _Nombre del componente_ --flat</b></li>
     <li>Podemos utilizar más de un flag si quisiéramos, incluso todos ellos, quedando <b>$ ng g c _Nombre del componente_ --flat -it -is --skipTests</b></li>
   </ul>
 
@@ -149,7 +149,7 @@
    <ul>
     <li>Es posible enviar parámetros desde un componente (componente padre) a otro (componente hijo)</li>
     <li>El envío de parámetros se efectúa desde el fichero HTML, escribéndolos dentro del selector del componente, siguiendo una sintaxis similar a los atributos de HTML (figura 6.1)</li>
-    <li>Como se observa en la digura 6.1, si el valor del parámetro se obtiene de una variable TS del componente padre, wrappeamos el nombre del atributo con corchetes, </li>
+    <li>Como se observa en la digura 6.1, si el valor del parámetro se obtiene de una variable TS del componente padre, wrappeamos el nombre del atributo con corchetes, no siendo necesario en caso de transferir un literal</li>
 
     <img src="assets/img/componentes/figura6-1.png" alt="">
     <caption><strong>Figura 6.1.</strong> Envío de parámetros desde el componente padre al componente hijo</caption>
@@ -164,6 +164,14 @@
 
     <li>En el ejemplo ilustrado en la figura 6.2 es necesario utilizar el decorador <b>@Input()</b> incluso para el segundo parámetro, que transfiere un literal</li>
     <li>Claro, aunque se transfiera un literal, para utilizar el valor del segundo parámetro debemos almacenarlo en una variable TS mediante este decorador</li>
+
+    <img src="assets/img/componentes/figura6-3.png" alt="">
+    <caption><strong>Figura 6.3.</strong> Mapping entre parámetro y variable cuando los identificadores no coinciden</caption>
+
+    <li>Como ilustra la figura 6.2, el nombre del atributo y el nombre de la variable coinciden, pero no es obligatorio</li>
+    <li>Es posible asignarle un identificador diferente a la variable, en cuyo caso debemos escribir el identificador del atributo dentro del decorador para que sepa con qué variable se va realizar el mapeo (figura 6.3)</li>
+    <li>No obstante, no se considera una buena práctica (de hecho, es posible que TS dé error), ya que estamos utilizando dos identificadores distintos para hacer referencia a lo mismo, lo que puede resultar confuso</li>
+
   </ul>
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
@@ -171,15 +179,27 @@
   <h3 id="enviar-evento">7. Enviar evento desde un componente hijo a un componente padre</h3>
   <hr>
 
-  <div class="nota">¿Cuándo tiene sentido utilizar esta herramienta? Supón que tienes un grid de tarjetas con resúmenes de noticias (como el típico blog de WordPress) y que deseas hacer clic en una de ellas para abrir su ficha en una página independiente. Puedes hacerlo trabajando con las rutas, como veremos en el apartado de rutas, o puedes hacerlo de esta forma</div>
-  <div class="nota mb-40">Por lo general, es conveniente utilizar esta técnica cuando tenemos un componente hijo repetido dentro de un componente padre y deseamos obtener información el componente hijo con el que deseemos interactuar sin confundirlo con el resto de sus hermanos cuando trabajar con rutas no es viable (por ejemplo, si al interactuar con el componente hijo no se abre ninguna página nueva)</div>
+  <div class="consultar">Consultar <a href="https://www.youtube.com/watch?v=WhUIY_458Yk"       target="_blank">enlace</a></div>
+  <div class="consultar mb-40">Consultar <a href="https://www.youtube.com/watch?v=hNLDU9B3Ssk" target="_blank">enlace</a></div>
 
   <ul>
     <li>Es posible enviar información al revés que como vimos en el apartado anterior, esto es, desde un componente padre a un componente hijo</li>
     <li>Esta comunicación, como veremos a continuación, no se va a establecer mediante el envío de parámetors, sino a través de eventos</li>
+    <li>Utilizamos esta técnica cuando tenemos varios componentes hijos repetidos (por ejemplo, debido a la directiva <b>*ngFor</b>) y deseamos interactuar con uno de ellos y saber de todos con cuál estamos interactuando</li>
   </ul>
 
-  <h4>7.1 Modificaciones en el fichero TS del componente hijo</h4>
+  <h4>7.1 Ejemplos ilustrativos</h4>
+  
+  <ul>
+    <li>Supongamos que tenemos un grid de noticias que se renderiza en el componente padre en la que cada una es un componente (el componente hijo) con un identificador</li>
+    <li>Si el usuario hiciera clic en una noticia cualquiera, deseamos que este acceda a una página con toda la información de la noticia seleccionada</li>
+    <li>Para saber en qué tarjeta hemos hecho clic para poder renderizar la información correspondiente, necesitamos su identificador, lo que se puede conseguir gracias a esta técnica</li>
+    <li>No obstante, esto mismo se puede conseguir trabajando con rutas, embebiendo el identificador del elemento seleccionado como parámetro de la URL</li>
+    <li>Supongamos ahora un panel de administración con un listado de usuarios a modo de tabla, en la que para cada fila tenemos un botón para eliminar para dar de baja al usuario correspondiente</li>
+    <li>Cuando hagamos clic en un botón cualquiera, ¿cómo podemos saber qué usuario fue el que seleccionamos? Pues a partir de esta técnica</li>
+  </ul>
+
+  <h4>7.2 Modificaciones en el fichero TS del componente hijo</h4>
 
   <ul>
     <li>Importamos las clases <b>Output</b> y <b>EventEmitter</b></li>
@@ -201,7 +221,7 @@
     <img src="assets/img/componentes/figura7-3.png" alt="">
     <caption><strong>Figura 7.3.</strong> Método que dispara el evento con la información que se desea transferir</caption>
 
-    <h4>7.2 Modificaciones en el fichero HTML del componente padre</h4>
+    <h4>7.3 Modificaciones en el fichero HTML del componente padre</h4>
     
     <li>Por último, escribimos el selector del componente hijo con el identificador del observable a modo de parámetro entre paréntesis (figura 7.4)</li>
     <li>Claro, utilizamos paréntesis en lugar de corchetes, dado que <u>deseamos enviar o lanzar un evento</u> al componente hijo para que nos devuelva información</li>
