@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RutasComponent       } from './componentes/rutas/rutas.component';
 import { InicioComponent      } from './componentes/inicio/inicio.component';
 import { FicherosComponent    } from './componentes/ficheros/ficheros.component';
+import { ServiciosComponent   } from './componentes/servicios/servicios.component';
 import { DespliegueComponent  } from './componentes/despliegue/despliegue.component';
 import { TypescriptComponent  } from './componentes/typescript/typescript.component';
 import { ComponentesComponent } from './componentes/componentes/componentes.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   
   // En proceso
   { path: 'rutas'      , component: RutasComponent       },
+  { path: 'servicios'  , component: ServiciosComponent   },
   { path: 'typescript' , component: TypescriptComponent  },
   { path: 'componentes', component: ComponentesComponent },
 
@@ -38,7 +40,6 @@ const routes: Routes = [
 
   // Pendiente
   { path: 'ficheros'       , component: ConstruccionComponent },
-  { path: 'servicios'      , component: ConstruccionComponent },
   { path: 'pipes'          , component: ConstruccionComponent },
   { path: 'directivapropia', component: ConstruccionComponent },
   { path: 'ngstyle'        , component: ConstruccionComponent },
