@@ -1,6 +1,9 @@
 import { NgModule      } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+// Métodos HTTP
+import { HttpClientModule } from '@angular/common/http';
+
 // Rutas
 import { AppRoutingModule } from './app-routing.module';
 
@@ -75,6 +78,7 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

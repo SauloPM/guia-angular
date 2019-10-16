@@ -9,7 +9,7 @@ export class ServicioService {
   constructor( private http: HttpClient ) { }
 
   getSaludo() {
-    return this.http.get('url');
+    return this.http.get('https://api.github.com/users/hadley/orgs');
   }
 
 }
