@@ -74,9 +74,10 @@
 
   <ul>
     <li>Un servicio HTTP provee de datos a partir de información almacenada en un servidor remoto, lo que hace necesario obtener los datos mediante HTTP</li>
-    <li>Dado que la información se encuentra fuera de nuestro proyecto, en un servidor remoto, cuando solicitamos la información no podemos saber en qué momento va a llegar</li>
+    <li>Dado que la información se encuentra fuera de nuestro proyecto, en una aplicación alojada en servidor remoto, cuando solicitamos la información no podemos saber en qué momento va a llegar</li>
     <li>Es por ello que necesitamos utilizar un observable que esté pendiente de la respuesta del servidor con la información necesaria, dado que es un evento asíncrono</li>
     <li>Los observables no son necesarios en los servicios locales porque ya contamos con la información correspondiente: la obtención de información en este caso es un evento síncrono e inmediato</li>
+    <li>En primer lugar, dentro del fichero <i>app.module.ts</i> importamos la clase <b>HttpClientModule</b> y la incorporamos dentro del campo <b>imports</b> del decorador</li>
 
     <img src="assets/img/servicios/figura3-2.png" alt="">
     <caption><strong>Figura 3.2.</strong> Inyección de la clase <b>HttpClient</b> dentro del constructor del servicio</caption>
@@ -97,27 +98,45 @@
   <h3 id="consumir-servicio">4. Consumir servicio</h3>
   <hr>
 
-  <div class="pendiente">Decir qué hay que hacer para evitar que devuelve undefined</div>
+  <div class="pendiente mb-40">Inyección pública para usar directamente el atributo</div>
+
+  <ul>
+    <li>En cualquiera de los dos casos hemos de importar la clase de nuestro servicio en el componente donde lo vayamos a utilizar</li>
+    <li>Tras esto, inyectamos el servicio en el constructor del componente (figura 4.1)</li>
+    <li>Esto hará que dispongamos de todos sus atributos y métodos en la variable correpondiente, que en el ejemplo ilustrado en la figura 4.1 sería <i>servicio</i></li>
+    <li>A parti de aquí será posible consumir el servicio dentro del método <b>ngOnInit()</b>, siendo aquí donde debemos tratar cada caso por separado</li>
+    <li>Es decir, dentro de este método utilizamos la variable de la inyección para almacenar el dato devuelto por el servicio en un atributo, tras lo que podrá ser utilizado en el template del componente</li>
+
+    <img src="assets/img/servicios/figura4-1.png" alt="">
+    <caption><strong>Figura 4.1.</strong> Inyección del servicio dentro del constructor del servicio</caption>
+  </ul>
 
   <h4>4.1 Consumir servicio local</h4>
 
   <ul>
-    <li>Cuando inyectamos el servicio en una variable, esta dispone de los métodos del servicio, como <b>getSaludo()</b></li>
+    
+    <li>En ejemplo ilustrado en la figura 4.2, hemos volcado el resultado del método <i>getSaludo()</i> dentro del atributo <i>respuestaServicio</i> directamente</li>
+    <li>Claro, la información devuelta por el servicio se encontraba alojada en un atributo del mismo, no dependía de una aplicación externa, haciendo este proceso más simple que el análogo en HTTP <u>al ser síncrono</u></li>
+
+    <img src="assets/img/servicios/figura4-2.png" alt="">
+    <caption><strong>Figura 4.2.</strong> Uso del método <i>getSaludo()</i> del servicio local dentro del método <b>ngOnInit()</b></caption>
   </ul>
 
   <h4>4.2 Consumir servicio HTTP</h4>
 
-  <ul>
-    <img src="assets/img/servicios/figura3-2.png" alt="">
-    <caption><strong>Figura 3.2.</strong> Inyección de la clase <b>HttpClient</b> dentro del constructor del servicio</caption>
-
-    <li>Dentro del fichero TS del servicio importamos la clase <b>HttpClient</b> y la inyectamos en el constructor con el identificador que queramos (en el ejemplo de la figura 6.2 el identificador es <i>http</i>)</li>
-    <li>Dentro del método <b>ngOnInit()</b></li>
-  </ul>
-
-  <p>{{ informacion }}</p>
+  <div class="pendiente">Hablar de <i>data</i> y de las interfaces</div>
+  <div class="pendiente mb-40">Decir qué hay que hacer para evitar que devuelva undefined</div>
 
   <ul>
-    <li>Un servicio HTTP provee los datos a partir de información almacenada en un servidor remoto, lo que hace necesario obtener los datos mediante HTTP</li>
+    <li>En ejemplo ilustrado en la figura 4.3, hemos volcado el resultado del método <i>getSaludo()</i> dentro del atributo <i>respuestaServicio</i>, igual que antes</li>
+    <li>No obstante, el proceso seguido no ha sido tan directo como el de la figura 4.2, dado que en este caso es asíncrono</li>
+    <li>Claro, no sabemos a ciencia cierta el momento en el que la aplicación alojada en un servidor remoto nos proveerá con la información necesaria</li>
+    <li>Es por ello que debemos suscribirnos al observable devuelto por el servicio, tal que cuando recibamos los datos necesarios, estos se vuelquen en un atributo (figura 4.3)</li>
+    <li>De hecho, si nos fimamos veremos que el proceso es similar al del apartado anterior, pero trabajando con observables</li>
+    <li>Los datos devueltos dentro de la suscripción del observable se volcarán en una variable temporal (en el ejemplo de la figura 4.3 es <i>data</i>), que nos servirá para el mapeo entre este y el atributo</li>
+    <li>Decimos que esta variable es temporal porque solo existe dentro del ámbito de la suscripción del observable, lo que hace necesario volcar su contenido en un atributo</li>
+
+    <img src="assets/img/servicios/figura4-3.png" alt="">
+    <caption><strong>Figura 4.3.</strong> Uso del método <i>getSaludo()</i> del servicio HTTP dentro del método <b>ngOnInit()</b></caption>
   </ul>
 </div>

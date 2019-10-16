@@ -1,5 +1,5 @@
-import { ServicioService } from './../../servicios/servicio.service';
 import { Component, OnInit } from '@angular/core';
+import { ServicioService } from './../../servicios/servicio.service';
 
 // Interfaces
 import { ItemIndice } from 'src/app/interfaces/item-indice';
@@ -22,15 +22,22 @@ export class ServiciosComponent implements OnInit {
     {
       texto: 'Configurar servicio',
       enlace: 'configurar-servicio'
+    },
+    {
+      texto: 'Consumir servicio',
+      enlace: 'consumir-servicio'
     }
   ];
 
-  informacion: string;
-
   constructor( private servicio: ServicioService ) { }
 
+  respuestaServicio: any[];
+
   ngOnInit() {
-    this.informacion = this.servicio.getSaludo();
+    this.servicio.getSaludo().subscribe( ( data:any[] ) => {
+      this.respuestaServicio = data;
+      console.log(this.respuestaServicio)
+    });
   }
 
 }
