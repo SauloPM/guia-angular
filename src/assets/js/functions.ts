@@ -15,34 +15,34 @@ funcionEjemplo('Literal', 'Literal', 123456789, [ 'Hola', 'Adiós' ], 'Literal',
 funcionEjemplo('Literal', 'Literal', 123456789, , 'Literal', 'Literal', );
 */
 
-let promesa = new Promise( function( resolve, reject ) {
+// let promesa = new Promise( function( resolve, reject ) {
 
-    setTimeout( () => {
-        console.log('Ejecución finalizada')
-    }, 5000);
+//     setTimeout( () => {
+//         console.log('Ejecución finalizada')
+//     }, 5000);
 
-    // La ejecución finaliza correctamente
-    // resolve();
+//     // La ejecución finaliza correctamente
+//     // resolve();
 
-    // La ejecución falla
-    reject();
+//     // La ejecución falla
+//     reject();
 
-});
+// });
 
-console.log('Paso 1');
+// console.log('Paso 1');
 
-promesa.then(
+// promesa.then(
     
-    // Resolve
-    function() {
-        console.log('La ejecución finalizó sin errores');
-    },
+//     // Resolve
+//     function() {
+//         console.log('La ejecución finalizó sin errores');
+//     },
 
-    // Reject
-    function() {
-        console.log('La ejecución finalizó con errores');
-    }
-);
+//     // Reject
+//     function() {
+//         console.log('La ejecución finalizó con errores');
+//     }
+// );
 
-console.log('Paso 2');
+// console.log('Paso 2');
 
