@@ -46,6 +46,7 @@ import { ConstruccionComponent } from './componentes/construccion/construccion.c
 
 // Directivas
 import { ResaltadoDirective    } from './directivas/resaltado.directive';
+import { FirebaseComponent } from './componentes/firebase/firebase.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
     ServiciosComponent,
     IndiceComponent,
     TypescriptComponent,
-    TopButtonComponent
+    TopButtonComponent,
+    FirebaseComponent
   ],
   imports: [
     BrowserModule,

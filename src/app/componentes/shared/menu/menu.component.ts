@@ -84,6 +84,12 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
+      texto: 'Firebase ×',
+      enlace: 'firebase',
+      icono: 'fa-fire',
+      tieneSubmenu: false
+    },
+    {
       texto: 'Despliegue',
       enlace: 'despliegue',
       icono: 'fa-star',

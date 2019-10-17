@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RutasComponent       } from './componentes/rutas/rutas.component';
 import { InicioComponent      } from './componentes/inicio/inicio.component';
 import { FicherosComponent    } from './componentes/ficheros/ficheros.component';
+import { FirebaseComponent    } from './componentes/firebase/firebase.component';
 import { ServiciosComponent   } from './componentes/servicios/servicios.component';
 import { DespliegueComponent  } from './componentes/despliegue/despliegue.component';
 import { TypescriptComponent  } from './componentes/typescript/typescript.component';
@@ -27,9 +28,10 @@ const routes: Routes = [
   { path: 'inicio'    , component: InicioComponent     },
   { path: 'ficheros'  , component: FicherosComponent   },
   { path: 'despliegue', component: DespliegueComponent },
-  
+
   // En proceso
   { path: 'rutas'      , component: RutasComponent       },
+  { path: 'firebase'   , component: FirebaseComponent    },
   { path: 'servicios'  , component: ServiciosComponent   },
   { path: 'typescript' , component: TypescriptComponent  },
   { path: 'componentes', component: ComponentesComponent },
