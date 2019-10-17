@@ -98,7 +98,7 @@
   <h3 id="consumir-servicio">4. Consumir servicio</h3>
   <hr>
 
-  <div class="pendiente mb-40">Inyección pública para usar directamente el atributo</div>
+  <div class="pendiente mb-40">Explicar la inyección pública para poder utilizar directamente el atributo en el template</div>
 
   <ul>
     <li>En cualquiera de los dos casos hemos de importar la clase de nuestro servicio en el componente donde lo vayamos a utilizar</li>
@@ -124,9 +124,6 @@
 
   <h4>4.2 Consumir servicio HTTP</h4>
 
-  <div class="pendiente">Hablar de <i>data</i> y de las interfaces</div>
-  <div class="pendiente mb-40">Decir qué hay que hacer para evitar que devuelva undefined</div>
-
   <ul>
     <li>En ejemplo ilustrado en la figura 4.3, hemos volcado el resultado del método <i>getSaludo()</i> dentro del atributo <i>respuestaServicio</i>, igual que antes</li>
     <li>No obstante, el proceso seguido no ha sido tan directo como el de la figura 4.2, dado que en este caso es asíncrono</li>
@@ -138,5 +135,42 @@
 
     <img src="assets/img/servicios/figura4-3.png" alt="">
     <caption><strong>Figura 4.3.</strong> Uso del método <i>getSaludo()</i> del servicio HTTP dentro del método <b>ngOnInit()</b></caption>
+
+    <li>Es conveniente especificar el tipo de esta variable temporal para que TS pueda notificarnos de posibles errores estructurales en el mapeo antes de la ejecución</li>
+    <li>Si dicha variable es un vector de objetos o tiene una estructura específica (lo que es muy común cuando esperamos un JSON como respuesta), siempre podremos crear una interfaz</li>
+    <li>En el ejemplo de la figura 4.4, vemos que la variable temporal es un vector de objetos de tipo <i>Persona</i>, que es una interfaz que hemos creado nosotros en base a la información que esperamos recibir</li>
+
+    <img src="assets/img/servicios/figura4-4.png" alt="">
+    <caption><strong>Figura 4.4.</strong> Tipado en la variable temporal en la suscripción de un observable utilizando una interfaz</caption>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  
+  <h3 id="undefined">5. El servicio devuelve <b>undefined</b></h3>
+  <hr>
+
+  <ul>
+    <li>Este error se produce cuando recogemos el resultado devuelto por un servicio en una variable en el componente que lo consume y esta es utilizada en otras operaciones</li>
+    <li>¿Qué operaciones? Renderizar el contenido de dicha variable en el template del componente, operar con ella después de la suscripción dentro del fichero TS, etc.</li>
+    <li>Lo que está pasando es que estamos utilizando la variable antes de que el servicio vuelque el resultado en ella, de modo que estaríamos trabajando con una variable vacía</li>
+    <li>Claro, recuerda que habíamos dicho que este proceso es asíncrono, lo que implica que nadie va a esperar a que se complete para continuar su ejecución, lo que puede derivar en errores</li>
+    <li>En caso de operar con dicha variable dentro del fichero TS, tendremos que hacerlo dentro del ámbito de la suscripción para asegurarnos de que esta albergue el resultado esperado</li>
+    <li>No obstante, si deseamos utilizar la información devuelta en el template, tendremos dos opciones: inicializar la variable cuando en el momento de su declaración o utilizar la directiva <b>*ngIf</b></li>
+    <li>No sirve de nada suscribirnos al servicio en ciclos posteriores al <b>OnInit</b>, de modo que ni lo intentes porque no te va a funcionar</li>
+  </ul>
+
+  <h4>5.1 Inicializar la variable</h4>
+
+  <ul>
+    <li>Inicializando la variable en el momento de la declaración, a la hora de renderizarse su contenido en el template, cuando se obtenga la información del servicio, aparecerá</li>
+    <li>No obstante, si dicha variable se ha tipado con una interfaz que hayamos hecho nosotros, debemos declarar todos sus campos como opcionales escribiendo <i>?</i> justo después del identificador de cada campo, delante de los dos puntos</li>
+  </ul>
+
+  <h4>5.2 Uso de la directiva <b>*ngIf</b></h4>
+
+  <ul>
+    <li>En este caso solo necesitaríamos pasarle a la directiva el identificador de la variable</li>
+    <li>Claro, en caso de que esta todavía valga <b>null</b> o <b>undefined</b>, la directiva no renderizaría nada hasta que la variable cambiase de valor</li>
+    <li>Ojo, en este caso <u>no debemos inicializar la variable</u> en la que vamos a recoger el resultado devuelto por el servicio o la directiva no surtirá efecto (dado que la variable no valdría <b>undefined</b>)</li>
   </ul>
 </div>

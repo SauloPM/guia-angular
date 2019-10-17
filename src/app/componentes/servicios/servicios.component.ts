@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ServicioService } from './../../servicios/servicio.service';
+import { Component } from '@angular/core';
 
 // Interfaces
 import { ItemIndice } from 'src/app/interfaces/item-indice';
@@ -8,7 +7,7 @@ import { ItemIndice } from 'src/app/interfaces/item-indice';
   selector: 'app-servicios',
   templateUrl: './servicios.component.html'
 })
-export class ServiciosComponent implements OnInit {
+export class ServiciosComponent {
 
   itemsIndice: ItemIndice[] = [
     {
@@ -26,18 +25,13 @@ export class ServiciosComponent implements OnInit {
     {
       texto: 'Consumir servicio',
       enlace: 'consumir-servicio'
+    },
+    {
+      texto: 'El servicio devuelve <b>undefined</b>',
+      enlace: 'undefined'
     }
   ];
 
-  constructor( private servicio: ServicioService ) { }
-
-  respuestaServicio: any[];
-
-  ngOnInit() {
-    this.servicio.getSaludo().subscribe( ( data:any[] ) => {
-      this.respuestaServicio = data;
-      console.log(this.respuestaServicio)
-    });
-  }
+  constructor() { }
 
 }
