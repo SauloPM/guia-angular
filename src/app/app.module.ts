@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Componentes » General
 import { AppComponent    } from './app.component';
+import { CrudComponent   } from './componentes/crud/crud.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
 // Componentes » Compartidos
@@ -46,7 +47,6 @@ import { ConstruccionComponent } from './componentes/construccion/construccion.c
 
 // Directivas
 import { ResaltadoDirective    } from './directivas/resaltado.directive';
-import { FirebaseComponent } from './componentes/firebase/firebase.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import { FirebaseComponent } from './componentes/firebase/firebase.component';
     IndiceComponent,
     TypescriptComponent,
     TopButtonComponent,
-    FirebaseComponent
+    CrudComponent
   ],
   imports: [
     BrowserModule,

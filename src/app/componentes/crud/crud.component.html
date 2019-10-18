@@ -1,0 +1,129 @@
+<div id="notas" class="animated fadeIn">
+
+  <h2>CRUD</h2>
+
+  <app-indice [items]="itemsIndice"></app-indice>
+  
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="introduccion">1. Introducción</h3>
+  <hr>
+
+  <ul>
+    <li>CRUD es el acrónimo de <u>C</u>reate (crear), <u>R</u>ead (leer), <u>U</u>pdate (actualizar) y <u>D</u>elete (eliminar)</li>
+    <li>Hace referencia a las principales operaciones que se pueden realizar sobre una base de datos</li>
+    <li>En esta sección vamos a explicar cómo implementar estas cuatro operaciones desde Angular mediante el uso de servicios HTTP</li>
+    <li>¿Por qué servicios? Porque las aplicaciones creadas con Angular son aplicaciones de frontend, que no pueden interactuar directamente ni de manera convencional con una BD</li>
+    <li>¿Y por qué HTTP? Porque la BD estará alojada en otra aplicación, que será de backend, de modo que será necesario el protocolo HTTP para comunicarnos con ella</li>
+    <li>Angular ejecutará peticiones HTTP que recibirá la aplicación de backend y que utilizará para operar con la BD de una forma u otra según el caso</li>
+    <li>El problema es que esta guía no se centra en aplicaciones de backend, sino en Angular, de modo que no vamos a detenernos en la gestión de peticiones HTTP desde el backend</li>
+    <li>En su lugar explicaremos el funcionamiento de Firebase (ver siguiente apartado) y enfocaremos esta sección a crear un diccionario de inglés online</li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="firebase">2. Firebase</h3>
+  <hr>
+
+  <div class="consultar mb-40">Consultar <a href="https://www.youtube.com/watch?v=0Bhrwc8VfGw&list=PLCTD_CpMeEKQqPh6eKk7_Q-ugWyhO6SKT" target="_blank">enlace</a></div>
+
+  <ul>
+    <li>Firebase es una plataforma de Google que nos permite gestionar bases de datos no relacionales alojadas en la nube</li>
+    <li>Solo nos tendremos que preocupar por la gestión de la BD, pero nos libera de implementar la lógica de las peticiones HTTP que provengan de aplicaciones externas</li>
+  </ul>
+
+  <h4>2.1 Crear aplicación</h4>
+
+  <ul>
+    <li>Accedemos a la <a href="https://firebase.google.com" target="_blank">página web oficial</a> de Firebase e iniciamos sesión (podemos y es deseable utilizar nuestra cuenta de Gmail, dado que Firebase pertenece a Google)</li>
+    <li>Hacemos clic en <i>Ir a la consola</i> y luego en <i>Añadir proyecto</i>, completando el formulario de tres pasos (los dos últimos se pueden dejar como están)</li>
+    <li>El nombre de nuestro proyectos puede contener mayúsculas, espacios y números, pero no tildes</li>
+    <li>Tras esto se abrirá automáticamente el panel de administración o dashboard del proyecto que acabamos de crear</li>
+    <li>De no ser así, siempre podreos seleccionar la aplicación desde el listado de aplicaciones</li>
+  </ul>
+
+  <h4>2.2 Crear BD</h4>
+
+  <ul>
+    <li>Desde el dashboard de nuestra aplicación hacemos clic en <i>Database</i> y luego en <i>Crear base de datos</i>, pero el de la sección <i>Realtime Database</i>, no el de <i>Cloud Firestore</i></li>
+    <li>Tras esto, seleccionamos la opción <i>Empezar con el modo de prueba</i> (para permitir que aplicaciones externas puedan gestionar nuestra BD) y hacemos clic en <i>Habilitar</i></li>
+    <li>Tras esto, hacemos clic en la pestaña <i>Reglas</i> y procuramos que estén igual que en la figura 2.1</li>
+    <li>Estas reglas permiten que cualquiera pueda leer y escribir en nuestra BD, lo que a priori no parece demasiado seguro, pero como esto no es una guía de Firebase nos basta con esta configuración</li>
+
+    <img src="assets/img/crud/figura2-1.png" alt="">
+    <caption><strong>Figura 2.1.</strong> Reglas de la BD</caption>
+  </ul>
+
+  <h4>2.3 Crear nodos</h4>
+
+  <ul>
+    <li>Regresamos a la pestaña <i>Datos</i> y veremos una BD creada cuyo título es el que le asignamos nosotros previamente más un hash</li>
+    <li>Ojo, no salgas de la sección <i>Database</i> sin haber escrito al menos un registro primero o la BD se eliminará</li>
+    <li>Hacemos clic en el identificador de la BD paraa entrar en el modo edición y hacemos clic en el botón <i>+</i> para crear un nodo hijo (figura 2.2) y en el cierre para eliminarlo</li>
+
+    <img src="assets/img/crud/figura2-2.png" alt="">
+    <caption><strong>Figura 2.2.</strong> Creación de nodo hijo</caption>
+
+    <li>Desde que hagas clic en el botón <i>+</i> aparecerá un pequeño formulario para crear un nuevo nodo compuesto de dos campos: <i>Nombre</i> y <i>Valor</i> (figura 2.3)</li>
+    <li>Puedes crear tantos niveles de nodos como quieras, como se observa en la figura 2.3</li>
+    <li>Si deseas crear un hermano para un nodo en cualquier nivel de profundidad, tienes que hacer clic en el botón <i>+</i> del padre</li>
+    
+    <img src="assets/img/crud/figura2-3.png" alt="">
+    <caption><strong>Figura 2.3.</strong> Formulario para crear un nodo hijo</caption>
+    
+    <li>Ojo, desde que escribamos algo en el campo <i>Valor</i>, el botón <i>+</i> desaparecerá (figura 2.4), volviendo a aparecer tras volver a dejar este campo vacío</li>
+    <li>Es decir, desde que completemos este campo, el nodo actual pasaría a convertirse en un nodo final, no pudiendo engendrar nuevos nodos hijos</li>
+
+    <img src="assets/img/crud/figura2-4.png" alt="">
+    <caption><strong>Figura 2.4.</strong> Nodo hijo sin botón <i>+</i></caption>
+
+    <li>En el ejemplo de la figura 2.5 vemos un esquema muy simple que pretende implementar la BD de un diccionario de inglés</li>
+    <li>Los nodos intermedios <i>palabras</i> y <i>expresiones</i> se podrían considerar como tablas de una BD relacional</li>
+    <li>Dentro tenemos los registros per se, donde cada uno contiene la traducción en inglés y en castellano</li>
+    <li>Para poder identificar cada registro, tenemos un nodo intermedio con el identificador (<i>1</i> y <i>2</i>, para ser más precisos)</li>
+    <li>Cuando gestionemos la BD desde nuestro proyecto veremos que Firebase se encargará de generar este identificador por nosotros</li>
+
+    <img src="assets/img/crud/figura2-5.png" alt="">
+    <caption><strong>Figura 2.5.</strong> Esquema completado</caption>
+
+    <li>Cuando hayamos finalizado, hacemos clic en <i>Añadir</i></li>
+    <li>Podemos acceder al modo edición de un nodo en particular haciendo clic sobre él directamente</li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="formulario">3. Formulario</h3>
+  <hr>
+
+  <ul>
+    <li>Ya tenemos creada la BD y ahora vamos a crear el formulario de nuestra aplicación desde el que vamos a gestionar la BD</li>
+    <li>Dentro del fichero <i>app.module.ts</i> importamos la clase <b>FormsModule</b> y la incorporamos en el campo <b>imports</b> del decorador</li>
+    <li>Para manejar formularios desde el fichero TS del mismo componente, debes importar NgForm, dado que el formulario que recibe la función guardar() a modo de parámetro es de tipo NgForm, precisamente</li>
+  </ul>
+
+  <h4>3.1 Configuración del formulario</h4>
+
+  <ul>
+    <li>En el template del componente donde queramos renderizar el formulario creamos una etiqueta HTML <b>&lt;form&gt;</b></li>
+    <li>Tras esto, escribimos una template variable con el identificador que queramos y le asignamos el valor <b>ngForm</b> (en el ejemplo de la figura 3.1 fue <i>#miFormulario</i>)</li>
+    <li>Después, asociamos una función creada por nosotros al evento <b>ngSubmit</b> entre paréntesis con el template variable como único parámetro (en el ejemplo de la figura 3.1 fue <i>guardar()</i>)</li>
+    <li>Tras esta configuación, el formulario ha pasado de ser un formulario de HTML a ser un formulario de Angular</li>
+    <li>Tal es así que si hacemos clic en el botón submit del formulario, en caso de haber campos obligatorios vacíos, no saltarían los típicos popups</li>
+
+    <img src="assets/img/crud/figura3-1.png" alt="">
+    <caption><strong>Figura 3.1.</strong> Formulario configurado en el template del componente</caption>
+  </ul>
+
+  <h4>3.2 Configuración de los campos del formulario</h4>
+
+  <ul>
+    <li>Utilizamos la directiva <b>ngModel</b> a cada elemento del formulario. Esta directiva requiere que cada elemento del formulario conste del atributo HTML <b>name</b></li>
+    <li>Claro, esta directiva vinculará permanentemente cada campo del formulario con una variable TS que será utilizada para trabajar con la BD</li>
+  </ul>
+
+  <h4>3.3 Fichero TS del componente</h4>
+
+  <ul>
+    <li>Dentro de guardar() generamos una pequeña validación, tal que cuando el formulario no sea válido por el motivo que sea (por ejemplo, dejar un campo obligatorio vacío), se muestre un mensaje y se aborte</li>
+  </ul>
+</div>

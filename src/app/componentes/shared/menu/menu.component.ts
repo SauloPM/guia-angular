@@ -84,9 +84,9 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'Firebase ×',
-      enlace: 'firebase',
-      icono: 'fa-fire',
+      texto: 'CRUD ×',
+      enlace: 'crud',
+      icono: 'fa-database',
       tieneSubmenu: false
     },
     {
