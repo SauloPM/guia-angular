@@ -1,16 +1,18 @@
 import { NgModule      } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// Métodos HTTP
+// HTTP
 import { HttpClientModule } from '@angular/common/http';
 
 // Rutas
 import { AppRoutingModule } from './app-routing.module';
 
 // Componentes » General
-import { AppComponent    } from './app.component';
-import { CrudComponent   } from './componentes/crud/crud.component';
-import { InicioComponent } from './componentes/inicio/inicio.component';
+import { AppComponent           } from './app.component';
+import { CrudComponent          } from './componentes/crud/crud.component';
+import { InicioComponent        } from './componentes/inicio/inicio.component';
+import { FormulariosComponent   } from './componentes/formularios/formularios.component';
+import { LoginRegistroComponent } from './componentes/login-registro/login-registro.component';
 
 // Componentes » Compartidos
 import { MenuComponent      } from './componentes/shared/menu/menu.component';
@@ -76,7 +78,9 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
     IndiceComponent,
     TypescriptComponent,
     TopButtonComponent,
-    CrudComponent
+    CrudComponent,
+    LoginRegistroComponent,
+    FormulariosComponent
   ],
   imports: [
     BrowserModule,

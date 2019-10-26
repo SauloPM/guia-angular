@@ -1,0 +1,173 @@
+<div id="notas" class="animated fadeIn">
+
+    <h2>Login y registro</h2>
+  
+    <app-indice [items]="itemsIndice"></app-indice>
+    
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  
+    <h3 id="introduccion">1. Introducción</h3>
+    <hr>
+  
+    <ul>
+      <li>En esta sección vamos a explicar cómo implementar la gestión de usuarios desde Angular mediante el uso de servicios HTTP</li>
+      <li>¿Por qué servicios? Porque las aplicaciones creadas con Angular son aplicaciones de frontend, que no pueden interactuar directamente ni de manera convencional con una BD</li>
+      <li>¿Y por qué HTTP? Porque la BD estará alojada en otra aplicación, que será de backend, de modo que será necesario el protocolo HTTP para comunicarnos con ella</li>
+      <li>Angular ejecutará peticiones HTTP que recibirá la aplicación de backend y que utilizará para operar con la BD de una forma u otra según el caso</li>
+      <li>El problema es que esta guía no se centra en aplicaciones de backend, sino en Angular, de modo que no vamos a detenernos en la gestión de peticiones HTTP desde el backend</li>
+      <li>En su lugar, ilustraremos el funcionamiento de Firebase para este propósito, que no solo nos permitirá almacenar y proteger los datos de los usuarios, sino que nos proveerá de una API para su gestión</li>
+    </ul>
+  
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+  
+    <h3 id="puesta-en-marcha">2. Puesta en marcha</h3>
+    <hr>
+
+    <h4>2.1 Modelo de usuario</h4>
+    
+    <ul>
+        <li>Creamos un directorio llamado <i>models</i> o <i>modelos</i></li>
+        <li>Dentro, creamos un fichero llamado <i>usuario.model.ts</i> desde el editor de código, no hace falta utilizar Angular CLI</li>
+        <li>Dentro, creamos una clase de la forma ilustrada en la figura 2.1</li>
+        <li>Nótese que los campos de esta clase son los que se van a solicitar en los formularios de login y registro</li>
+        <li>Normalmente se solicitan más datos en el registro, pero nosotros hemos querido simplificarlo lo máximo posible y por ello solo vamos a trabajar con el email y la contraseña</li>
+
+        <img src="assets/img/login-y-registro/figura2-1.png" alt="">
+        <caption><strong>Figura 2.1.</strong> Modelo de usuario</caption>
+    </ul>
+
+    <h4>2.2 Componentes necesarios</h4>
+    
+    <ul>
+        <li>Creamos tres nuevos componentes, uno para el login, otro para el registro y otro para la página a la que accederemos tras loguearnos correctamente</li>
+        <li>Esta última estará eventualmente protegida para que solo sea accesible tras loguearnos correctamente</li>
+    </ul>
+
+    <h4>2.3 Firebase</h4>
+
+    <div class="consultar mb-40"><a href="https://firebase.google.com/" target="_blank">Página web oficial</a> de Firebase</div>
+
+    <ul>
+        <li>Iniciamos sesión en Firebase y hacemos clic en <i>Ir a la consola</i> para acceder al listado de aplicaciones</li>
+        <li>Creamos una nueva o seleccionamos una que ya exista (la gestión de usuarios es independiente de la BD que hayamos creado previamente)</li>
+        <li>Desde el panel de administración, hacemos clic en <i>Authentication</i> dentro del sidebar y luego en la pestaña <i>Método de inicio de sesión</i></li>
+        <li>Tras esto, veremos un listado de formas de inicio de sesión, del que nos interesa el método clásico de proveer un correo electrónico y una contraseña para este propósito</li>
+        <li>Es por ello que debemos activar la opción <i>Correo electrónico / contraseña</i></li>
+        <li>En la pestaña <i>Usuarios</i> tendremos un listado de usuarios que se hayan registrado en la aplicación de Firebase (en un principio estará vacía al no haberse registrado nadie)</li>
+        <li>Como podemos suponer, Firebase nos provee de una API REST para gestionar operaciones típicas con usuarios, como el login o el registro, entre otros</li>
+        <li>Esto libera al programador de tener que implementar esta lógica desde el lado del servidor</li>
+        <li>Si en un futuro quisieras gestionar esta parte de otra manera, la aplicación de Angular no varía al estar encapsulada (en todo caso, las URLs de las peticiones HTTP)</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="registro">3. Registro</h3>
+    <hr>
+
+    <h4>3.1 Cambios necesarios dentro del template del componente <i>registro</i></h4>
+    
+    <ul>
+        <li>En la figura 4.1 vemos el esquema general del formulario de registro dentro del template de este componente</li>
+        <li>Como vemos, utilizamos una template variable (<i>#formularioRegistro</i>) para gestionar el formulario, que será de tipo <b>ngForm</b></li>
+        <li>Cuando se haga submit se invocará a la función <i>onSubmit</i>, que recibirá el formulario como único parámetro</li>
+        <li>Dicho formulario no es más que un objeto con multitud de campos que utilizaremos para gestionar distintas situaciones, como iremos viendo a continuación</li>
+        <li>Tenemos dos inputs requeridos (atributo HTML <b>required</b>) y un botón. Cada input a su vez viene acompañado de un mensaje en caso de dejar el campo correspondiente vacío</li>
+        <li>En cada input debemos utilizar la directiva <b>ngModel</b> wrappeada con paréntesis y corchetes para lograr una <u>total sincronización</u> con la variable que tiene designada como literal</li>
+        <li>Esta directiva exige que el input en cuestión utilice el atributo HTML <b>name</b>, cuyo literal no tiene por qué coincidir con el de la directiva, como ocurre en la figura</li>
+        <li>El literal del atributo <b>name</b> será utilizado para referenciar el input correspondiente dentro del objeto del formulario de Angular, designado por el identificador del template variable</li>
+        <li>Nótese que el input del email utiliza el atributo de Angular <b>email</b> para poder realizar validaciones adicionales, como detección de errores de formato</li>
+        
+        <img src="assets/img/login-y-registro/figura3-1.png" alt="">
+        <caption><strong>Figura 3.1.</strong> Formulario de registro</caption>
+
+        <li>Los mensajes de validación que mencionamos antes indican al usuario que ha dejado uno o más campos obligatorios vacíos, todo ello tras haber hecho clic en el botón</li>
+        <li>Para mostrar este mensaje solo cuando sea necesario, utilizamos la directiva <b>ngIf</b></li>
+        <li>En dicha directiva tenemos en cuenta que previamente se haya hecho submit (<b>formularioRegistro.submitted</b>) para no mostrar este mensaje antes de que el usuario haya pulsado el botón</li>
+        <li>Es más, si lo quitáramos daría error, dado que el código HTML de la validación se ha escrito delante del código HTML del input y es posible que todavía no se haya construido cuando preguntamos por él</li>
+        <li>Además, tenemos en cuenta que exista un error para dicho campo (<b>formularioRegistro.controls['name'].errors</b>)</li>
+        <li>Claro, <i>formularioRegistro</i> es el identificador del template variable que utilizamos para referencia el formulario, que viene a ser un objeto propio de Angular para trabajar con formularios</li>
+        <li>Para conocer su estructura interna, puedes hacer ejecutar la función <b>console.log( formularioRegistro )</b> para del método <i>onSubmit()</i> dentro del fichero TS del componente</li>
+        <li>Dentro de este objeto tenemos el campo <b>controls</b> que contendrá un listado de cada uno de los controles dentro del formulario en cuestión, como los inputs en el ejemplo de la figura 4.1</li>
+        <li>¿Cómo se designa a cada control? Cada control tiene un identificador, que será el mismo que el designado en el literal del atributo HTML <b>name</b> del que hablamos antes</li>
+        <li>A su vez, cada control contendrá una serie de campos, del que nos interesa el campo <b>errors</b>, que nos notificará de la existencia de errores para el campo en cuestión</li>
+        <li>Es por ello que utilizamos este campo dentro de la directiva <b>ngIf</b></li>
+        <li>Ojo, el ejemplo de la figura es demasiado simple, dado que se da por sentado que el único error que puede darse es que se deje uno o más campos del formulario vacíos, pero puede haber más</li>
+        <li>Por ejemplo, el formato del email puede ser incorrecto, en cuyo caso igualmente se mostrará el mensaje <i>Este campo es obligatorio</i>, aunque el error no tenga que ver con eso</li>
+    </ul>
+
+    <h4>3.2 Cambios necesarios dentro del fichero TS del componente <i>registro</i></h4>
+
+    <ul>
+        <li>Importamos el modelo de usuario y declaramos una variable de este tipo cuyo identificador tendrá que coincidir con el literal de la directiva <b>ngModel</b> del template</li>
+
+    </ul>
+
+    <h4>3.3 Fichero <i>app.module.ts</i></h4>
+
+    <ul>
+        <li>Para poder utilizar los métodos HTTP, debemos importar la clase <b>HttpClientModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
+        <li>Para poder utilizar la directiva <b>ngModel</b> debemos importar la clase <b>FormsModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="login">4. Login</h3>
+    <hr>
+
+    <h4>4.1 Cambios necesarios dentro del template del componente <i>login</i></h4>
+
+    <ul>
+        <li>Hacemos prácticamente lo mismo que en la figura 3.1</li>
+    </ul>
+    
+    <h4>4.2 Cambios necesarios dentro del fichero TS del componente <i>login</i></h4>
+
+    <h4>X.3 Guardián</h4>
+
+    <ul>
+        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
+    </ul>
+
+    <h4>X.4 Fichero de rutas</h4>
+
+    <div class="pendiente">No te olvides de explicar cómo proteger las rutas hijas</div>
+
+    <h4>X.5 Notificaciones</h4>
+
+    <ul>
+        <li>Firebase devuelve información detallada de por qué no se pudo realizar satisfactoriamente el inicio de sesión</li>
+        <li>Esta información nos dice qué campo del formulario dio lugar al error (el email no existe, la constraseña no es correcta, etc.)</li>
+        <li>No se recomienda dar tanta información al usuario para evitar que sepa qué email existe o no en la BD</li>
+        <li>Asegúrate de mostrar un mensaje de notificación del tipo <i>Datos de acceso incorrectos</i> sin entrar en demasiado detalle para ponérselo más difícil a posibles usuarios maliciosos</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="logout">5. Logout</h3>
+    <hr>
+
+    <ul>
+        <li>En este caso solo debemos destruir el token del usuario almacenado en localStorage</li>
+        <li>Para ello, cremos un nuevo método dentro de nuestro servicio (por ejemplo, <i>logout()</i>) para dicho propósito (figura 5.1)</li>
+        <li>En la figura 5.1 hacemos uso del método <b>removeItem()</b> del logal storage para eliminar el campo <i>token</i> de la BD (asegúrate de que el identificador del parámetro coincida con el de la tabla)</li>
+
+        <img src="assets/img/login-y-registro/figura5-1.png" alt="">
+        <caption><strong>Figura 5.1.</strong> Destrucción del token de seguridad de Firebase</caption>
+
+        <li>Tras esto, solo necesitamos un elemento a modo de botón o enlace que nos permita cerrar sesión (por ejemplo, dentro del menú de navegación)</li>
+        <li>Obviamente no tiene sentido mostrar dicho elemento en la página de login o de registro, ya que en ese punto todavía no hemos iniciado sesión</li>
+        <li>En el ejemplo ilustrado en la figura 5.2 hemos implementado el cierre de sesión dentro del componente del menú de navegación</li>
+        <li>Como vemos, fue necesario importar e inyectar <b>AuthService</b> (para eliminar el token de seguridad del local storage) y <b>Router</b> (para redirigir al usuario a la página del login) dentro del constructor</li>
+        <li>Dentro del método <i>salir()</i>, eliminamos el token de seguridad utilizando el método <i>logout()</i> del servicio <i>auth</i> y redirigimos al usuario a la página del login</li>
+        <li>Invoca este método desde el enlace o botón dentro del template correspondiente</li>
+
+        <img src="assets/img/login-y-registro/figura5-2.png" alt="">
+        <caption><strong>Figura 5.2.</strong> Cierre de sesión</caption>
+
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="recordar-usuario">6. Recordar usuario</h3>
+    <hr>
+  </div>

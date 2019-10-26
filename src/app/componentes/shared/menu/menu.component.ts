@@ -78,8 +78,14 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
+      texto: 'Formularios ×',
+      enlace: 'formularios',
+      icono: 'fa-navicon',
+      tieneSubmenu: false
+    },
+    {
       texto: 'Login y registro ×',
-      enlace: 'auth',
+      enlace: 'login-y-registro',
       icono: 'fa-lock',
       tieneSubmenu: false
     },
