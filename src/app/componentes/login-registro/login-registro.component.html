@@ -32,20 +32,26 @@
         <li>Esta última estará eventualmente protegida para que solo sea accesible tras loguearnos correctamente</li>
     </ul>
 
-    <h4>1.2 Modelo de usuario</h4>
+    <h4>1.2 Fichero <i>app.module.ts</i></h4>
+
+    <ul>
+        <li>Para poder utilizar los métodos HTTP, debemos importar la clase <b>HttpClientModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
+        <li>Para poder utilizar la directiva <b>ngModel</b> debemos importar la clase <b>FormsModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
+    </ul>
+
+    <h4>1.3 Modelo de usuario</h4>
     
     <ul>
         <li>Creamos un directorio llamado <i>models</i> o <i>modelos</i></li>
         <li>Dentro, creamos un fichero llamado <i>usuario.model.ts</i> desde el editor de código, no hace falta utilizar Angular CLI</li>
         <li>Dentro, creamos una clase de la forma ilustrada en la figura 1.1</li>
-        <li>Nótese que los campos de esta clase son los que se van a solicitar en los formularios de login y registro</li>
-        <li>Normalmente se solicitan más datos en el registro, pero nosotros hemos querido simplificarlo lo máximo posible y por ello solo vamos a trabajar con el email y la contraseña</li>
+        <li>Nótese que los campos de esta clase son los que se van a solicitar en el registro (para el login nos basta con el email y la contraseña)</li>
 
         <img src="assets/img/login-y-registro/figura2-1.png" alt="">
         <caption><strong>Figura 1.1.</strong> Modelo de usuario</caption>
     </ul>
 
-    <h4>1.3 Firebase</h4>
+    <h4>1.4 Firebase</h4>
 
     <div class="consultar mb-40"><a href="https://firebase.google.com/" target="_blank">Página web oficial</a> de Firebase</div>
 
@@ -63,57 +69,82 @@
   
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
   
-    <h3 id="puesta-en-marcha">2. Servicio</h3>
+    <h3 id="servicio">2. Servicio</h3>
     <hr>
 
     <div class="pendiente">Explicar por qué se cargar en una variable el token de seguridad del local storage y que pasa cuando este no existe todavía (creo que se devuelve <b>undefined</b> o algo así)</div>
-    <div class="pendiente mb-40">En la figura 2.2 no se recibe una variable de tipo modelo de usuario como único parámetro. ¿Está bien?</div>
+
+    <h4>2.1 Introducción</h4>
 
     <ul>
         <li>Importamos la clase <b>HttpClient</b> y la inyectamos dentro del constructor del servicio</li>
-        <li>Para implementar el login o el registro necesitamos las URLs de la API de Firebase para este propósito que pueden consultarse en <a href="https://firebase.google.com/docs/reference/rest/auth#section-create-email-password" target="_blank">este enlace</a></li>
-        <li>En ambos casos tenemos que realizar una petición HTTP de tipo POST a una URL enviando una cabecera</li>
-        <li>En las figuras 2.2 y 2.3 vemos las implementaciones para cada una de las dos operaciones</li>
-        <li>Como vemos, en ambos casos se requiere del modelo de usuario, de modo que previamente hemos de haberlo importado</li>
-        <li>Las cabeceras de ambas peticiones POST tienen la misma estructura en los ejemplos de las figuras, pero normalmente no es así</li>
-        <li>Claro, en el registro se suelen proporcionar más datos además el email y la contraseña, como el nombre, los apellidos, etc.</li>
-        <li>Es por eso que la cabecera del registro suele contener más campos, pero en este ejemplo simplificado nos basta solo con el email y la contraseña, como en el login</li>
-        <li>No obstante, en caso de no ser así, tendríamos una cabecera compuesta de más campos en el registro que en el login, que se compondría solo del email y la contraseña</li>
-        
-        <img src="assets/img/login-y-registro/figura2-2.png" alt="">
-        <caption><strong>Figura 2.2.</strong> Petición HTTP de tipo POST para el login</caption>
-        
-        <li>En el caso del registro, la cabecera de la petición HTTP debe contener los datos del usuario que ha completado el formulario de registro</li>
-        <li>El campo <b>returnSecureToken</b> de la cabecera indica que deseamos que se devuelva el token de seguridad tras completar satisfactoriamente el registro</li>
-        <li>Con esto el usuario podrá iniciar sesión nada más registrarse, ya que contará con el token de seguridad directamente, sin necesidad de tener que loguearse</li>
-        <li>Tras eso, almacenamos el token de seguridad devuelto por Firebase en el local storage, lo que se consigue mediante el método <i>guardarToken()</i> (figura 2.4)</li>
-        <li>En este método, además, almacenamos en el local storage la fecha de expiración, tal que pasado ese tiempo se debe borrar el token de seguridad y se fuerza el cierre de sesión del usuario</li>
-        <li>Firebase no nos devuelve la fecha de expiración per se, sino la duración de la sesión en segundos (normalmente de una hora, lo que equivale a unso 3600 segundos)</li>
-        <li>Debemos sumar (mediante el método <b>setTime()</b>) este intervalo de tiempo a la fecha actual para obtener así la fecha en la que el token de seguridad expirará (figura 2.4)</li>
-
-        <img src="assets/img/login-y-registro/figura2-3.png" alt="">
-        <caption><strong>Figura 2.3.</strong> Petición HTTP de tipo POST para el registro</caption>
-
-        <img src="assets/img/login-y-registro/figura2-4.png" alt="">
-        <caption><strong>Figura 2.4.</strong> Almacenamiento del token de seguridad y de la fecha de expiración en el local storage</caption>
+        <li>Tambien importamos el modelo de usuario y el operador RXJS <b>map</b></li>
+        <li>Almacenamos la API Key de Firebase en una variable</li>
+        <li>Esta API Key es secreta y no debe ser compartida, ya que quien la conozca podrá modificar nuestra BD</li>
+        <li>La podemos encontrar desde el dashboard de nuestra aplicación en Firebase, haciendo clic en el icono con forma de engranaje y luego en <i>Configuración del proyecto</i></li>
+        <li>El campo <i>Clave de API de la web</i> contiene el API Key</li>
+        <li>Tanto el login como el regsitro utilizan una petición POST de HTTP, cuya URL se obtiene a partir de <a href="https://firebase.google.com/docs/reference/rest/auth#section-create-email-password" target="_blank">este enlace</a></li>
+        <li>Como vemos, las URLs del login y del registro solo difieren al final</li>
     </ul>
 
-    <h4>2.5 Guardián</h4>
+    <h4>2.2 Registro</h4>
 
     <ul>
-        <li>Para crear un guardián ejecutando el comando <b>$ ng g ????</b></li>
-        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
+        <li>Creamos un método para el registro, como se observa en la figura 2.2</li>
+        <li>Dentro simplemente debemos ejecutar un POST de HTTP</li>
+        <li>Antes de realizar la petición creamos una variable con la cabecera con los datos del usuario que proporcionó en el formulario de registro</li>
+        <li>El último campo de la cabecera (<i>returnSecureToken</i>) se activa para que Firebase devuelva el token de seguridad tras el registro</li>
+        <li>De esta forma, el usuario habrá iniciado sesión automáticamente tras registrarse y no tendrá que rellenar el formulario de login</li>
+        <li>No obstante, si no deseamos que esto ocurra y queremos que el usuario tras loguearse tenga que iniciar sesión, le asignamos <b>false</b></li>
+        
+        <img src="assets/img/login-y-registro/figura2-2.png" alt="">
+        <caption><strong>Figura 2.2.</strong> Petición HTTP de tipo POST para el registro</caption>
+
+        <li>Tras crear la cabecera ejecutamos la petición POST</li>
+        <li>Dado que la URL de Firebase para el login y el registro comparten prefijo, lo hemos almacenado en la variable <i>url</i></li>
+        <li>Seguimos generando la URL de la petición POST embebiendo la API Key</li>
+        <li>Tras completar la URL, enviamos como segundo parámetro la cabecera que acabamos de generar</li>
+        <li>Posteriormente, utilizamos el operador RXJS <b>map</b> para trabajar con el resultado devuelto por Firebase</li>
+        <li>Firebase devolverá un objeto con datos necesarios, como el del campo <i>idToken</i>, que viene a ser el token de seguridad</li>
+        <li>Almacenamos este token en el local storage a través de un método auxiliar (figura 2.3)</li>
+
+        <img src="assets/img/login-y-registro/figura2-3.png" alt="">
+        <caption><strong>Figura 2.3.</strong> Almacenamiento del token de seguridad en el local storage</caption>
+
+        <li>En este método, además, almacenamos en el local storage la fecha de expiración, tal que pasado ese tiempo se debe borrar el token de seguridad y se fuerza el cierre de sesión del usuario</li>
+        <li>Firebase no nos devuelve la fecha de expiración per se, sino la duración de la sesión en segundos (normalmente de una hora, lo que equivale a unso 3600 segundos)</li>
+        <li>Debemos sumar (mediante el método <b>setTime()</b>) este intervalo de tiempo a la fecha actual para obtener así la fecha en la que el token de seguridad expirará</li>
+        
+        <img src="assets/img/login-y-registro/figura2-4.png" alt="">
+        <caption><strong>Figura 2.4.</strong> Petición HTTP de tipo POST para el registro sin login automático</caption>
+        
+        <li>Como habíamos dicho, tras registrarse el usuario se loguea automáticamente porque el campo <i>returnSecureToken</i> vale <b>true</b></li>
+        <li>No obstante, en caso contrario el usuario simplemente quedaría almacenado en Firebase, pero tendría que loguearse posteriormente</li>
+        <li>En tal caso solo habría que devolver el observable en la figura 2.2 y omitir el postprocesado reactivo del operador RXJS <b>map</b> y la invocación del método auxiliar de la figura 2.3, como ilustra la figura 2.4</li>
+    </ul>
+
+    <h4>2.3 Login</h4>
+
+    <ul>
+        <li>La implementación es prácticamente la misma que la del registro, vista en la figura 2.2</li>
+        <li>Solo existen dos diferencias: la URL es diferente y la cabecera solo contendrá los datos necesarios para loguearse (email y contraseña)</li>
+        <li>En este caso, el campo <b>returnSecureToken</b> de la cabecera siempre será <b>true</b>, dado que tras loguearse deseamos que Firebase devuelva el token de seguridad</li>
+
+        <img src="assets/img/login-y-registro/figura2-5.png" alt="">
+        <caption><strong>Figura 2.5.</strong> Petición HTTP de tipo POST para el login</caption>
     </ul>
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3 id="registro">3. Registro</h3>
+    <h3 id="registro">3. Componente para el registro</h3>
     <hr>
+
+    <div class="pendiente mb-40">Dentro del dashboard de nuestra aplicación en Firebase, si hacemos clic en <i>Authentication</i> y luego en la pestaña <i>Usuarios</i>, veremos que se recogen los datos del usuario que se acaba de registrar</div>
 
     <h4>3.1 Cambios necesarios dentro del template del componente <i>registro</i></h4>
     
     <ul>
-        <li>En la figura 4.1 vemos el esquema general del formulario de registro dentro del template de este componente</li>
+        <li>En la figura 3.1 vemos el esquema general del formulario de registro dentro del template de este componente</li>
         <li>Como vemos, utilizamos una template variable (<i>#formularioRegistro</i>) para gestionar el formulario, que será de tipo <b>ngForm</b></li>
         <li>Cuando se haga submit se invocará a la función <i>onSubmit</i>, que recibirá el formulario como único parámetro</li>
         <li>Dicho formulario no es más que un objeto con multitud de campos que utilizaremos para gestionar distintas situaciones, como iremos viendo a continuación</li>
@@ -133,7 +164,7 @@
         <li>Además, tenemos en cuenta que exista un error para dicho campo (<b>formularioRegistro.controls['name'].errors</b>)</li>
         <li>Claro, <i>formularioRegistro</i> es el identificador del template variable que utilizamos para referencia el formulario, que viene a ser un objeto propio de Angular para trabajar con formularios</li>
         <li>Para conocer su estructura interna, puedes hacer ejecutar la función <b>console.log( formularioRegistro )</b> para del método <i>onSubmit()</i> dentro del fichero TS del componente</li>
-        <li>Dentro de este objeto tenemos el campo <b>controls</b> que contendrá un listado de cada uno de los controles dentro del formulario en cuestión, como los inputs en el ejemplo de la figura 4.1</li>
+        <li>Dentro de este objeto tenemos el campo <b>controls</b> que contendrá un listado de cada uno de los controles dentro del formulario en cuestión, como los inputs en el ejemplo de la figura 3.1</li>
         <li>¿Cómo se designa a cada control? Cada control tiene un identificador, que será el mismo que el designado en el literal del atributo HTML <b>name</b> del que hablamos antes</li>
         <li>A su vez, cada control contendrá una serie de campos, del que nos interesa el campo <b>errors</b>, que nos notificará de la existencia de errores para el campo en cuestión</li>
         <li>Es por ello que utilizamos este campo dentro de la directiva <b>ngIf</b></li>
@@ -148,16 +179,9 @@
 
     </ul>
 
-    <h4>3.3 Fichero <i>app.module.ts</i></h4>
-
-    <ul>
-        <li>Para poder utilizar los métodos HTTP, debemos importar la clase <b>HttpClientModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
-        <li>Para poder utilizar la directiva <b>ngModel</b> debemos importar la clase <b>FormsModule</b> e incorporarla dentro del campo <b>imports</b> del decorador</li>
-    </ul>
-
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3 id="login">4. Login</h3>
+    <h3 id="login">4. Componente para el login</h3>
     <hr>
 
     <h4>4.1 Cambios necesarios dentro del template del componente <i>login</i></h4>
@@ -208,6 +232,16 @@
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3 id="recordar-usuario">6. Recordar usuario</h3>
+    <h3>6. Guardián</h3>
+    <hr>
+    
+    <ul>
+        <li>Para crear un guardián ejecutando el comando <b>$ ng g ????</b></li>
+        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="recordar-usuario">7. Recordar usuario</h3>
     <hr>
   </div>
