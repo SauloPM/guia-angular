@@ -23,6 +23,10 @@ export class InicioComponent {
       enlace: 'angular-cli'
     },
     {
+      texto: 'Local Storage',
+      enlace: 'local-storage'
+    },
+    {
       texto: 'jQuery',
       enlace: 'jquery'
     }

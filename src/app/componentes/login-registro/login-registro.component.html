@@ -1,6 +1,9 @@
 <div id="notas" class="animated fadeIn">
 
     <h2>Login y registro</h2>
+
+    <div class="pendiente">El guardián debería tener su propio apartado con un subapartado del fichero de rutas</div>
+    <div class="pendiente mb-40">La implementación del servicio debería tener su propio apartado</div>
   
     <app-indice [items]="itemsIndice"></app-indice>
     
@@ -36,11 +39,12 @@
         <caption><strong>Figura 2.1.</strong> Modelo de usuario</caption>
     </ul>
 
-    <h4>2.2 Componentes necesarios</h4>
+    <h4>2.2 Ficheros necesarios</h4>
     
     <ul>
         <li>Creamos tres nuevos componentes, uno para el login, otro para el registro y otro para la página a la que accederemos tras loguearnos correctamente</li>
         <li>Esta última estará eventualmente protegida para que solo sea accesible tras loguearnos correctamente</li>
+        <li>Creamos un servicio para la gestión de usuarios y un guardián para la gestión del token de seguridad y protección de rutas</li>
     </ul>
 
     <h4>2.3 Firebase</h4>
@@ -57,6 +61,47 @@
         <li>Como podemos suponer, Firebase nos provee de una API REST para gestionar operaciones típicas con usuarios, como el login o el registro, entre otros</li>
         <li>Esto libera al programador de tener que implementar esta lógica desde el lado del servidor</li>
         <li>Si en un futuro quisieras gestionar esta parte de otra manera, la aplicación de Angular no varía al estar encapsulada (en todo caso, las URLs de las peticiones HTTP)</li>
+    </ul>
+
+    <h4>2.4 Servicio</h4>
+
+    <div class="pendiente">Explicar por qué se cargar en una variable el token de seguridad del local storage y que pasa cuando este no existe todavía (creo que se devuelve <b>undefined</b> o algo así)</div>
+    <div class="pendiente mb-40">En la figura 2.2 no se recibe una variable de tipo modelo de usuario como único parámetro. ¿Está bien?</div>
+
+    <ul>
+        <li>Importamos la clase <b>HttpClient</b> y la inyectamos dentro del constructor del servicio</li>
+        <li>Para implementar el login o el registro necesitamos las URLs de la API de Firebase para este propósito que pueden consultarse en <a href="https://firebase.google.com/docs/reference/rest/auth#section-create-email-password" target="_blank">este enlace</a></li>
+        <li>En ambos casos tenemos que realizar una petición HTTP de tipo POST a una URL enviando una cabecera</li>
+        <li>En las figuras 2.2 y 2.3 vemos las implementaciones para cada una de las dos operaciones</li>
+        <li>Como vemos, en ambos casos se requiere del modelo de usuario, de modo que previamente hemos de haberlo importado</li>
+        <li>Las cabeceras de ambas peticiones POST tienen la misma estructura en los ejemplos de las figuras, pero normalmente no es así</li>
+        <li>Claro, en el registro se suelen proporcionar más datos además el email y la contraseña, como el nombre, los apellidos, etc.</li>
+        <li>Es por eso que la cabecera del registro suele contener más campos, pero en este ejemplo simplificado nos basta solo con el email y la contraseña, como en el login</li>
+        <li>No obstante, en caso de no ser así, tendríamos una cabecera compuesta de más campos en el registro que en el login, que se compondría solo del email y la contraseña</li>
+        
+        <img src="assets/img/login-y-registro/figura2-2.png" alt="">
+        <caption><strong>Figura 2.2.</strong> Petición HTTP de tipo POST para el login</caption>
+        
+        <li>En el caso del registro, la cabecera de la petición HTTP debe contener los datos del usuario que ha completado el formulario de registro</li>
+        <li>El campo <b>returnSecureToken</b> de la cabecera indica que deseamos que se devuelva el token de seguridad tras completar satisfactoriamente el registro</li>
+        <li>Con esto el usuario podrá iniciar sesión nada más registrarse, ya que contará con el token de seguridad directamente, sin necesidad de tener que loguearse</li>
+        <li>Tras eso, almacenamos el token de seguridad devuelto por Firebase en el local storage, lo que se consigue mediante el método <i>guardarToken()</i> (figura 2.4)</li>
+        <li>En este método, además, almacenamos en el local storage la fecha de expiración, tal que pasado ese tiempo se debe borrar el token de seguridad y se fuerza el cierre de sesión del usuario</li>
+        <li>Firebase no nos devuelve la fecha de expiración per se, sino la duración de la sesión en segundos (normalmente de una hora, lo que equivale a unso 3600 segundos)</li>
+        <li>Debemos sumar (mediante el método <b>setTime()</b>) este intervalo de tiempo a la fecha actual para obtener así la fecha en la que el token de seguridad expirará (figura 2.4)</li>
+
+        <img src="assets/img/login-y-registro/figura2-3.png" alt="">
+        <caption><strong>Figura 2.3.</strong> Petición HTTP de tipo POST para el registro</caption>
+
+        <img src="assets/img/login-y-registro/figura2-4.png" alt="">
+        <caption><strong>Figura 2.4.</strong> Almacenamiento del token de seguridad y de la fecha de expiración en el local storage</caption>
+    </ul>
+
+    <h4>2.5 Guardián</h4>
+
+    <ul>
+        <li>Para crear un guardián ejecutando el comando <b>$ ng g ????</b></li>
+        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
     </ul>
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
@@ -121,12 +166,6 @@
     </ul>
     
     <h4>4.2 Cambios necesarios dentro del fichero TS del componente <i>login</i></h4>
-
-    <h4>X.3 Guardián</h4>
-
-    <ul>
-        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
-    </ul>
 
     <h4>X.4 Fichero de rutas</h4>
 

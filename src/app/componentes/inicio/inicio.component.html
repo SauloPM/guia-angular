@@ -54,10 +54,21 @@
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-  <h3 id="jquery">4. jQuery</h3>
+  <h3 id="local-storage">4. Local Storage</h3>
   <hr>
 
-  <h4>4.1 Instalar jQuery</h4>
+  <ul>
+    <li>El local storage es un tipo de almacenamiento web que permite a aplicaciones de JS almacenar datos en el navegador web sin fecha de expiración</li>
+    <li>Esto implica que los datos seguirán almacenados incluso si el usuario cierra el navegador web</li>
+    <li>Para acceder al local storage desde nuestro navegador web, abrimos el inspector, hacemos clic en la pestaña <i>Application</i> y luego en <i>Local Storage</i></li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="jquery">5. jQuery</h3>
+  <hr>
+
+  <h4>5.1 Instalar jQuery</h4>
 
   <ul>
     <li>Desde el directorio de nuestro proyecto ejecutamos el comando <b>& npm install jquery --save</b> para instalar jQuery dentro del directorio <i>node_modules</i></li>
@@ -68,30 +79,30 @@
     <li>A partir de ahora podremos utilizar jQuery dentro de cualquier hook con total normalidad como hemos hecho siempre</li>
   </ul>
 
-  <h4>4.2 Selector <b>$(this)</b></h4>
+  <h4>5.2 Selector <b>$(this)</b></h4>
 
   <ul>
     <li>Utilizar <b>$(this)</b> puede dar problemas, ya que en TS no apunta al elemento HTML que disparó el evento, como solía suceder típicamente cuando programábamos sin utilizar Angular</li>
     <li>En su lugar pasamos el evento como parámetro del manejador (<b>event</b>) y utilizamos <b>event.target</b> o <b>event.currentTarget</b>, que nos da acceso a todos los atributos necesarios del elemento HTML que disparó el evento</li>
     <li>Típicamente se le suele dar al evento el identificador <i>event</i> o <i>evento</i> a modo de estándar, pero no es obligatorio (aunque sí una buena práctica)</li>
     <li>Ante cualquier duda sobre la estructura interna de este objeto (el evento), siempre podremos inspeccionarlo en la consola de JS mediante la instrucción <b>console.log(event)</b></li>
-    <li>De esta forma la instrucción de ejemplo <b>$(this).attr("href")</b> y la instrucción <b>$(event.currentTarget).attr("href")</b> son equivalentes, salvo que la primera puede dar fallos (ver figura 1)</li>
+    <li>De esta forma la instrucción de ejemplo <b>$(this).attr("href")</b> y la instrucción <b>$(event.currentTarget).attr("href")</b> son equivalentes, salvo que la primera puede dar fallos (ver figura 5.1)</li>
   </ul>
 
-  <h4>4.3 Navegación suavizada entre apartados dentro de una misma página</h4>
+  <h4>5.3 Navegación suavizada entre apartados dentro de una misma página</h4>
 
   <ul>
     <li>Escribimos la instrucción <b>declare var $: any;</b> delante del decorador del componente correspondiente</li>
-    <li>Tras esto, ejecutamos el código ilustrado en la figura 1 dentro de un hook</li>
+    <li>Tras esto, ejecutamos el código ilustrado en la figura 5.1 dentro de un hook</li>
     <li>En este ejemplo se navega de una sección a otra haciendo clic en un elemento HTML cuya clase CSS es <i>item</i></li>
     <li>Como vemos, dentro del atributo HTML personalizado <i>data-target</i> contiene el identificador CSS del apartado correspondiente que hemos utilizado para fijar la posición del scroll</li>
 
-    <img src="assets/img/inicio/figura1.png" alt="">
-    <caption><strong>Figura 1.</strong> Navegación suavizada entre apartados dentro de una misma página</caption>
+    <img src="assets/img/inicio/figura5-1.png" alt="">
+    <caption><strong>Figura 5.1</strong> Navegación suavizada entre apartados dentro de una misma página</caption>
 
   </ul>
 
-  <h4>4.4 Funciones flecha</h4>
+  <h4>5.4 Funciones flecha</h4>
 
   <ul>
     <li>Es posible simplifcar la instrucción del manejador de un evento asociado a un elemento HTML gracias a las funciones flecha</li>
