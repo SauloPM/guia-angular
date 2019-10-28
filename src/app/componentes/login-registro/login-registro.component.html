@@ -25,6 +25,7 @@
         <li>Cuando el usuario inicie sesión en nuestra aplicación, Firebase nos enviará por HTTP un token de seguridad que gestionaremos durante toda la sesión</li>
         <li>Este token de seguridad se creará cuando el usuario inicie sesión y se destruirá cuando la cierre o cuando expire (normalmente pasada una hora)</li>
         <li>Sabremos si el usuario ha iniciado sesión si dicho token de seguridad todavía existe</li>
+        <li>Claro, no podemos manipular la BD de Firebase así como así, este nos tiene que dar permiso a través de dicho token de seguridad para autentificar nuestra petición HTTP</li>
         <li>Crear una clase a modo de modelo que defina la estructura de datos necesaria para definir un usuario</li>
         <li>Crear un servicio para la gestión de usuarios y un guardián para la gestión del token de seguridad y protección de rutas</li>
         <li>Un guardián no es más que un tipo de servicio específico para proteger rutas de nuestro proyecto de accesos indeseados</li>
@@ -72,7 +73,8 @@
     <h3 id="servicio">2. Servicio</h3>
     <hr>
 
-    <div class="pendiente">Explicar por qué se cargar en una variable el token de seguridad del local storage y que pasa cuando este no existe todavía (creo que se devuelve <b>undefined</b> o algo así)</div>
+    <div class="pendiente">Explicar por qué se carga en una variable el token de seguridad del local storage dentro del constructor</div>
+    <div class="pendiente mb-40">¿Qué pasa cuando este no existe todavía? Creo que se devuelve <b>undefined</b> o algo así</div>
 
     <h4>2.1 Introducción</h4>
 
@@ -107,6 +109,9 @@
         <li>Posteriormente, utilizamos el operador RXJS <b>map</b> para trabajar con el resultado devuelto por Firebase</li>
         <li>Firebase devolverá un objeto con datos necesarios, como el del campo <i>idToken</i>, que viene a ser el token de seguridad</li>
         <li>Almacenamos este token en el local storage a través de un método auxiliar (figura 2.3)</li>
+        <li>Esto último (el uso del operador RXJS <b>map</b> y la gestión del token de seguridad) se hubiera podido implementar tras suscribinrnos al observable desde los componentes que vayan a hacer uso de él, pero es menos elegante</li>
+        <li>Si se devuelve un error, el operador RXJS <b>map</b> no hace nada</li>
+        <li>No obstante, RXJS te permite capturar el error producido con <b>catchError</b> (al mismo nivel que el operador <b>map</b>), pero no es necesario porque capturamos los posibles errores en los componentes</li>
 
         <img src="assets/img/login-y-registro/figura2-3.png" alt="">
         <caption><strong>Figura 2.3.</strong> Almacenamiento del token de seguridad en el local storage</caption>
@@ -114,6 +119,7 @@
         <li>En este método, además, almacenamos en el local storage la fecha de expiración, tal que pasado ese tiempo se debe borrar el token de seguridad y se fuerza el cierre de sesión del usuario</li>
         <li>Firebase no nos devuelve la fecha de expiración per se, sino la duración de la sesión en segundos (normalmente de una hora, lo que equivale a unso 3600 segundos)</li>
         <li>Debemos sumar (mediante el método <b>setTime()</b>) este intervalo de tiempo a la fecha actual para obtener así la fecha en la que el token de seguridad expirará</li>
+        <li>Ojo, esta suma se puede realizar porque la fecha se pasa a un formato numérico expresado en segundos que no es fácilmente entendible por un ser humano, pero sí para un dispositivo</li>
         
         <img src="assets/img/login-y-registro/figura2-4.png" alt="">
         <caption><strong>Figura 2.4.</strong> Petición HTTP de tipo POST para el registro sin login automático</caption>
@@ -136,7 +142,7 @@
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3 id="registro">3. Componente para el registro</h3>
+    <h3 id="componente-registro">3. Componente del registro</h3>
     <hr>
 
     <div class="pendiente mb-40">Dentro del dashboard de nuestra aplicación en Firebase, si hacemos clic en <i>Authentication</i> y luego en la pestaña <i>Usuarios</i>, veremos que se recogen los datos del usuario que se acaba de registrar</div>
@@ -174,35 +180,78 @@
 
     <h4>3.2 Cambios necesarios dentro del fichero TS del componente <i>registro</i></h4>
 
+    <div class="pendiente">Mejorar explicación</div>
+    <div class="pendiente">Explica cómo se instala el plugin Sweet Alert 2</div>
+    <div class="pendiente mb-40">Se ha hecho para el login, pero no para el registro</div>
+
     <ul>
         <li>Importamos el modelo de usuario y declaramos una variable de este tipo cuyo identificador tendrá que coincidir con el literal de la directiva <b>ngModel</b> del template</li>
+        <li>Importamos la clase <b>Router</b> y el servicio e inyectamos ambos en el constructor</li>
+        <li>Claro, el primero lo vamos a utilizar para redirigir al usuario a la página protegida si se logueó satisfactoriamente y el segundo para insertar los datos del mismo en la BD de Firebase</li>
+        <li>En la figura 3.2 podemos ver el código del método <i>onSubmit()</i> que vimos en el formulario del template de la figura 3.1</li>
+        <li>Como vemos, lo primero que hacemos es comprobar si hay errores, en cuyo caso se aborta</li>
+        <li>Posteriormente nos suscribimos al observable del servicio para registrarse y redirigimos al usuario a la página protegida</li>
+        <li>En caso de producirse algún error, se imprime el mensaje de excepción en la consola de JS del navegador web</li>
+        
+        <img src="assets/img/login-y-registro/figura3-2.png" alt="">
+        <caption><strong>Figura 3.2.</strong> Código para el registro de usuarios</caption>
 
+        <li>Como vemos, el método <i>onSubmit()</i> recibe un formulario al que se le ha hecho submit en Angular como parámetro, que no es más que un objeto</li>
+        <li>Uno de los campos del formulario es <b>invalid</b>, de tipo booleano, que valdrá <b>true</b> en caso de que el formulario no sea válido o <b>false</b> en caso contrario</li>
+        <li>Este campo es el que utilizamos al comienzo para saber si se han producido errores o no (por ejemplo, campos vacíos o errores de formato en el email, como la omisión de <i>@</i>, entre otros)</li>
+        <li>Por lo demás, utilizamos el plugin Sweet Alert 2 para mostrar un loading mientras se procesa el registro del usuario, que se cierra una vez se haya completado</li>
+        <li>En caso de error también utilizamos este plugin para notificar al usuario de posibles errores</li>
+        <li>Ojo, los errores de un formulario inválido no son los mismos que los que devuelve Firebase tras suscribirnos al observable</li>
+        <li>En el segundo caso un error típico sería que el email ya se encuentra registrado en la BD de Firebase, entre otros</li>
+        <li>Antes de mostrar el mensaje de error del plugin Sweet Alert 2 mostramos el mensaje de la excepción por consola (que deberías quitar del código en producción para no dar demasiada información)</li>
+        <li>El mensaje del error constará dentro del objeto que devuelve Firebase cuando el usuario intenta registrarse, concretamente dentro del campo error/error/message</li>
+        <li>Este objeto devuelvo por Firebase con el error lo hemos encerrado en el parámetro <i>excepcion</i> para poder gestionarlo</li>
+        <li>Esta operación (el regsitro) es segura porque la petición POST que le enviamos a Firebase tiene la Api Key que solo nosotros podemos conocer porque es accesible desde nuestro dashboard, al que accedemos con nuestro usuario y contraseña de Firebase</li>
+        <li>Firebase devuelve un objeto que contiene, entre otros, el token de seguridad, por no mencionar el tiempo que durará la sesión sin expirar expresado en segundos (comúnmente una hora)</li>
+        <li>Firebase me devolverá datos tras el submit (en la doc puedes ver qué datos)</li>
+        <li>Claro, en el POST que hicimos le enviamos el token de seguridad que obtuvimos en el dashboard de nuestra app, de modo que Firebase lo toma por bueno y lo ejecuta, modificando la BD</li>
+        <li>Si intentamos registrar dos veces a un usuario con el mismo email, la segunda vez dará error porque ese email ya consta en la BD, de modo que gestionamos el error cuando nos suscribimos al observable</li>
+        <li>El mensaje del error nos viene en un JSON por la consola de JS, de modo que lo capturamos en una variable para poder trabajar con las notificaciones al usuario</li>
     </ul>
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3 id="login">4. Componente para el login</h3>
+    <h3 id="componente-login">4. Componente del login</h3>
     <hr>
 
-    <h4>4.1 Cambios necesarios dentro del template del componente <i>login</i></h4>
+    <h4>4.1 Fichero HTML</h4>
 
     <ul>
         <li>Hacemos prácticamente lo mismo que en la figura 3.1</li>
+        <li>La única diferencia sería que en este caso el formulario quedaría simplificado, al requerir solo del email y la contraseña</li>
+        <li>Además, hemos incorporado un checkbox para que el usuario decida si prefiere o no ser recordado para liberarle de tener que volver a rellenar el formulario en futuras visitas (figura 4.1)</li>
+
+        <img src="assets/img/login-y-registro/figura4-1.png" alt="">
+        <caption><strong>Figura 4.1.</strong> Recordar usuario</caption>
     </ul>
     
-    <h4>4.2 Cambios necesarios dentro del fichero TS del componente <i>login</i></h4>
+    <h4>4.2 Fichero TS</h4>
 
-    <h4>X.4 Fichero de rutas</h4>
-
-    <div class="pendiente">No te olvides de explicar cómo proteger las rutas hijas</div>
-
-    <h4>X.5 Notificaciones</h4>
+    <div class="pendiente mb-40">Mejorar explicación</div>
 
     <ul>
-        <li>Firebase devuelve información detallada de por qué no se pudo realizar satisfactoriamente el inicio de sesión</li>
-        <li>Esta información nos dice qué campo del formulario dio lugar al error (el email no existe, la constraseña no es correcta, etc.)</li>
-        <li>No se recomienda dar tanta información al usuario para evitar que sepa qué email existe o no en la BD</li>
-        <li>Asegúrate de mostrar un mensaje de notificación del tipo <i>Datos de acceso incorrectos</i> sin entrar en demasiado detalle para ponérselo más difícil a posibles usuarios maliciosos</li>
+        <li>Hacemos prácticamente lo mismo que en la figura 3.2, pero suscribiéndonos al observable del login</li>
+        <li>Nótese que tenemos en cuenta si el usuario ha activado o no la opción de ser recordado, en cuyo caso se almacena su email en el local storage (figura 4.2)</li>
+        
+        <img src="assets/img/login-y-registro/figura4-2.png" alt="">
+        <caption><strong>Figura 4.2.</strong> Código para el inicio de sesión de usuarios</caption>
+        
+        <li>Dentro del método <b>ngOnInit()</b> comprobamos si el email del usuario se encuentra alojado en el local storage en caso de haber activado la opción de ser recordado (figura 4.3)</li>
+        <li>En tal caso, este se almacena en la variable vinculada al literal de la directiva <b>ngModel</b> del input del email del formulario</li>
+        <li>Tras esto, volvemos a asignarle <b>true</b> a la variable que almacena la decisión del usuario para no perderlo</li>
+        <li>Nótese que la variable <i>recordarUsuario</i> es de tipo booleano y almacena la decisión del usuario en base a si desea o no ser recordado en futuras sesiones</li>
+        <li>Esta variable es inicializada por defecto a <b>false</b> en la zona de declaración de variables del componente del login</li>
+        <li>Esta variable está vinculada al checkbox del formulario gracias a la directiva <b>ngModel</b></li>
+        <li>Esto se puede poner también en el formulario de registro, pero habría que quitar el código de la figura 4.3, ya que en el registro no deseamos que se autocomplete ningún campo</li>
+        <li>¿Para qué? Para que el usuario desde el formulario de registro pueda activar que se le recuerde sin tener que hacerlo yendo al formulario de login (le ahorramos este paso)</li>
+
+        <img src="assets/img/login-y-registro/figura4-3.png" alt="">
+        <caption><strong>Figura 4.3.</strong> Recordar usuario</caption>
     </ul>
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
@@ -240,8 +289,16 @@
         <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
     </ul>
 
-    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    <h4>X.4 Fichero de rutas</h4>
 
-    <h3 id="recordar-usuario">7. Recordar usuario</h3>
-    <hr>
+    <div class="pendiente">No te olvides de explicar cómo proteger las rutas hijas</div>
+
+    <h4>X.5 Notificaciones</h4>
+
+    <ul>
+        <li>Firebase devuelve información detallada de por qué no se pudo realizar satisfactoriamente el inicio de sesión</li>
+        <li>Esta información nos dice qué campo del formulario dio lugar al error (el email no existe, la constraseña no es correcta, etc.)</li>
+        <li>No se recomienda dar tanta información al usuario para evitar que sepa qué email existe o no en la BD</li>
+        <li>Asegúrate de mostrar un mensaje de notificación del tipo <i>Datos de acceso incorrectos</i> sin entrar en demasiado detalle para ponérselo más difícil a posibles usuarios maliciosos</li>
+    </ul>
   </div>

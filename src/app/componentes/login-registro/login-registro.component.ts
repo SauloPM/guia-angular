@@ -15,24 +15,20 @@ export class LoginRegistroComponent {
       enlace: 'introduccion'
     },
     {
-      texto: 'Puesta en marcha',
-      enlace: 'puesta-en-marcha'
+      texto: 'Servicio',
+      enlace: 'servicio'
     },
     {
-      texto: 'Registro',
-      enlace: 'registro'
+      texto: 'Componente del registro',
+      enlace: 'componente-registro'
     },
     {
-      texto: 'Login',
-      enlace: 'login'
+      texto: 'Componente del login',
+      enlace: 'componente-login'
     },
     {
       texto: 'Logout',
       enlace: 'logout'
-    },
-    {
-      texto: 'Recordar usuario',
-      enlace: 'recordar-usuario'
     }
   ];
 
