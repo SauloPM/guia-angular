@@ -252,6 +252,11 @@
 
         <img src="assets/img/login-y-registro/figura4-3.png" alt="">
         <caption><strong>Figura 4.3.</strong> Recordar usuario</caption>
+
+        <li>Firebase devuelve información detallada de por qué no se pudo realizar satisfactoriamente el inicio de sesión</li>
+        <li>Esta información nos dice qué campo del formulario dio lugar al error (el email no existe, la constraseña no es correcta, etc.)</li>
+        <li>No se recomienda dar tanta información al usuario para evitar que sepa qué email existe o no en la BD</li>
+        <li>Asegúrate de mostrar un mensaje de notificación del tipo <i>Datos de acceso incorrectos</i> sin entrar en demasiado detalle para ponérselo más difícil a posibles usuarios maliciosos</li>
     </ul>
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
@@ -281,24 +286,49 @@
 
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-    <h3>6. Guardián</h3>
+    <h3 id="guardian">6. Guardián</h3>
     <hr>
-    
+
     <ul>
-        <li>Para crear un guardián ejecutando el comando <b>$ ng g ????</b></li>
-        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación</li>
+        <li>Un guardián es un tipo de servicio especial que se encarga de proteger las rutas especificadas en el fichero de rutas de usuarios no logueados</li>
+        <li>Es una buena práctica crear todos los guardianes dentro de un mismo directorio (por ejemplo, <i>guards</i> o <i>guardianes</i>) para separarlos de los demás tipos de elementos</li>
+        <li>Para crearlo, ejecutamos el comando <b>$ ng g guardianes/_Nombre del guardián_</b></li>
+        <li>Tras ejecutar este comando, Angular CLI nos mostrará tres opciones que podremos activar o desactivar con la barra espaciadora (podemos seleccionar más de una)</li>
+        <li>Estas opciones son <b>CanActivate</b> (para proteger rutas, de modo que la activamos), <b>CanActivateChild</b> (para proteger rutas hijas) y <b>CanLoad</b> (para el lazy load)</li>
+        
+        <img src="assets/img/login-y-registro/figura6-1.png" alt="">
+        <caption><strong>Figura 6.1.</strong> Estructura simplificada de un guardián</caption>
+        
+        <li>Efectivamente, el fichero que crea Angular CLI tiene la misma pinta que la de un servicio (fíjate en el decorador), como se observa en la figura 6.1</li>
+        <li>Ojo, el guardián creado por Angular CLI no es exactamente igual que el de esta figura, dado que este ha sido modificado en base a nuestras necesidades</li>
+        <li>Importamos el servicio y la clase <b>Router</b> y los inyectamos en el constructor</li>
+        <li>Utilizaremos el primero para detectar si el usuario se ha logueado para una ruta en cuestión y el segundo para redirigir accesos indeseados a la página del login (o a la que tú quieras)</li>
+
+        <img src="assets/img/login-y-registro/figura6-2.png" alt="">
+        <caption><strong>Figura 6.2.</strong> Verificación de la bondad de un acceso</caption>
+
+        <li>El guardián utilizará el token de seguridad para permitir o no la navegación de cierto abanico de páginas dentro de nuestra aplicación dentro del fichero de rutas</li>
+        <li>Para ello, utilizamos el método <i>usuarioLogueado()</i>, que lo que hace es comprobar si existe el token de seguridad en el local storage y que no haya expirado (figura 6.2)</li>
+        <li>Este método lo debemos crear en nuestro servicio (no en el guardián, sino en el servicio del apartado 2)</li>
+        <li>Como vemos en la figura 6.2, comprobamos que el token de seguridad tenga al menos una extensión de dos caracteres</li>
+        <li>En lugar de cargar el token de seguridad del local storage (sería una opción igualmente válida), ya lo teníamos almacenado en la variable <i>userToken</i>, inicializada en el constructor (figura 6.3)</li>
+        <li>Después, cargamos la fecha de expiración del local storage (debemos hacer un cast para pasarla a su expresión numérica) y comprobamos que no supere la fecha actual (que no haya expirado)</li>
+
+        <img src="assets/img/login-y-registro/figura6-3.png" alt="">
+        <caption><strong>Figura 6.3.</strong> Obtención del token de seguridad dentro del constructor</caption>
     </ul>
 
-    <h4>X.4 Fichero de rutas</h4>
-
-    <div class="pendiente">No te olvides de explicar cómo proteger las rutas hijas</div>
-
-    <h4>X.5 Notificaciones</h4>
+    <h4>6.1 Fichero de rutas</h4>
 
     <ul>
-        <li>Firebase devuelve información detallada de por qué no se pudo realizar satisfactoriamente el inicio de sesión</li>
-        <li>Esta información nos dice qué campo del formulario dio lugar al error (el email no existe, la constraseña no es correcta, etc.)</li>
-        <li>No se recomienda dar tanta información al usuario para evitar que sepa qué email existe o no en la BD</li>
-        <li>Asegúrate de mostrar un mensaje de notificación del tipo <i>Datos de acceso incorrectos</i> sin entrar en demasiado detalle para ponérselo más difícil a posibles usuarios maliciosos</li>
+        <li>Dentro del fichero de rutas importamos el guardián</li>
+        <li>Tras esto, dentro de la constante <i>Routes</i> donde almacenamos el mapeo entre rutas y componentes, vinculamos el <u>nombre de clase del guardián</u> a las rutas que deseemos proteger (figura 6.4)</li>
+        <li>Como vemos, las rutas de las páginas del login y el registro no están protegidas, dado que no necesitan protección (son accesibles para cualquier usuario)</li>
+        <li>Tras esto vemos un esquema general de rutas que requieren protección, donde tenemos dos rutas hijas, una de ellas recibe un parámetro</li>
+        <li>Sea cual sea el caso, simplemente incorporamos el campo <b>canActivate</b> con un vector de guardianes (sí, podemos asignarle más de uno)</li>
+        <li>Recuerda que el campo <b>canActivate</b> corresponde al método del guardián visto en la figura 6.1</li>
+
+        <img src="assets/img/login-y-registro/figura6-4.png" alt="">
+        <caption><strong>Figura 6.4.</strong> Uso del guardián dentro del fichero de rutas</caption>
     </ul>
   </div>

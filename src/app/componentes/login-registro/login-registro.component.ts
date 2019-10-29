@@ -29,6 +29,10 @@ export class LoginRegistroComponent {
     {
       texto: 'Logout',
       enlace: 'logout'
+    },
+    {
+      texto: 'Guardián',
+      enlace: 'guardian'
     }
   ];
 
