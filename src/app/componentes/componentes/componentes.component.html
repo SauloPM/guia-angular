@@ -259,6 +259,12 @@
   <h3 [id]="itemsIndice[8].enlace">8. {{ itemsIndice[8].texto }}</h3>
   <hr>
 
-  <div class="consultar">Consultar <a href="https://medium.com/@pandukamuditha/angular-5-share-data-between-sibling-components-using-eventemitter-8ebb49b64a0a" target="_blank">enlace</a></div>
+  <div class="consultar mb-40">Consultar <a href="https://medium.com/@pandukamuditha/angular-5-share-data-between-sibling-components-using-eventemitter-8ebb49b64a0a" target="_blank">enlace</a></div>
+
+  <ul>
+    <li>Es posible que más de un componente hijo dispare el manejador en el componente padre antes el mismo evento, aunque este se lance desde diferentes componentes hermanos</li>
+    <li>Para ello, sigue los pasos del apartado anterior para cada componente hermano</li>
+    <li>Eso sí, la situación de la figura 7.3 se daría para cada componente hijo</li>
+  </ul>
 
 </div>
