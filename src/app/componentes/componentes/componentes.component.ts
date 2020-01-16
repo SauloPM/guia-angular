@@ -35,12 +35,16 @@ export class ComponentesComponent {
       enlace: 'renderizar-componente'
     },
     {
-      texto: 'Enviar parámetros desde un componente padre a un componente hijo',
-      enlace: 'enviar-parametro'
+      texto: 'Enviar información desde un componente padre a un componente hijo',
+      enlace: 'comunicacion-padre-hijo'
     },
     {
-      texto: 'Enviar evento desde un componente hijo a un componente padre',
-      enlace: 'enviar-evento'
+      texto: 'Enviar información o disparar un evento desde un componente hijo a un componente padre',
+      enlace: 'comunicacion-hijo-padre'
+    },
+    {
+      texto: 'Enviar información o disparar evento entre componentes hermanos',
+      enlace: 'comunicacion-hermanos'
     }
   ];
 

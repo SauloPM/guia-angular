@@ -176,59 +176,95 @@
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
 
-  <h3 id="enviar-evento">7. Enviar evento desde un componente hijo a un componente padre</h3>
+  <h3 [id]="itemsIndice[7].enlace">7. {{ itemsIndice[7].texto }}</h3>
   <hr>
 
   <div class="consultar">Consultar <a href="https://www.youtube.com/watch?v=WhUIY_458Yk"       target="_blank">enlace</a></div>
   <div class="consultar mb-40">Consultar <a href="https://www.youtube.com/watch?v=hNLDU9B3Ssk" target="_blank">enlace</a></div>
 
-  <ul>
-    <li>Es posible enviar información al revés que como vimos en el apartado anterior, esto es, desde un componente padre a un componente hijo</li>
-    <li>Esta comunicación, como veremos a continuación, no se va a establecer mediante el envío de parámetors, sino a través de eventos</li>
-    <li>Utilizamos esta técnica cuando tenemos varios componentes hijos repetidos (por ejemplo, debido a la directiva <b>*ngFor</b>) y deseamos interactuar con uno de ellos y saber de todos con cuál estamos interactuando</li>
-  </ul>
-
-  <h4>7.1 Ejemplos ilustrativos</h4>
-  
-  <ul>
-    <li>Supongamos que tenemos un grid de noticias que se renderiza en el componente padre en la que cada una es un componente (el componente hijo) con un identificador</li>
-    <li>Si el usuario hiciera clic en una noticia cualquiera, deseamos que este acceda a una página con toda la información de la noticia seleccionada</li>
-    <li>Para saber en qué tarjeta hemos hecho clic para poder renderizar la información correspondiente, necesitamos su identificador, lo que se puede conseguir gracias a esta técnica</li>
-    <li>No obstante, esto mismo se puede conseguir trabajando con rutas, embebiendo el identificador del elemento seleccionado como parámetro de la URL</li>
-    <li>Supongamos ahora un panel de administración con un listado de usuarios a modo de tabla, en la que para cada fila tenemos un botón para eliminar para dar de baja al usuario correspondiente</li>
-    <li>Cuando hagamos clic en un botón cualquiera, ¿cómo podemos saber qué usuario fue el que seleccionamos? Pues a partir de esta técnica</li>
-  </ul>
-
-  <h4>7.2 Modificaciones en el fichero TS del componente hijo</h4>
+  <h4>7.1 Modificaciones en el fichero TS del componente hijo</h4>
 
   <ul>
     <li>Importamos las clases <b>Output</b> y <b>EventEmitter</b></li>
-    <li>Para declarar el evento que deseemos que el componente padre esté escuchando, debemos utilizar el decorador <b>@Output()</b> antes de escribir el identificador del mismo (figura 7.1)</li>
-    <li>Este evento, que no es más que un observable, debe ser de tipo <b>EventEmitter&lt;_Tipo_&gt;</b>, indicando entre paréntesis angulares el tipo devuelto por el manejador</li>
-    <li>Tiene sentido, dado que vamos a implementar <u>un evento que emita información</u> al componente padre, teniendo que indicar el tipo de la información que deseamos enviar</li>
+    <li>Declaramos una variable de tipo <b>EventEmitter&lt;_Tipo_&gt;</b> utilizando el decorador <b>@Output()</b></li>
+    <li>Si no deseamos especificar un tipo en concreto, podemos utilizar el tipo <b>any</b></li>
+    <li>Dentro del constructor instanciamos este evento que acabamos de declarar</li>
 
     <img src="assets/img/componentes/figura7-1.png" alt="">
-    <caption><strong>Figura 7.1.</strong> Declaración del observable</caption>
+    <caption><strong>Figura 7.1.</strong> Declaración e instancia del emisor de evento</caption>
 
-    <li>Tras esto, debemos instanciar este nuevo evento que acabamos de crear dentro del cuerpo del constructor (figura 7.2)</li>
+    <li>Posteriormente creamos un método que dispare este evento enviando la información deseada al componente padre (figura 7.2)</li>
+    <li>No solo es posible enviar un literal a modo de parámetro, hubiera sido posible enviar una variable, una expresión, un array, un objeto, la propiedad de un objeto, etc.</li>
+    <li>Como es obvio, este método se dispara desde el fichero HTML del componente hijo (por ejemplo, <b>(click)="abrirNoticia( noticia.id )"</b>)</li>
 
     <img src="assets/img/componentes/figura7-2.png" alt="">
-    <caption><strong>Figura 7.2.</strong> Instancia del observable</caption>
+    <caption><strong>Figura 7.2.</strong> Método que dispara el evento en el componente padre con la información que se desea transferir a modo de parámetro</caption>
+  </ul>
 
-    <li>Posteriormente creamos, un método que dispare este evento devolviendo la información deseada (figura 7.3)</li>
-    <li>Nótese que en el ejemplo ilustrado en la figura 7.3 hemos enviado un literal, pero bien podría haber sido un caso más sofisticado, como una expresión, la propiedad de un objeto, etc.</li>
+  <h4>7.2 Modificaciones en el fichero HTML del componente padre</h4>
+
+  <ul>
+    <li>Escribimos el selector del componente hijo con el <u>mismo identificador</u> del <b>EventEmitter</b> que creamos en el componente hijo entre paréntesis (figura 7.3)</li>
+    <li>Claro, utilizamos paréntesis en lugar de corchetes porque vamos a ejecutar un método cuando se dispare el evento que creamos en el componente hijo</li>
+    <li>Esto es similar al clásico evento <b>(click)</b>, que ejecutará un manejador al hacer click, solo que en este caso el evento lo hemos creado nosotros</li>
+    <li>Para el parámetro del manejador del evento debemos utilizar <b>$event</b>, que contendrá el valor del parámetro enviado desde el componente hijo</li>
 
     <img src="assets/img/componentes/figura7-3.png" alt="">
-    <caption><strong>Figura 7.3.</strong> Método que dispara el evento con la información que se desea transferir</caption>
+    <caption><strong>Figura 7.3.</strong> Evento y manejador de dicho evento</caption>
+  </ul>
 
-    <h4>7.3 Modificaciones en el fichero HTML del componente padre</h4>
-    
-    <li>Por último, escribimos el selector del componente hijo con el identificador del observable a modo de parámetro entre paréntesis (figura 7.4)</li>
-    <li>Claro, utilizamos paréntesis en lugar de corchetes, dado que <u>deseamos enviar o lanzar un evento</u> al componente hijo para que nos devuelva información</li>
-    <li>Nótese que debemos declarar el método declarado en el componente hijo (figura 7.3) que emitía el evento en cuestión, enviándole un evento como parámetro (figura 7.4)</li>
+  <h4>7.3 Modificaciones en el fichero TS del componente padre</h4>
+
+  <ul>
+
+    <li>Creamos el manejador de este evento creado en el componente hijo para realizar las gestiones necesarias</li>
+    <li>En el ejemplo de la figura 7.4 simplemente notificamos al usuario de la noticia que ha seleccionado</li>
+    <li>Nótese que el identificador del parámetro del manejador no se <b>$event</b>, sino el identificador que nosotros queramos (aunque fuera <b>$event</b> en el fichero HTML)</li>
 
     <img src="assets/img/componentes/figura7-4.png" alt="">
-    <caption><strong>Figura 7.4.</strong> Captación de parámetros de salida desde el fichero HTML del componente padre</caption>
-
+    <caption><strong>Figura 7.4.</strong> Manejador del evento creado en el componente hijo</caption>
   </ul>
+
+  <h4>7.4 Aclaraciones</h4>
+
+  <ul>
+    <li>La variable que declaramos e instanciamos dentro del fichero TS del componente hijo es de tipo <b>EventEmitter</b> porque vamos a emitir un evento <u>en el componente padre</u></li>
+    <li>Cuando se dispare dicho evento, el componente padre lo detectará y ejecutará un método para gestionar la información enviada desde el componente hijo a modo de parámetro</li>
+    <li>Es necesario especificar un tipo porque cuando disparemos el evento en el componente padre, este evento contendrá parámetros, que son información que deseamos que el componente padre reciba</li>
+    <li>Este modo de comunicación es últil, por ejemplo, cuando un componente hijo se va a renderizar n veces mediante una directiva <b>*ngFor</b></li>
+  </ul>
+  
+  <h4>7.5 Ejemplo ilustrativo 1</h4>
+  
+  <ul>
+    <li>Supón que tenemos un panel de administración de usuarios donde cada usuario es un componente que renderiza toda la información de un usuario</li>
+    <li>Para cada usuario tenemos la opción de eliminarlo del sistema, pero si eliminamos un usuario, ¿cómo sabe el componente padre de qué usuario se trata?</li>
+    <li>Gracias a <b>EventEmitter</b> podemos disparar el método para eliminarlo en el componente desde el componente hijo (el usuario) padre enviándole el ID del usuario correspondiente</li>
+    <li>En el componente padre, una vez se dispare el evento, se ejecuta un método que elimina el usuario y refresca el panel de administración para que este deje de aparecer renderizado</li>
+    <li>Es posible implementar la eliminación desde el componente hijo (el de usuario), pero de ser así, tras eliminarlo, ¿cómo refrescarías la tabla para que este deje de aparecer renderizado?</li>
+  </ul>
+
+  <h4>7.6 Ejemplo ilustrativo 2</h4>
+  
+  <ul>
+    <li>Supón que tenemos un grid de noticias donde cada noticia es un componente que renderiza el título de la noticia, un extracto y un enlace para ver la noticia completa</li>
+    <li>Si el usuario hiciera clic en una noticia cualquiera, debería acceder a una página con toda la información de la noticia seleccionada</li>
+    <li>Para saber qué noticia debemos abrir, podemos utilizar un <b>EventEmitter</b> para que el padre reciba el ID de la noticia correspondiente y la abra eventualmente</li>
+    <li>No obstante, esto mismo se puede conseguir trabajando con rutas, embebiendo el identificador del elemento seleccionado como parámetro de la URL</li>
+    <li>Este ejemplo ilustra dos formas distintas de hacer lo mismo, elige la que más se adecúe con tu forma de trabajar</li>
+  </ul>
+
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 [id]="itemsIndice[8].enlace">8. {{ itemsIndice[8].texto }}</h3>
+  <hr>
+
+  <div class="consultar mb-40">Consultar <a href="https://medium.com/@pandukamuditha/angular-5-share-data-between-sibling-components-using-eventemitter-8ebb49b64a0a" target="_blank">enlace</a></div>
+
+  <ul>
+    <li>Es posible que más de un componente hijo dispare el manejador en el componente padre antes el mismo evento, aunque este se lance desde diferentes componentes hermanos</li>
+    <li>Para ello, sigue los pasos del apartado anterior para cada componente hermano</li>
+    <li>Eso sí, la situación de la figura 7.3 se daría para cada componente hijo</li>
+  </ul>
+
 </div>
