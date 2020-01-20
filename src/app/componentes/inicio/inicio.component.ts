@@ -29,7 +29,11 @@ export class InicioComponent {
     {
       texto: 'jQuery',
       enlace: 'jquery'
-    }
+    },
+    {
+      texto: 'Importar JSON',
+      enlace: 'importar-json'
+    },
   ];
 
   constructor() { }

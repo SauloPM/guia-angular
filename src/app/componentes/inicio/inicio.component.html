@@ -116,4 +116,19 @@
     <li>Por ejemplo, en lugar de <b>$( '.ejemplo' ).click( function( ... ) &#123; ... &#125; )</b>, podemos escribir <b>$( '.ejemplo' ).click( ( ... ) => &#123; ... &#125; )</b> y omitir así la palabra reservada <b>function</b></li>
   </ul>
 
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 id="importar-json">6. Importar JSON</h3>
+  <hr>
+
+  <div class="consultar">Consultar <a href="https://www.techiediaries.com/import-local-json-files-in-typescript/" target="_blank">enlace</a></div>
+  <div class="consultar mb-40">Consultar <a href="https://stackoverflow.com/questions/49996456/importing-json-file-in-typescript" target="_blank">enlace</a></div>
+
+  <ul>
+    <li>Almacena el fichero JSON dentro del directorio <i>assets</i></li>
+    <li>Dentro del fichero <i>tsconfig.json</i> escribimos la regla <b>"resolveJsonModule": true</b> dentro del nodo <b>compilerOptions</b></li>
+    <li>Dentro del fichero TS del componente correspondiente, escribe la instrucción <b>import  *  as  _Identificador_  from  '_Ruta_';</b></li>
+    <li>A partir de ahora podremos manejar el contenido del fichero JSON a partir de la variable de la instrucción de importación</li>
+  </ul>
+
 </div>
