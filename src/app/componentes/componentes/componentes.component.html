@@ -267,4 +267,54 @@
     <li>Eso sí, la situación de la figura 7.3 se daría para cada componente hijo</li>
   </ul>
 
+  <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+  <h3 [id]="itemsIndice[9].enlace">9. ViewChild</h3>
+  <hr>
+
+  <h4>9.1 Modificaciones en el fichero HTML del componente padre</h4>
+
+  <ul>
+    <li>Escribimos el identificador de la template reference variable en un elemento HTML o en el selector de un componente hijo</li>
+
+    <img src="assets/img/componentes/figura9-1.png" alt="">
+    <caption><strong>Figura 9.1.</strong> Template referenes variables para ambos casos</caption>
+  </ul>
+
+  <h4>9.2 Modificaciones en el fichero TS del componente padre</h4>
+
+  <div class="consultar mb-40">Consultar <a href="https://www.youtube.com/watch?v=AyuIaJTqBLs" target="_blank">enlace</a></div>
+
+  <ul>
+    <li>Importamos la clase <b>ViewChild</b></li>
+    <li>Declaramos una variable con total normalidad, escribiendo su identificador y especificando su tipo, pero utilizando el prefijo <b>@ViewChild()</b></li>
+    <li>Dentro de este prefijo debemos enviar dos parámetros (figura 9.2)</li>
+    <li>Como vemos, el primer parámetro es el identificador de la template reference variable (figura 9.1)</li>
+    <li>El segundo parámetro indica si el elemento HTML o el componente hijo en cuestión es estático (valor <b>true</b>) o no (valor <b>false</b>)</li>
+    <li>Grosso modo, cuando es estático siempre se mostrará, no depende de ninguna directiva <b>*ngIf</b> ni nada de por el estilo</li>
+
+    <img src="assets/img/componentes/figura9-2.png" alt="">
+    <caption><strong>Figura 9.2.</strong> Declaración de variables con <b>@ViewChild()</b></caption>
+
+    <li>A partir de ahora, desde este fichero podremos acceder a las propiedades del componente hijo a partir de la variable que acabamos de declarar (figura 9.2)</li>
+    <li>Asimismo, podremos disparar sus métodos, incluso cuando se trate de inyecciones</li>
+  </ul>
+
+  <h4>9.3 Aclaraciones</h4>
+
+  <ul>
+    <li><b>@ViewChild()</b> nos permite acceder a los atributos de un componente hijo, así como disparar sus métodos desde el componente padre</li>
+    <li>También se presenta como una alternativa a las herramientas ofrecidas por JavaScript o jQuery para manejar un elemento HTML desde el fichero TS del componente en cuestión</li>
+  </ul>
+
+  <h4>9.4 Ejemplo ilustrativo</h4>
+
+  <ul>
+    <li>Supón que tenemos un grid de noticias donde cada noticia es un componente que renderiza el título de la noticia, un extracto y un enlace para ver la noticia completa</li>
+    <li>Si el usuario hiciera clic en una noticia cualquiera, debería abrir un modal de forma suavizada con toda la información de la noticia seleccionada</li>
+    <li>Para conseguir este propósito (el efecto suavizado), debemos modificar los estilos del componente hijo (el modal)</li>
+    <li>Para ello, cuando el usuario selecciona una noticia en cuestión, dispararemos el método que abre el modal en el componente hijo desde el componente padre</li>
+    <li>Desde el método del componente hijo podremos modificar los estilos del modal para que aparezca de manera suavizada</li>
+  </ul>
+
 </div>

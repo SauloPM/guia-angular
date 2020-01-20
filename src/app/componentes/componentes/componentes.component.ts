@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 // Interfaces
 import { ItemIndice } from 'src/app/interfaces/item-indice';
@@ -45,6 +45,10 @@ export class ComponentesComponent {
     {
       texto: 'Enviar información o disparar evento entre componentes hermanos',
       enlace: 'comunicacion-hermanos'
+    },
+    {
+      texto: 'Acceder a los atributos o disparar los métodos de un componente hijo desde el padre',
+      enlace: 'viewchild'
     }
   ];
 
