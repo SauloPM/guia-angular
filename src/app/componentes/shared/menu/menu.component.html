@@ -3,12 +3,20 @@
   <ul class="items">
     <li class="item" routerLinkActive="active" *ngFor="let item of items">
       <a class="enlace" [routerLink]="item.enlace">
+
+        <!-- Icono -->
         <i class="icono fa fa-fw {{ item.icono }}" aria-hidden="true"></i>
+
+        <!-- Texto -->
         <span class="texto">
           {{ item.texto }}
         </span>
+
+        <!-- Caret -->
         <i class="caret fa fa-fw fa-angle-right" *ngIf="item.tieneSubmenu"></i>
       </a>
+
+      <!-- Submenú -->
       <ul class="submenu" *ngIf="item.tieneSubmenu">
         <li *ngFor="let itemSubmenu of item.itemsSubmenu" [innerHTML]="itemSubmenu"></li>
       </ul>

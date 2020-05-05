@@ -78,6 +78,7 @@ h2 {
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 10px;
+    line-height: 38px;
     margin: 0 0 50px;
 }
 
@@ -125,24 +126,17 @@ hr {
 
 .contenido {
     background: white;
-    padding: 25px;
+    padding: 35px 25px;
     width: 100%;
     min-height: 100vh
 }
 
 // Mobile First
 
-@media only screen and (min-width: $mobile) {
+@media only screen and (min-width: $tablet) {
     
     .contenido {
         padding: 75px;
-    }
-}
-
-@media only screen and (min-width: $laptop) {
-
-    .contenido {
-        // margin-left: 350px;
     }
 }
 

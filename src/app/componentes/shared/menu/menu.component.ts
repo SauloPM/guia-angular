@@ -111,7 +111,8 @@ export class MenuComponent {
       texto: 'Aplicaciones ×',
       enlace: 'aplicaciones',
       icono: 'fa-coffee',
-      tieneSubmenu: true
+      // tieneSubmenu: true
+      tieneSubmenu: false
     }
   ]
 

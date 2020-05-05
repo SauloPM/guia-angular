@@ -1,5 +1,6 @@
 // Responsive breakpoints
 $mobile: 480px;
+$tablet: 768px;
 $laptop: 980px;
 
 // Colors
@@ -8,7 +9,6 @@ $primary     : rgb(50,55,70);
 $lightprimary: rgba(50,55,65,.25);
 
 #sidebar {
-    padding-top: 130px;
     position: relative;
     width: fit-content;
     height: 100%;
@@ -18,12 +18,12 @@ $lightprimary: rgba(50,55,65,.25);
     // Logo
 
     .logo {
+        display: none;
         margin: auto;
         position: absolute;
         top: 35px;
         right: 0;
         left: 0;
-        width: 55px;
         height: auto;
     }
 
@@ -49,13 +49,12 @@ $lightprimary: rgba(50,55,65,.25);
 
                 .icono {
                     color: rgb(170,175,185);
-                    font-size: 12px;
-                    margin-right: 8px;
+                    font-size: 20px;
                     transition: .5s ease-in-out;
                 }
     
                 .texto {
-                    display: block;
+                    display: none;
                     color: rgb(170,175,185);
                     font-size: 10px;
                     white-space: nowrap;
@@ -132,14 +131,15 @@ $lightprimary: rgba(50,55,65,.25);
 
 // Mobile First
 
-@media only screen and (min-width: $laptop) {
+@media only screen and (min-width: $tablet) {
 
     #sidebar {
         flex-shrink: 0;
         padding-top: 150px;
-        width: 350px;
+        width: 275px;
 
         .logo {
+            display: block;
             width: 75px;
         }
 
@@ -148,11 +148,20 @@ $lightprimary: rgba(50,55,65,.25);
 
             .icono {
                 font-size: 15px;
+                margin-right: 8px;
             }
 
             .texto {
+                display: block;
                 font-size: 14px;
             }
         }
+    }
+}
+
+@media only screen and (min-width: $laptop) {
+    
+    #sidebar {
+        width: 350px;
     }
 }
