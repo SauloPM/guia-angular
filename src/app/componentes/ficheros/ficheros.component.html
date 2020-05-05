@@ -79,13 +79,19 @@
     <li>Dentro podemos escribir CDNs como hemos hecho siempre en caso de preferir este método a la instalación de dependencias mediante npm o incorporar tipografías de Google Fonts</li>
   </ul>
 
-  <h4>4.5 Fichero <i>polyfills.ts</i></h4>
+  <h4>4.5 Fichero <i>main.js</i></h4>
+
+  <ul>
+    <li>Es el punto de comienzo de ejecución de nuestro proyecto</li>
+  </ul>
+
+  <h4>4.6 Fichero <i>polyfills.ts</i></h4>
 
   <ul>
     <li>Este fichero contiene especificaciones de compatibilidad para poder ejecutar nuestro proyecto en versiones antiguas de navegadores web</li>
   </ul>
 
-  <h4>4.6 Fichero <i>styles.scss</i></h4>
+  <h4>4.7 Fichero <i>styles.scss</i></h4>
 
   <ul>
     <li>Es la hoja de estilos genérica cuyo ámbito afecta a todo el proyecto</li>
@@ -146,7 +152,7 @@
   <hr>
 
   <ul>
-    <li>Este ficheronos permite configurar o establecer nuevas reglas para el compilador de TS</li>
+    <li>Este ficheronos permite configurar el comportamiento del compilador de TS</li>
     <li>En el momento de ejecución no trabajamos con TS, sino con JS compilado, dado que el navegador web no es capaz de interpretar código TS, sino JS</li>
     <li>Dentro del fichero, el campo <b>target</b> es la versión de JS a la que deseamos compilar nuestro código de TS (<i>es</i> quiere decir ECMAScript)</li>
     <li>Por otro lado, el campo <b>sourceMap</b> activa o desactiva la generación de ficheros de soporte para depuración de código</li>
@@ -173,6 +179,7 @@
 
   <ul>
     <li>Este fichero contiene opciones de configuración referentes al editor de texto que estemos utilizando (Visual Studio Code, Sublime Text, Atom...)</li>
+    <li>Define un estándar en el código para que un equipo de programadores escriban código de manera similar</li>
   </ul>
 
   <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
