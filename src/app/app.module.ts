@@ -50,6 +50,9 @@ import { ConstruccionComponent } from './componentes/construccion/construccion.c
 // Directivas
 import { ResaltadoDirective    } from './directivas/resaltado.directive';
 
+// Formularios
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +86,7 @@ import { ResaltadoDirective    } from './directivas/resaltado.directive';
     FormulariosComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule

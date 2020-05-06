@@ -226,3 +226,44 @@ hr {
         }
     }
 }
+
+// ─────────────────── //
+//     FORMULARIOS     //
+// ─────────────────── //
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 250px;
+
+    .entrada {
+        border: 1px solid rgba(50, 55, 65, 0.15);
+        outline: none;
+        padding: 5px 10px;
+        margin-bottom: 5px;
+    }
+
+    .boton {
+        color: white;
+        background: $primary;
+        border: 1px solid $primary;
+        border-radius: 5px;
+        outline: none;
+        padding: 10px;
+        margin-top: 15px;
+        transition: .25s;
+
+        &:hover {
+            color: $primary;
+            background: white;
+        }
+
+        &:active {
+            color: white;
+            background: $primary;
+        }
+    }
+}

@@ -78,7 +78,7 @@ export class MenuComponent {
       tieneSubmenu: false
     },
     {
-      texto: 'Formularios ×',
+      texto: 'Formularios',
       enlace: 'formularios',
       icono: 'fa-navicon',
       tieneSubmenu: false

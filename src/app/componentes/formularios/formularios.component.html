@@ -1,20 +1,141 @@
 <div id="notas" class="animated fadeIn">
 
     <h2>Formularios</h2>
-    
+
     <app-indice [items]="itemsIndice"></app-indice>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+    
+    <h3 id="introduccion">1.Introducción</h3>
+    <hr>
+
+    <!-- Formulario -->
+    <form class="formulario" (ngSubmit)="enviarDatosFormulario( formulario )" #formulario="ngForm">
+
+        <!-- Entradas -->
+        <input class="entrada" type="text" name="nombre"  [(ngModel)]="nombre" required>
+        <input class="entrada" type="text" name="asunto"  [(ngModel)]="asunto">
+        <input class="entrada" type="text" name="mensaje" [(ngModel)]="mensaje">
+
+        <!-- Botón -->
+        <button class="boton" type="submit">Enviar</button>
+    </form>
+
+    <ul>
+        <li>Puedes utilizar este formulario para comprobar la veracidad de las explicaciones de esta sección sin tener que crearlo por tu cuenta desde cero</li>
+        <li>Puedes comprobar el código HTML desde el inspector del navegador web</li>
+        <li>Cuando hagas clic en el botón, aparecerá la estructura interna del objeto <b>NgForm</b> asociado al formulario en la consola de JS del navegador web (esto se explica en el apartado 5)</li>
+    </ul>
         
     <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
     
-    <h3>X. Estructura interna de un formulario de Angular</h3>
+    <h3 id="modulo">2. Modificaciones en el fichero <i>app.module.ts</i></h3>
     <hr>
 
-    <div class="pendiente">Poner una captura de un <b>console.log( formulario )</b></div>
-    <div class="pendiente mb-40">¿Qué vale el atributo <b>pristine</b> si el formulario escribe algo y luego lo borra?, ¿se restablece o no porque el formulario ha sido violado?</div>
-    
     <ul>
-        <li>El atributo <b>pristine</b> vale <b>true</b> cuando el usuario no ha alterado el formulario y <b>false</b> cuando sí ha alterado algo</li>
-        <li>Con alterar nos referimos, por ejemplo, a escribir cualquier cosa dentro de un campo</li>
+        <li>Importamos la clase <b>FormsModule</b> y la incluimos dentro del campo <b>imports</b> del decorador para poder utilizar la directiva directiva <b>ngModel</b></li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="fichero-html">3. Fichero HTML del componente</h3>
+    <hr>
+
+    <ul>
+        <img src="assets/img/formularios/figura3-1.png" alt="">
+        <caption><strong>Figura 3.1</strong> Código base de un formulario de Angular</caption>
+
+        <li>Dentro del elemento HTML <b>form</b> debemos asignar a una template variable (en el ejemplo de la figura 3.1 es <i>#formulario</i>) la clase <b>ngForm</b> para transformar el formulario HTML en un formulario de Angular</li>
+        <li>Al tratarse ahora de un formulario de Angular, si hiciéramos clic en el botón del formulario no pasaría nada (no se efectuarían las posibles validaciones en las entradas, no se refrescaría la página…)</li>
+        <li>Dentro del elemento HTML <b>form</b> debemos además asignarle al evento <b>ngSubmit</b> un manejador (en el ejemplo de la figura 3.1 fue <i>enviarDatosFormulario</i>)</li>
+        <li>Típicamente este manejador recibirá el formulario como parámetro (para ello, utilizamos el identificador de la template variable con la que bautizamos al formulario)</li>
+        <li>Para cada entrada debemos trabajar con el atributo HTML <b>name</b> y la directiva <b>ngModel</b>, esta última para vincular el valor de cada entrada a una variable TS</li>
+        <li>Ojo, el valor del atributo HTML <b>name</b> no tiene por qué coincidir con el valor de la directiva <b>ngModel</b>, son dos cosas distintas (aunque por comodidad se suelen poner iguales)</li>
+        <li>El valor del atributo HTML <b>name</b> será el identificador que utilicemos para designar cada una de las entradas del formulario, que será un obeto de tipo <b>NgForms</b>, como explicamos anteriormente</li>
+        <li>Por último, para el botón debemos asignar el valor <b>submit</b> al atributo HTML <b>type</b></li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="fichero-ts">4. Fichero TS del componente</h3>
+    <hr>
+
+    <ul>
+        <img src="assets/img/formularios/figura4-1.png" alt="">
+        <caption><strong>Figura 4.1</strong> Gestión básica de un formulario de Angular</caption>
+
+        <li>Como se observa en la figura 4.1, hemos declarado tres variables, tal que el identificador de cada una corresponde con el valor de la directiva <b>ngModel</b> de cada entrada del código HTML (figura 3.1)</li>
+        <li>El método <i>enviarDatosFormulario</i> es el manejador que vimos en la figura 3.1 asignado al evento <b>ngSubmit</b></li>
+        <li>Como ya dijimos, este método recibe el formulario per se como parámetro, de tipo <b>NgForm</b> (para utilizar la clase <b>NgForm</b> debemos importarla, como se observa en la figura 4.1)</li>
+        <li>Dentro del cuerpo del manejador operaremos con el formulario de la forma deseada (enviar un email, login, registro...)</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="estructura-interna">5. Estructura interna de un objeto de tipo <b>NgForm</b></h3>
+    <hr>
+
+    <ul>
+        <img src="assets/img/formularios/figura5-1.png" alt="">
+        <caption><strong>Figura 5.1</strong> Estructura interna del objeto de tipo <b>NgForm</b> generada a partir del código de la figura 4.1</caption>
+
+        <li>Un formulario de Angular no es más que un objeto de tipo <b>NgForm</b></li>
+        <li>Algunos de los campos de este objeto son muy últiles, entre otros, para realizar validaciones</li>
+        <li>Podemos ver su estructura interna en la consola de Js del navegador web mediante la instrucccion <b>console.log</b> (figura 4.1)</li>
+    </ul>
+
+    <h4>5.1 Estructura interna del campo <b>form</b></h4>
+
+    <ul>
+        <img src="assets/img/formularios/figura5-2.png" alt="">
+        <caption><strong>Figura 5.2</strong> Estructura interna del campo <b>form</b> del objeto de tipo <b>NgForm</b> de la figura 5.1</caption>
+
+        <li>La figura 5.2 ilustra la estructura interna del campo <b>form</b> del objeto <b>NgForm</b> de la figura 5.1, donde se encuentran algunos de los campos más interesantes</li>
+        <li>El campo <b>pristine</b> valdrá <b>false</b> cuando el usuario haya alterado al menos un control del formulario (por ejemplo, escribir algo en una entrada) y <b>true</b> cuando sí lo haya hecho</li>
+        <li>Ojo, aunque deshagamos los cambios y dejemos el formulario tal y como estaba inicialmente, este campo seguirá valiendo <b>false</b>, ya que el formulario fue alterado previamente</li>
+        <li>El campo <b>touched</b> valdrá <b>true</b> cuando el usuario haya interactuado con al menos un control del formulario (por ejemplo, hacer focus en una entrada cualquiera) y <b>false</b> cuando no lo haya hecho</li>
+        <li>El campo <b>status</b> valdrá <i>VALID</i> si no existieran errores de validación e <i>INVALID</i> en caso contrario (por ejemplo, un campo requerido vacío)</li>
+    </ul>
+
+    <h4>5.2 Estructura interna del campo <b>controls</b></h4>
+
+    <ul>
+        <img src="assets/img/formularios/figura5-3.png" alt="">
+        <caption><strong>Figura 5.3</strong> Estructura interna del campo <b>controls</b> del campo <b>forms</b> de la figura 5.2</caption>
+
+        <li>Es un objeto que tiene un campo por cada entrada del formulario</li>
+        <li>El identificador de estos campos (resaltados en la figura 5.3) coincidirá con el valor del atributo HTML <b>name</b> de la entrada correspondiente del formulario del fichero HTML (figura 3.1)</li>
+        <li>¿Recuerdas que habíamos dicho que el valor del atributo HTML <b>name</b> no tenía por qué coincidir con el valor de la directiva <b>ngModel</b> porque se utilizaban para cosas distintas? Pues aquí tienes la prueba</li>
+        <li>Como ilustra la figura 5.3, cada objeto del campo <b>controls</b> utiliza a su vez los mismos campos que vimos en el apartado 4.1 (<b>pristine</b>, <b>touched</b>, <b>status</b>...), pero aplicados a cada control del formulario</li>
+        <li>Lógicamente, el campo <b>value</b> contendrá el valor escrito en la entrada correspondiente</li>
+    </ul>
+
+    <!-- ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── -->
+
+    <h3 id="clases-angular">6. Código HTML de un formulario de Angular visto desde el inspector del navegador web</h3>
+    <hr>
+
+    <ul>
+        <img src="assets/img/formularios/figura6-1.png" alt="">
+        <caption><strong>Figura 6.1</strong> Código HTML del formulario de Angular de la figura 3.1 visto desde el inspector del navegador web</caption>
+
+        <li>La figura 6.1 ilustra el código HTML del formulario de la figura 3.1 visto desde el inspecto del navegador web, en la que podemos observar que tanto el formulario como las entradas utilizan clases de Angular</li>
+        <li>Las clases de Angular utilizadas por el formulario y sus campos irán variando en tiempo de ejecución en función de la interacción entre el formulario y el usuario</li>
+    </ul>
+    
+    <h4>6.1 Clases de Angular para el manejo de formularios</h4>
+
+    <ul>
+        <li>Ojo, estas clases pueden aparecer, tanto en el elemento HTML <b>form</b>, como en los elementos HTML <b>input</b> (es decir, el formulario o cualquiera de sus campos)</li>
+        <li>La clase <b>ng-pristine</b> se utilizará cuando ninguno de los campos del formulario haya sido modificado por el usuario (lógicamente, si esta clase está activa, la clase <b>ng-dirty</b> desaparecerá, al ser su opuesta)</li>
+        <li>La clase <b>ng-dirty</b> se utilizará cuando al menos uno de los campos del formulario haya sido modificado por el usuario (lógicamente, si esta clase está activa, la clase <b>ng-pristine</b> desaparecerá, al ser su opuesta)</li>
+        <li>La clase <b>ng-untouched</b> se utilizará cuando el usuario no haya interactuado con ninguno de los campos del formulario (lógicamente, si esta clase está activa, la clase <b>ng-touched</b> desaparece, al ser su opuesta)</li>
+        <li>La clase <b>ng-touched</b> se utilizará cuando el usuario haya interactuado con al menos uno de los campos del formulario (lógicamente, si esta clase está activa, la clase <b>ng-untouched</b> desaparece, al ser su opuesta)</li>
+        <li>La clase <b>ng-valid</b> se utilizará cuando ninguna entrada del formulario tenga errores de validación (lógicamente, si esta clase está activa, la clase <b>ng-invalid</b> desaparece, al ser su opuesta)</li>
+        <li>La clase <b>ng-invalid</b> se utilizará cuando al menos una entrada del formulario tenga errores de validación (lógicamente, si esta clase está activa, la clase <b>ng-valid</b> desaparece, al ser su opuesta)</li>
+        <li>La clase <b>ng-dirty</b> no desaparecerá aunque dejemos el formulario como estaba inicialmente</li>
+        <li>La clase <b>ng-touched</b> no desaparecerá aunque dejemos de interactuar con el formulario</li>
+        <li>Nótese que en la figura 6.1, el primer campo del formulario tiene la clase CSS <b>ng-invalid</b> (y consecuentemente el formulario también) porque es requerido y estaba vacío cuando el usuario hizo clic en el botón</li>
     </ul>
     
 </div>

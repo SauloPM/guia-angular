@@ -10,6 +10,7 @@ import { ServiciosComponent     } from './componentes/servicios/servicios.compon
 import { DespliegueComponent    } from './componentes/despliegue/despliegue.component';
 import { TypescriptComponent    } from './componentes/typescript/typescript.component';
 import { ComponentesComponent   } from './componentes/componentes/componentes.component';
+import { FormulariosComponent   } from './componentes/formularios/formularios.component';
 import { ConstruccionComponent  } from './componentes/construccion/construccion.component';
 import { LoginRegistroComponent } from './componentes/login-registro/login-registro.component';
 
@@ -26,9 +27,10 @@ import { ErrorComponent        } from './componentes/error/error.component';
 const routes: Routes = [
 
   // Terminado
-  { path: 'inicio'    , component: InicioComponent     },
-  { path: 'ficheros'  , component: FicherosComponent   },
-  { path: 'despliegue', component: DespliegueComponent },
+  { path: 'inicio'     , component: InicioComponent      },
+  { path: 'ficheros'   , component: FicherosComponent    },
+  { path: 'despliegue' , component: DespliegueComponent  },
+  { path: 'formularios', component: FormulariosComponent },
 
   // En proceso
   { path: 'crud'            , component: CrudComponent          },
@@ -50,7 +52,6 @@ const routes: Routes = [
   { path: 'ngswitch'       , component: ConstruccionComponent },
   { path: 'ficheros'       , component: ConstruccionComponent },
   { path: 'depuracion'     , component: ConstruccionComponent },
-  { path: 'formularios'    , component: ConstruccionComponent },
   { path: 'aplicaciones'   , component: ConstruccionComponent },
   { path: 'ciclos-de-vida' , component: ConstruccionComponent },
   { path: 'directivapropia', component: ConstruccionComponent },
