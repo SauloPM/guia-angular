@@ -85,12 +85,14 @@ h2 {
 h3 {
     font-size: 18px;
     font-weight: 400;
+    line-height: 28px;
     margin: 50px 0 0;
 }
 
 h4 {
     font-size: 15px;
     font-weight: 500;
+    line-height: 25px;
     margin: 30px 0;
 }
 
@@ -192,7 +194,7 @@ hr {
     img {
         display: block;
         border: 1px solid $primary;
-        margin: 50px 0 0;
+        margin: 50px 0 0 15px;
         max-width: 100%;
         height: auto;
     }
@@ -203,7 +205,7 @@ hr {
         font-size: 11px;
         font-weight: 400;
         padding: 0;
-        margin: 5px 0 50px;
+        margin: 5px 0 50px 15px;
     
         strong {
             display: inline;
@@ -218,11 +220,11 @@ hr {
     #notas ul {
 
         img {
-            margin: 50px 0 0 50px;
+            margin: 50px 0 0 15px;
         }
         
         caption {
-            margin: 5px 0 50px 50px;
+            margin: 5px 0 50px 15px;
         }
     }
 }
@@ -234,7 +236,7 @@ hr {
 .formulario {
     display: flex;
     flex-direction: column;
-    margin: 50px 0 50px 50px;
+    margin: 50px 0 50px 15px;
     width: 100%;
     max-width: 250px;
 
@@ -264,5 +266,15 @@ hr {
             color: white;
             background: $primary;
         }
+    }
+}
+
+// Mobile First
+
+@media only screen and (min-width: $tablet) {
+
+    .formulario {
+
+        margin: 50px 0 50px 50px;
     }
 }
