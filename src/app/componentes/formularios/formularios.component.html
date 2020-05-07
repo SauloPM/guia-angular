@@ -9,6 +9,12 @@
     <h3 id="introduccion">1.Introducción</h3>
     <hr>
 
+    <ul>
+        <li>Angular permite disponer un formulario desde el fichero HTML, lo que se conoce como Template Driven Forms, o desde el fichero TS, lo que se conoce como Reactive Forms</li>
+        <li>La primera forma requiere ensuciar más el fichero HTML y dejar más limpio el fichero TS del componente en cuestión, mientras que la segunda todo lo contrario</li>
+        <li>Puedes elegir la manera que más se adecúe a tus preferencias, pero en esta sección vamos a explicar únicamente la primera de las dos (de momento)</li>
+    </ul>
+
     <!-- Formulario -->
     <form class="formulario" (ngSubmit)="enviarDatosFormulario( formulario )" #formulario="ngForm">
 
@@ -23,7 +29,7 @@
 
     <ul>
         <li>Puedes utilizar este formulario para comprobar la veracidad de las explicaciones de esta sección sin tener que crearlo por tu cuenta desde cero</li>
-        <li>Puedes comprobar el código HTML desde el inspector del navegador web</li>
+        <li>Puedes comprobar el código HTML desde el inspector del navegador web y ver cómo se comporta a medida que interactúas con el formulario</li>
         <li>Cuando hagas clic en el botón, aparecerá la estructura interna del objeto <b>NgForm</b> asociado al formulario en la consola de JS del navegador web (esto se explica en el apartado 5)</li>
     </ul>
         
