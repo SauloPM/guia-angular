@@ -9,10 +9,11 @@ $primary     : rgb(50,55,70);
 $lightprimary: rgba(50,55,65,.25);
 
 #sidebar {
-    position: relative;
-    width: fit-content;
-    height: 100%;
-    min-height: 100vh;
+    background: $primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     overflow: auto;
 
     // Logo
@@ -126,6 +127,12 @@ $lightprimary: rgba(50,55,65,.25);
                 opacity: .75;
             }
         }
+    }
+
+    // Scrollbar
+
+    &::-webkit-scrollbar {
+        width: 0;
     }
 }
 

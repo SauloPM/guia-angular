@@ -1,17 +1,14 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="animated fadeIn">
 
-  <div style="display: flex; align-items: flex-start; justify-content: space-between">
+  <!-- Sidebar -->
+  <app-menu></app-menu>
 
-    <!-- Sidebar -->
-    <app-menu></app-menu>
-
-    <!-- Contenido -->
-    <div class="contenido">
-      <router-outlet></router-outlet>
-    </div>
-
-    <app-top-button></app-top-button>
-
+  <!-- Contenido -->
+  <div class="contenido">
+    <router-outlet></router-outlet>
   </div>
+
+  <!-- Top button -->
+  <app-top-button></app-top-button>
+
 </div>
